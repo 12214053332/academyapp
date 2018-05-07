@@ -79,6 +79,48 @@ function includeHTML() {
 };
 includeHTML();
 function onDeviceReady() {
+    // sidenav control left
+    $(".sidenav-control").sideNav({
+        edge: 'right',//change rtl[left,right]
+        closeOnClick: false
+    });
+    // panel collapse icon
+    $(document).on("click",".collapsible-header",function(e){
+        $(this).parent().siblings().find('span i').removeClass('fa-chevron-up')//change rtl[down,up]
+        $(this).find('span i').toggleClass('fa-chevron-up')//change rtl[down,up]
+        el=$(this).parent().find('.collapsible-body');
+        if(el.is(':visible')){
+            console.log('is :visible')
+            el.css({"display":"block"});
+        }else{
+            console.log('else is :visible')
+            el.css({"display":"none"});
+        }
+        $(".collapsible-body").not(el).not('.faq').css({"display":"none"});
+    });
 
-    $(document).on('')
+    // slick slider
+    $('.slider-slick').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        autoplay: true
+    });
+
+    // faq collapse icon
+    $(document).on("click",".faq-collapsible",function(e){
+        $(this).parent().siblings().find('i').removeClass('fa-minus')
+        $(this).find('i').toggleClass('fa-minus')
+    });
+
+    // testimonial
+    $("#testimonial").owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem: true
+    });
+
+    // tabs
+    $('ul.tabs').tabs();
 }

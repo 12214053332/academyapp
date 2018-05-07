@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="True">
+	
 	<link rel="shortcut icon" href="img/favicon.png">
+	
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<link rel="stylesheet" href="css/slick.css">
@@ -18,47 +20,48 @@
 	<!--<link rel="stylesheet" href="css/style.css">-->
 	<link rel="stylesheet" href="css/style_rtl.css">
 	<link rel="stylesheet" href="css/select2.min.css">
+	
 </head>
 <body>
-	<div w3-include-html="include/header.html"></div>
+
+<div w3-include-html="include/header.html"></div>
 	
-	<!-- login-->
-	<div class="login app-pages app-section">
+	<!-- contact-->
+	<div class="contact app-pages app-section">
 		<div class="container">
 			<div class="pages-title">
-				<h3>Login</h3>
+				<h3>Contact us</h3>
 			</div>
 			<form action="#">
+				<div class="input-field">
+					<input id="name" type="text" class="validate" placeholder="Name">
+				</div>
 				<div class="input-field">
 					<input id="email" type="email" class="validate" placeholder="Email">
 				</div>
 				<div class="input-field">
-					<input id="password" type="password" class="validate" placeholder="Password">
+					<input id="number" type="number" class="validate" placeholder="Number">
 				</div>
-				<div><a href="#" class="forgot">Forgot Password?</a></div>
-				<div class="chebox">
-					<input type="checkbox" id="checkbox" />
-  					<label for="checkbox">Remember me</label>
+				<div class="input-field">
+					<input id="website" type="text" class="validate" placeholder="Website">
 				</div>
-				<button class="button">Login</button>
-				<div class="create-account">Not Registered? <a href="#">Create an account</a></div>
+				<div class="input-field">
+					<textarea cols="20" rows="10" id="your-message" class="validate" placeholder="Your Message"></textarea>
+				</div>
+				<button class="button">Submit</button>
 			</form>
-			<div class="or">
-				<h5>OR</h5>
-				<button class="button facebook">Login with Facebook</button>
-				<button class="button twitter">Login with Twitter</button>
-				<button class="button google">Login with Google+</button>
-			</div>
 		</div>
 	</div>
-	<!-- end login -->
-	<div w3-include-html="include/footer.html"></div>
+	<!-- end contact -->
+
+<div w3-include-html="include/footer.html"></div>
+	
+	<!-- script -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/materialize.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/select2.full.min.js"></script>
 	<script src="js/index.js"></script>
-
 </body>
 </html>
