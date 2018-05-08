@@ -45,7 +45,54 @@ var app = {
 };
 
 app.initialize();*/
-
+var APIURL="https://www.e3melbusiness.com/";
+var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
+url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+var errorMessages={
+    "email_exist":"The Email Is Already Exist",
+    "phone_exist":"The Phone Is Already Exist",
+    "success":"Your Operation is success",
+    "wrong_phone_or_password":"Wrong Phone Or Password",
+    "user_not_active":"This User Not Active ",
+    "user_id_required.":"User ID is required",
+    "place_of_delivery_address_required.":"Place Of Delivery Address is required",
+    "place_of_delivery_latitude_required.":"Place Of Delivery latitude is required",
+    "place_of_delivery_longitude_required.":"Place Of Delivery longitude is required",
+    "delivery_place_address_required.":"Delivery Place Address is required",
+    "delivery_place_latitude_required.":"Delivery Place latitude is required",
+    "delivery_place_longitude_required.":"Delivery Place longitude is required",
+    "details_required.":"Details is required",
+    "distance_required.":"Distance is required",
+    "duration_required.":"Duration is required",
+    "cost_required.":"Cost is required",
+};
+function makeURL(action,parameters){
+    parametersText='';
+    if(typeof parameters==='object'){
+        for (var k in parameters){
+           parametersText+='&'+k+'='+parameters[k];
+        }
+    }
+    return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
+}
+function getMessages(response,element){
+    html='<div class="alert '+((response.success)?'alert-success':'alert-danger')+'">';
+    message=response.message;
+    if(message.length==1){
+        html+=((typeof errorMessages[message[0]]=='undefined')?message[0]:errorMessages[message[0]])+'</div>';
+        $(element).html(html);
+        return'';
+    }
+    html+='<ul>';
+    if(Array.isArray(message)){
+        message.forEach(function(item){
+            html+='<li>'+((typeof errorMessages[item]=='undefined')?item:errorMessages[item])+'</li>'
+        })
+    }
+    html+='</ul></div>';
+    $(element).html(html);
+}
 $(document).ready(function(){
     document.addEventListener("deviceready",onDeviceReady,false);
     $(".select2").select2()

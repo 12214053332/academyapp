@@ -31,79 +31,17 @@
 	<div class="courses app-section app-pages">
 		<div class="container">
 			<div class="pages-title">
-				<h4>Courses</h4>
+				<h4>الكورسات</h4>
 				<div class="line"></div>
 			</div>
-			<div class="row">
-				<div class="col s6">
-					<div class="entry">
-						<img src="img/course1.jpg" alt="">
-						<h6><a href="#">Tutorial CSS</a></h6>
-						<div class="rating">
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class=""><i class="fa fa-star"></i></span>
-						</div>
-						<div class="price">
-							<h5>$26</h5>
-						</div>
-					</div>
+			<div class="row" id="allCoursesData">
+				<div class="text-center">
+					<img src="img/loading.svg" alt="loading">
 				</div>
-				<div class="col s6">
-					<div class="entry">
-						<img src="img/course2.jpg" alt="">
-						<h6><a href="#">HTML5 Courses</a></h6>
-						<div class="rating">
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class=""><i class="fa fa-star"></i></span>
-						</div>
-						<div class="price">
-							<h5>Free</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s6">
-					<div class="entry">
-						<img src="img/course3.png" alt="">
-						<h6><a href="#">Mastering JS</a></h6>
-						<div class="rating">
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class=""><i class="fa fa-star"></i></span>
-						</div>
-						<div class="price">
-							<h5>$15</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="entry">
-						<img src="img/course4.jpg" alt="">
-						<h6><a href="#">PHP Basics</a></h6>
-						<div class="rating">
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class=""><i class="fa fa-star"></i></span>
-						</div>
-						<div class="price">
-							<h5>$20</h5>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
-		<div class="pagination">
+		<!--<div class="pagination">
 			<ul>
 				<li><a href="#">First</a></li>
 				<li class="active"><a href="#">1</a></li>
@@ -112,12 +50,11 @@
 				<li><a href="#">4</a></li>
 				<li><a href="#">Last</a></li>
 			</ul>
-		</div>
+		</div>-->
 	</div>
 	<!-- end courses -->
 
 <div w3-include-html="include/footer.html"></div>
-	
 	<!-- script -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/materialize.min.js"></script>
@@ -125,5 +62,9 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/select2.full.min.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/courses.js"></script>
+	<script>
+		courses.coursesPage();
+	</script>
 </body>
 </html>

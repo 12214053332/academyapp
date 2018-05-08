@@ -1284,8 +1284,8 @@ p {
 .review .comment .content img {
 	width: 80px;
 	height: 80px;
-	float: left;
-	margin-right: 15px;
+	float: right;
+	margin-left: 15px;
 	border-radius: 50%;
 }
 
@@ -1400,7 +1400,7 @@ p {
 }
 
 .blog .entry .user-date ul li a i {
-	margin-right: 6px;
+	margin-left: 6px;
 	color: #05274a;
 }
 
@@ -1452,7 +1452,7 @@ p {
 }
 
 .blog-single .entry .user-date ul li a i {
-	margin-right: 6px;
+	margin-left: 6px;
 	color: #05274a;
 }
 
@@ -1494,8 +1494,8 @@ p {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	float: left;
-	margin-right: 15px;
+	float: right;
+	margin-left: 15px;
 }
 
 .blog-single .author .entry ul {
@@ -1520,8 +1520,8 @@ p {
 .blog-single .comment .content img {
 	width: 80px;
 	height: 80px;
-	float: left;
-	margin-right: 15px;
+	float: right;
+	margin-left: 15px;
 }
 
 .blog-single .comment .content {
@@ -1986,4 +1986,15 @@ footer .ft-bottom {
 }
 ul:not(.browser-default){
 	padding: 0px;
+}
+
+/*global*/
+.single-course{
+	min-height: 230px!important;
+}
+.text-center{
+	text-align: center;
+}
+#courseDate,#courseViews{
+	display: inline-block;
 }
