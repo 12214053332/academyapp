@@ -33,6 +33,7 @@ Author URL : https://themeforest.net/user/rabonadev
 	import fonts
 ===================*/
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900|Roboto:400,500,700');
+@font-face { font-family:cocon; src: url('../fonts/cocon.otf'); }
 
 /*===================
 	general
@@ -1997,4 +1998,7 @@ ul:not(.browser-default){
 }
 #courseDate,#courseViews{
 	display: inline-block;
+}
+html *{
+	font-family: "cocon";
 }
