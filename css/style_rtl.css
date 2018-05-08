@@ -1996,7 +1996,7 @@ ul:not(.browser-default){
 .text-center{
 	text-align: center;
 }
-#courseDate,#courseViews{
+#courseDate,#courseViews,#storyViews,#storyDate{
 	display: inline-block;
 }
 html *{
