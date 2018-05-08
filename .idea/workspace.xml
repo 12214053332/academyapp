@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0924c69-3643-45f2-9cc8-feffcd0c4eb2" name="Default" comment="link courses and single course pages with script 8-5-2018">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/books.js" />
+    <list default="true" id="b0924c69-3643-45f2-9cc8-feffcd0c4eb2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/book-single.html" afterPath="$PROJECT_DIR$/book-single.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/book.html" afterPath="$PROJECT_DIR$/book.html" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -342,11 +339,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525768750423</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="books5/8">
+      <created>1525789456394</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1525789456394</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16235000" />
+    <option name="totallyTimeSpent" value="16331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1604" height="876" extended-state="0" />
@@ -388,7 +392,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="last update template 7-5-2018" />
     <MESSAGE value="link courses and single course pages with script 8-5-2018" />
-    <option name="LAST_COMMIT_MESSAGE" value="link courses and single course pages with script 8-5-2018" />
+    <MESSAGE value="books5/8" />
+    <option name="LAST_COMMIT_MESSAGE" value="books5/8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
