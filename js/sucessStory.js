@@ -17,7 +17,7 @@ successtories ={
             }
         });
     },
-    coursesSingleDiv:function(singleStory){
+    storiesSingleDiv:function(singleStory){
 		
         html='<div class="col s6 single-story"><div class="entry"><img src="'+APIURL+singleStory.image+'" alt=""><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleStory.rating;x++){
@@ -37,7 +37,7 @@ successtories ={
            if(msg.success){
                html='';
                 msg.result.forEach(function(item){
-                    html+=el.coursesSingleDiv(item);
+                    html+=el.storiesSingleDiv(item);
                 });
                 $("#allsucessStorysData").html(html);
            }
