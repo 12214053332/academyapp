@@ -25,34 +25,36 @@
 <body>
 
 <div w3-include-html="include/header.html"></div>
+	
 
-	<!-- ebook -->
-	<div class="ebook app-section app-pages">
+	<!-- courses -->
+	<div class="courses app-section app-pages">
 		<div class="container">
 			<div class="pages-title">
-				<h3>Ebook</h3>
+				<h4> تخصصات</h4>
+				<div class="line"></div>
 			</div>
-			<div class="row" id="allBooksData">
-				<div class="col s6">
-					<div class="entry" >
-						<img src="img/ebook1.png" alt="">
-						<h6><a href="#">HTML Basics</a></h6>
-						<div class="rating">
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class="active"><i class="fa fa-star"></i></span>
-							<span class=""><i class="fa fa-star"></i></span>
-						</div>
-						<div class="price">
-							<h5>Free</h5>
-						</div>
-					</div>
+			<div class="row" id="allcategoryData">
+				<div class="text-center">
+					<img src="img/loading.svg" alt="loading">
 				</div>
 
+			</div>
+		</div>
+		<!--<div class="pagination">
+			<ul>
+				<li><a href="#">First</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">Last</a></li>
+			</ul>
+		</div>-->
+	</div>
+	<!-- end courses -->
 
 <div w3-include-html="include/footer.html"></div>
-	
 	<!-- script -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/materialize.min.js"></script>
@@ -60,9 +62,9 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/select2.full.min.js"></script>
 	<script src="js/index.js"></script>
-	<script src="js/books.js"></script>
-<script>
-	books.booksPage();
-</script>
+	<script src="js/categories.js"></script>
+	<script>
+		categories.categoriesPage();
+	</script>
 </body>
 </html>
