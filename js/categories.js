@@ -122,7 +122,7 @@ categories ={
              console.log(webinarID);
              window.sessionStorage.setItem("webinarID", webinarID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="webinar-single.html";
          });
          $(document).on('click','.single-successtories a',function(e){
              e.preventDefault();
@@ -130,7 +130,7 @@ categories ={
              console.log(successtoriesID);
              window.sessionStorage.setItem("successtoriesrID", successtoriesID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="sucessStory-single.html";
          });
          $(document).on('click','.single-books a',function(e){
              e.preventDefault();
@@ -138,7 +138,7 @@ categories ={
              console.log(bookssID);
              window.sessionStorage.setItem("booksID", booksID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="book-single.html";
          });
          $(document).on('click','.single-workShops a',function(e){
              e.preventDefault();
@@ -146,7 +146,7 @@ categories ={
              console.log(workShopsID);
              window.sessionStorage.setItem("workShopsID", workShopsID);
              //el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="workshop-single.html";
          });
     },
     redirectToSingleCourse:function(){
@@ -213,8 +213,6 @@ categories ={
         }
 
 
-    }, redirectToSingleCourse:function(){
-        window.location.href="courses-single.html";
     }
 
 };
