@@ -45,7 +45,7 @@ Author URL : https://themeforest.net/user/rabonadev
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-html,body{
+html,body,.select2-selection__rendered,#select2-results{
 	direction:rtl;
 }
 .slider-slick.app-pages.slick-initialized.slick-slider.slick-dotted,.testimonial.testimonial-home{
@@ -2001,4 +2001,42 @@ ul:not(.browser-default){
 }
 html *{
 	font-family: "cocon";
+}
+.selection .select2-selection{
+	margin-bottom: 20px;
+}
+.select2-selection.select2-selection--single.invalid{
+	border-bottom: 1px solid #F44336;
+	box-shadow: 0 1px 0 0 #F44336;
+}
+.alert-box.error {
+	color: red;
+	text-align: right;
+}
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.alert-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+.alert-info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+.alert-warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+}
+.alert-danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
 }
