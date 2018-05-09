@@ -190,29 +190,29 @@ categories ={
         html_workShops+='</div></div></div>';
         return html_workShops;
     },
-    singleCoursePage:function(){
-        el=this;
-        courseID=window.sessionStorage.getItem("courseID")
-        if(courseID){
-            el.getSingle(courseID,function(msg){
-                course=msg.result;
-                if(msg.success){
-                    $("#courseIframe").attr('src',course.intro_vedio);
-                    $("#courseTitle").html(course.name);
-                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
-                    $("#instructorNname").html(course.instractor_name);
-                    $("#courseDate").html(course.createdtime);
-                    $("#courseViews").html(course.view);
-                    $("#courseDescription").html(course.description);
-                }else{
-                    //el.redirectToCourse();
-                }
-            });
-        }else{
-            //el.redirectToCourse();
-        }
-
-
-    }
+    //singleCoursePage:function(){
+    //    el=this;
+    //    courseID=window.sessionStorage.getItem("courseID")
+    //    if(courseID){
+    //        el.getSingle(courseID,function(msg){
+    //            course=msg.result;
+    //            if(msg.success){
+    //                $("#courseIframe").attr('src',course.intro_vedio);
+    //                $("#courseTitle").html(course.name);
+    //                $("#instructorImage").attr('src',APIURL+course.instractor_pic);
+    //                $("#instructorNname").html(course.instractor_name);
+    //                $("#courseDate").html(course.createdtime);
+    //                $("#courseViews").html(course.view);
+    //                $("#courseDescription").html(course.description);
+    //            }else{
+    //                //el.redirectToCourse();
+    //            }
+    //        });
+    //    }else{
+    //        //el.redirectToCourse();
+    //    }
+    //
+    //
+    //}
 
 };
