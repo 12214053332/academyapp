@@ -45,9 +45,11 @@ var app = {
 };
 
 app.initialize();*/
+var userData = window.sessionStorage.getItem("userData")
 var APIURL="https://www.e3melbusiness.com/";
 var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
 url = window.location.pathname;
+
 var filename = url.substring(url.lastIndexOf('/')+1);
 var errorMessages={
     "email_exist":"The Email Is Already Exist",
@@ -74,12 +76,17 @@ function makeURL(action,parameters){
            parametersText+='&'+k+'='+parameters[k];
         }
     }
+    if(userData){
+        userDataJson=JSON.parse(userData);
+        parametersText+='&email='+userDataJson.email;
+        parametersText+='&password='+userDataJson.password;
+    }
     return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
 }
 function getMessages(response,element){
     html='<div class="alert '+((response.success)?'alert-success':'alert-danger')+'">';
     message=response.message;
-    if(message.length==1){
+    /*if(message.length==1){
         html+=((typeof errorMessages[message[0]]=='undefined')?message[0]:errorMessages[message[0]])+'</div>';
         $(element).html(html);
         return'';
@@ -89,7 +96,9 @@ function getMessages(response,element){
         message.forEach(function(item){
             html+='<li>'+((typeof errorMessages[item]=='undefined')?item:errorMessages[item])+'</li>'
         })
-    }
+    }*/
+    html+='<ul>';
+    html+='<li>'+errorMessages[message]+'</li>';
     html+='</ul></div>';
     $(element).html(html);
 }
@@ -124,8 +133,143 @@ function includeHTML() {
         }
     }
 };
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 includeHTML();
 function onDeviceReady() {
+    if(userData){
+        userDataJson=JSON.parse(userData);
+        if(userDataJson.image){
+            $("#userDataImage").attr('src',APIURL+userDataJson.image)
+        }else{
+            $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png')
+        }
+        $("#userDataFullName").html(userDataJson.fullName);
+    }
+    if(filename=='register.html'){
+        $.ajax({
+            type: "GET",
+            url: makeURL('countries'),
+            success: function (msg) {
+                if(msg.success){
+                    html='<option value="">اختر  الدولة</option>';
+                    msg.result.forEach(function(item){
+                        html+='<option value="'+item.id+'" data-code="'+item.code+'"> '+item.name+'    +'+item.code+' </option>'
+                    });
+                    $("#country").html(html).trigger('change');
+                }
+            }
+
+        });
+
+        var validator = $("#signup-form").validate({
+            errorPlacement: function(error, element) {
+                // Append error within linked label
+
+                /*$( element )
+                    .closest( "form" )
+                    .find( "label[for='" + element.attr( "id" ) + "']" )
+                    .append( error );*/
+            },
+            highlight: function(element) {
+                console.log(element);
+                if($(element).hasClass('select2')){
+                    console.log("#select2-"+$(element).attr('id')+"-container")
+                    $("#select2-"+$(element).attr('id')+"-container").parent().addClass('invalid');
+                }else{
+                    $(element).addClass('invalid')
+                }
+
+                //$(element).closest('.form-group').addClass('has-error');
+
+            },
+            unhighlight: function(element) {
+                if($(element).hasClass('select2')){
+                    console.log("#select2-"+$(element).attr('id')+"-container")
+                    $("#select2-"+$(element).attr('id')+"-container").parent().removeClass('invalid');
+                }else {
+                    $(element).removeClass('invalid')
+                }
+                //$(element).closest('.form-group').removeClass('has-error');
+
+            },
+            errorElement: "span",
+            rules : {
+                fullname : {
+                    required:true,
+                    minlength : 5
+                },
+                email : {
+                    required:true,
+                    minlength : 5
+                },
+                mobile : {
+                    required:true,
+                    minlength : 6
+                },
+                country: {
+                    required : true
+                },
+                password : {
+                    required:true,
+                    minlength : 5
+                },
+                confirmpassword : {
+                    required:true,
+                    minlength : 5,
+                    equalTo : "#password"
+                },
+
+            },
+            messages: {
+            },
+            submitHandler: function() {
+                var countrycode=$('#country').find(':selected').data('code') ;
+                var Mobile1=$('#Mobile').val() ;
+                if( Mobile1.charAt( 0 ) === '0' )
+                    Mobile1 = Mobile1.slice( 1 );
+                var Mobile=countrycode +  Mobile1;
+                $.ajax({
+                    type: 'post',
+                    url: /****/APIURL+'?page=_usersaction&action=signup',
+                    data: $('#signup-form').serialize()+ "&Mobile="+Mobile,
+                    success: function (data) {
+                        $('#signup-response').html(data);
+                        // alert(data);
+                        if (IsJsonString(data))
+                        {
+                            var httpref = JSON.parse(data);
+                            window.location.assign(httpref.httpref);
+                        } else {
+                            if (data.indexOf('شكر')!=-1){
+                                $('input').val('')
+
+                                $('select option[value=""]').attr('selected','selected');
+                                window.location.assign('?page=thanks');
+
+                                // window.location.assign("?page=profile")
+                            }else{
+                                // $('.registerresult').html(data);
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+
+        $(".cancel").click(function() {
+            validator.resetForm();
+        });
+
+
+    }
     // sidenav control left
     $(".sidenav-control").sideNav({
         edge: 'right',//change rtl[left,right]
@@ -170,4 +314,71 @@ function onDeviceReady() {
 
     // tabs
     $('ul.tabs').tabs();
+    function objectifyForm(formArray) {//serialize data function
+
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++){
+            console.log(formArray)
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
+    var loginValidator = $("#login-form").validate({
+        errorPlacement: function(error, element) {
+            // Append error within linked label
+            /*$( element )
+                .closest( "form" )
+                .find( "label[for='" + element.attr( "id" ) + "']" )
+                .append( error );*/
+            //$(element).parent().parent().addClass('has-error');
+        },
+        highlight: function(element) {
+
+            $(element).closest('.form-group').addClass('has-error');
+
+        },
+        unhighlight: function(element) {
+
+            $(element).closest('.form-group').removeClass('has-error');
+
+        },
+        errorElement: "span",
+        rules : {
+
+            email : {
+                required:true,
+                minlength : 5
+            },
+            password : {
+                required:true,
+                minlength : 5
+            }
+        },
+        messages: {
+        },
+        submitHandler: function() {
+
+            //alert('start');
+            //$("#charge-btn").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: makeURL('login'),
+                data: $("#login-form").serialize(),
+                success: function (msg) {
+                    getMessages(msg,"#response")
+                    $(".loader").hide();
+                    if(msg.success){
+                        console.log(msg);
+                        msg.result.password=$("#login-form #password").val();
+                        window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                        window.location.href="index.html";
+                    }
+                }
+
+            });
+        }
+    });
+    $(".cancel").click(function() {
+        loginValidator.resetForm();
+    });
 }
