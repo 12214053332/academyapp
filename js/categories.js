@@ -28,6 +28,15 @@ categories ={
         });
     },
 
+    getMore:function(type,categoryID,func){
+        $.ajax({
+            type: "GET",
+            url: makeURL('singleCategoriesType',{type:type,categoryID:categoryID}),
+            success: function (msg) {
+                func(msg);
+            }
+        });
+    },
 
     categorySingleDiv:function(singleCategory){
 
@@ -78,29 +87,40 @@ categories ={
                html_books='';
                html_books+='<div style="padding: 12px"> <h5> كتب </h5></div>';
                $("#category-name").html(msg.result.name);
+               window.sessionStorage.setItem("categoryID", msg.result.id);
+
                msg.result.courses.forEach(function(item){
 
                     html+=el.singleCategoryPage(item);
                 });
+html+="<a href='' id='more_courses'>المزيد</a>";
 
                msg.result.webinars.forEach(function(item){
 
                    html_webinars+=el.singleCategoryPagewebinars(item);
                });
+               html_webinars+="<a href='' id='more_webinars'>المزيد</a>";
 
                msg.result.successtories.forEach(function(item){
 
                    html_successtories+=el.singleCategoryPagesuccesstories(item);
                });
+               html_successtories+="<a href='' id='more_successtories'>المزيد</a>";
+
                msg.result.books.forEach(function(item){
 
                    html_books+=el.singleCategoryPagebooks(item);
                });
+               html_books+="<a href='' id='more_books'>المزيد</a>";
+
+
                msg.result.workShops.forEach(function(item){
 
                    html_workShops+=el.singleCategoryPageworkShops(item);
                });
-                $("#allinnercategoryPageData").html(html);
+               html_workShops+="<a href='' id='more_workShops'>المزيد</a>";
+
+               $("#allinnercategoryPageData").html(html);
                $("#allwebinarsData").html(html_webinars);
                $("#allsuccessStoryData").html(html_successtories);
                $("#allbooksData").html(html_books);
@@ -108,6 +128,54 @@ categories ={
 
            }
         });
+
+         //links
+         $(document).on('click','#more_courses',function(e){
+             e.preventDefault();
+            var type="courses";
+             //console.log("courseID",courseID);
+            // window.sessionStorage.setItem("courseID", courseID);
+             window.sessionStorage.setItem("type", type);
+             //  el.redirectToSingleCourse();
+             window.location.href="coursesByCategory.html";
+         });
+
+
+         $(document).on('click','#more_webinars',function(e){
+             e.preventDefault();
+            var  type=webinar;
+             window.sessionStorage.setItem("type", type);
+             //  el.redirectToSingleCourse();
+             window.location.href="coursesByCategory.html";
+         });
+
+         $(document).on('click','#more_successtories',function(e){
+
+             e.preventDefault();
+             window.sessionStorage.setItem("type", type);
+             window.location.href="coursesByCategory.html";
+         });
+
+         $(document).on('click','#more_books',function(e){
+             e.preventDefault();
+            var  type=books;
+             window.sessionStorage.setItem("type", type);
+
+             window.location.href="coursesByCategory.html";
+         });
+
+
+         $(document).on('click','#more_workShops',function(e){
+             e.preventDefault();
+             var type=workShop;
+             window.sessionStorage.setItem("type", type);
+             window.location.href="coursesByCategory.html";
+         });
+
+
+
+
+         // end links
         $(document).on('click','.single-course a',function(e){
             e.preventDefault();
             courseID=$(this).data('id');
@@ -122,7 +190,7 @@ categories ={
              console.log(webinarID);
              window.sessionStorage.setItem("webinarID", webinarID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="webinar-single.html";
          });
          $(document).on('click','.single-successtories a',function(e){
              e.preventDefault();
@@ -130,7 +198,7 @@ categories ={
              console.log(successtoriesID);
              window.sessionStorage.setItem("successtoriesrID", successtoriesID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="sucessStory-single.html";
          });
          $(document).on('click','.single-books a',function(e){
              e.preventDefault();
@@ -138,7 +206,7 @@ categories ={
              console.log(bookssID);
              window.sessionStorage.setItem("booksID", booksID);
             // el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="book-single.html";
          });
          $(document).on('click','.single-workShops a',function(e){
              e.preventDefault();
@@ -146,7 +214,7 @@ categories ={
              console.log(workShopsID);
              window.sessionStorage.setItem("workShopsID", workShopsID);
              //el.redirectToSingleCourse();
-             window.location.href="category-single.html";
+             window.location.href="workshop-single.html";
          });
     },
     redirectToSingleCourse:function(){
@@ -156,8 +224,6 @@ categories ={
         window.location.href="categories.html";
     },
     singleCategoryPage:function(singleCategory){
-      //  APIURL=APIURL+'assets/images/';
-       // html='<div> <h6> كورسات</h6></div>';
         html='<div class="col s6 single-course"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html+='</div></div></div>';
         return html;
@@ -177,33 +243,44 @@ categories ={
         return html_successtories;
     },
     singleCategoryPagebooks:function(singleCategory){
-        //  APIURL=APIURL+'assets/images/';
-        // html='<div> <h6> كورسات</h6></div>';
         html_books='<div class="col s6 single-books"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.title+'</a></h6><div class="rating">';
         html_books+='</div></div></div>';
         return html_books;
     },
     singleCategoryPageworkShops:function(singleCategory){
-      //   APIURL=APIURL+'assets/images/';
-        // html='<div> <h6> كورسات</h6></div>';
         html_workShops='<div class="col s6 single-workShops"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html_workShops+='</div></div></div>';
         return html_workShops;
     },
+    coursesByCat:function(singleCategory){
+
+        html='<div class="col s6 single-category"><div class="entry"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        /* for(x=1;x<=singleCategory.rating;x++){
+         html+='<span class="active"><i class="fa fa-star"></i></span>';
+         }
+         for(y=x;y<=5;y++){
+         html+='<span class=""><i class="fa fa-star"></i></span>';
+         }*/
+        // html+='</div><div class="price"><h5>'+singleCategory.course_section.ksa_price+'$</h5></div></div></div>';
+        html+='</div></div></div>';
+
+        return html;
+    },
     singleCoursePage:function(){
         el=this;
-        courseID=window.sessionStorage.getItem("courseID")
-        if(courseID){
-            el.getSingle(courseID,function(msg){
+       var  type=window.sessionStorage.getItem("type");
+       var  categoryID=window.sessionStorage.getItem("categoryID");
+
+
+        if(categoryID && type){
+            el.getMore(type,categoryID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                    $("#courseIframe").attr('src',course.intro_vedio);
-                    $("#courseTitle").html(course.name);
-                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
-                    $("#instructorNname").html(course.instractor_name);
-                    $("#courseDate").html(course.createdtime);
-                    $("#courseViews").html(course.view);
-                    $("#courseDescription").html(course.description);
+                    html='';
+                    msg.result.courses.forEach(function(item){
+                        html+=el.coursesByCat(item);
+                    });
+                    $("#allCoursesCategoryData").html(html);
                 }else{
                     //el.redirectToCourse();
                 }
@@ -213,8 +290,6 @@ categories ={
         }
 
 
-    }, redirectToSingleCourse:function(){
-        window.location.href="courses-single.html";
     }
 
 };

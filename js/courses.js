@@ -64,8 +64,8 @@ courses ={
                    $("#courseTitle").html(course.name);
                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);
+                    $("#storyViews").html(course.view);
                     $("#courseDate").html(course.createdtime);
-                    $("#courseViews").html(course.view);
                     $("#courseDescription").html(course.description);
                     html='';
                     x=0;

@@ -69,7 +69,6 @@ var errorMessages={
     "duration_required.":"Duration is required",
     "cost_required.":"Cost is required",
 };
-//console.log(userData);
 function makeURL(action,parameters){
     parametersText='';
     if(typeof parameters==='object'){
@@ -81,7 +80,6 @@ function makeURL(action,parameters){
         userDataJson=JSON.parse(userData);
         parametersText+='&email='+userDataJson.email;
         parametersText+='&password='+userDataJson.password;
-        parametersText+='&sessionUser='+userDataJson.session_user;
     }
     return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
 }
@@ -284,10 +282,10 @@ function onDeviceReady() {
         el=$(this).parent().find('.collapsible-body');
         if(el.is(':visible')){
             console.log('is :visible')
-            el.css({"display":"none"});
+            el.css({"display":"block"});
         }else{
             console.log('else is :visible')
-            el.css({"display":"block"});
+            el.css({"display":"none"});
         }
         $(".collapsible-body").not(el).not('.faq').css({"display":"none"});
     });
