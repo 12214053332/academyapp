@@ -80,6 +80,7 @@ function makeURL(action,parameters){
         userDataJson=JSON.parse(userData);
         parametersText+='&email='+userDataJson.email;
         parametersText+='&password='+userDataJson.password;
+        parametersText+='&sessionUser='+userDataJson.session_user;
     }
     return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
 }
@@ -144,6 +145,7 @@ function IsJsonString(str) {
 includeHTML();
 function onDeviceReady() {
     if(userData){
+        $("#login-menu,#register-menu").addClass('hidden');
         userDataJson=JSON.parse(userData);
         if(userDataJson.image){
             $("#userDataImage").attr('src',APIURL+userDataJson.image)

@@ -57,12 +57,16 @@ webinar ={
         el=this;
         webinarID=window.sessionStorage.getItem("webinarID")
         if(webinarID){
-		
-			
             el.getSingle(webinarID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                   $("#courseIframe").attr('src',APIURL+course.image);
+                    console.log(course.link)
+                    if(course.link){
+                        $("#courseIframe").attr('src',course.link).removeClass('hidden');
+                    }else{
+                        $("#courseImageIframe").attr('src',APIURL+course.image).removeClass('hidden');
+                    }
+
                    $("#courseTitle").html(course.name);
                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);

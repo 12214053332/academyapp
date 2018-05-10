@@ -2044,3 +2044,6 @@ html *{
 	color:#23527c;
 	text-decoration: underline;
 }
+.hidden{
+	display: none;
+}
