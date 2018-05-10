@@ -169,106 +169,108 @@ function onDeviceReady() {
             }
 
         });
+        if(filename=='register.html'){
+            var validator = $("#signup-form").validate({
+                errorPlacement: function(error, element) {
+                    // Append error within linked label
 
-        var validator = $("#signup-form").validate({
-            errorPlacement: function(error, element) {
-                // Append error within linked label
-
-                /*$( element )
-                    .closest( "form" )
-                    .find( "label[for='" + element.attr( "id" ) + "']" )
-                    .append( error );*/
-            },
-            highlight: function(element) {
-                console.log(element);
-                if($(element).hasClass('select2')){
-                    console.log("#select2-"+$(element).attr('id')+"-container")
-                    $("#select2-"+$(element).attr('id')+"-container").parent().addClass('invalid');
-                }else{
-                    $(element).addClass('invalid')
-                }
-
-                //$(element).closest('.form-group').addClass('has-error');
-
-            },
-            unhighlight: function(element) {
-                if($(element).hasClass('select2')){
-                    console.log("#select2-"+$(element).attr('id')+"-container")
-                    $("#select2-"+$(element).attr('id')+"-container").parent().removeClass('invalid');
-                }else {
-                    $(element).removeClass('invalid')
-                }
-                //$(element).closest('.form-group').removeClass('has-error');
-
-            },
-            errorElement: "span",
-            rules : {
-                fullname : {
-                    required:true,
-                    minlength : 5
+                    /*$( element )
+                        .closest( "form" )
+                        .find( "label[for='" + element.attr( "id" ) + "']" )
+                        .append( error );*/
                 },
-                email : {
-                    required:true,
-                    minlength : 5
-                },
-                mobile : {
-                    required:true,
-                    minlength : 6
-                },
-                country: {
-                    required : true
-                },
-                password : {
-                    required:true,
-                    minlength : 5
-                },
-                confirmpassword : {
-                    required:true,
-                    minlength : 5,
-                    equalTo : "#password"
-                },
+                highlight: function(element) {
+                    console.log(element);
+                    if($(element).hasClass('select2')){
+                        console.log("#select2-"+$(element).attr('id')+"-container")
+                        $("#select2-"+$(element).attr('id')+"-container").parent().addClass('invalid');
+                    }else{
+                        $(element).addClass('invalid')
+                    }
 
-            },
-            messages: {
-            },
-            submitHandler: function() {
-                var countrycode=$('#country').find(':selected').data('code') ;
-                var Mobile1=$('#Mobile').val() ;
-                if( Mobile1.charAt( 0 ) === '0' )
-                    Mobile1 = Mobile1.slice( 1 );
-                var Mobile=countrycode +  Mobile1;
-                $.ajax({
-                    type: 'post',
-                    url: /****/APIURL+'?page=_usersaction&action=signup',
-                    data: $('#signup-form').serialize()+ "&Mobile="+Mobile,
-                    success: function (data) {
-                        $('#signup-response').html(data);
-                        // alert(data);
-                        if (IsJsonString(data))
-                        {
-                            var httpref = JSON.parse(data);
-                            window.location.assign(httpref.httpref);
-                        } else {
-                            if (data.indexOf('شكر')!=-1){
-                                $('input').val('')
+                    //$(element).closest('.form-group').addClass('has-error');
 
-                                $('select option[value=""]').attr('selected','selected');
-                                window.location.assign('?page=thanks');
+                },
+                unhighlight: function(element) {
+                    if($(element).hasClass('select2')){
+                        console.log("#select2-"+$(element).attr('id')+"-container")
+                        $("#select2-"+$(element).attr('id')+"-container").parent().removeClass('invalid');
+                    }else {
+                        $(element).removeClass('invalid')
+                    }
+                    //$(element).closest('.form-group').removeClass('has-error');
 
-                                // window.location.assign("?page=profile")
-                            }else{
-                                // $('.registerresult').html(data);
+                },
+                errorElement: "span",
+                rules : {
+                    fullname : {
+                        required:true,
+                        minlength : 5
+                    },
+                    email : {
+                        required:true,
+                        minlength : 5
+                    },
+                    mobile : {
+                        required:true,
+                        minlength : 6
+                    },
+                    country: {
+                        required : true
+                    },
+                    password : {
+                        required:true,
+                        minlength : 5
+                    },
+                    confirmpassword : {
+                        required:true,
+                        minlength : 5,
+                        equalTo : "#password"
+                    },
+
+                },
+                messages: {
+                },
+                submitHandler: function() {
+                    var countrycode=$('#country').find(':selected').data('code') ;
+                    var Mobile1=$('#Mobile').val() ;
+                    if( Mobile1.charAt( 0 ) === '0' )
+                        Mobile1 = Mobile1.slice( 1 );
+                    var Mobile=countrycode +  Mobile1;
+                    $.ajax({
+                        type: 'post',
+                        url: /****/APIURL+'?page=_usersaction&action=signup',
+                        data: $('#signup-form').serialize()+ "&Mobile="+Mobile,
+                        success: function (data) {
+                            $('#signup-response').html(data);
+                            // alert(data);
+                            if (IsJsonString(data))
+                            {
+                                var httpref = JSON.parse(data);
+                                window.location.assign(httpref.httpref);
+                            } else {
+                                if (data.indexOf('شكر')!=-1){
+                                    $('input').val('')
+
+                                    $('select option[value=""]').attr('selected','selected');
+                                    window.location.assign('?page=thanks');
+
+                                    // window.location.assign("?page=profile")
+                                }else{
+                                    // $('.registerresult').html(data);
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-            }
-        });
+                }
+            });
 
-        $(".cancel").click(function() {
-            validator.resetForm();
-        });
+            $(".cancel").click(function() {
+                validator.resetForm();
+            });
+        }
+
 
 
     }
@@ -325,62 +327,65 @@ function onDeviceReady() {
         }
         return returnArray;
     }
-    var loginValidator = $("#login-form").validate({
-        errorPlacement: function(error, element) {
-            // Append error within linked label
-            /*$( element )
-                .closest( "form" )
-                .find( "label[for='" + element.attr( "id" ) + "']" )
-                .append( error );*/
-            //$(element).parent().parent().addClass('has-error');
-        },
-        highlight: function(element) {
-
-            $(element).closest('.form-group').addClass('has-error');
-
-        },
-        unhighlight: function(element) {
-
-            $(element).closest('.form-group').removeClass('has-error');
-
-        },
-        errorElement: "span",
-        rules : {
-
-            email : {
-                required:true,
-                minlength : 5
+    if(filename=='login.html'){
+        var loginValidator = $("#login-form").validate({
+            errorPlacement: function(error, element) {
+                // Append error within linked label
+                /*$( element )
+                    .closest( "form" )
+                    .find( "label[for='" + element.attr( "id" ) + "']" )
+                    .append( error );*/
+                //$(element).parent().parent().addClass('has-error');
             },
-            password : {
-                required:true,
-                minlength : 5
-            }
-        },
-        messages: {
-        },
-        submitHandler: function() {
+            highlight: function(element) {
 
-            //alert('start');
-            //$("#charge-btn").attr("disabled", true);
-            $.ajax({
-                type: "POST",
-                url: makeURL('login'),
-                data: $("#login-form").serialize(),
-                success: function (msg) {
-                    getMessages(msg,"#response")
-                    $(".loader").hide();
-                    if(msg.success){
-                        console.log(msg);
-                        msg.result.password=$("#login-form #password").val();
-                        window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
-                        window.location.href="index.html";
-                    }
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+            unhighlight: function(element) {
+
+                $(element).closest('.form-group').removeClass('has-error');
+
+            },
+            errorElement: "span",
+            rules : {
+
+                email : {
+                    required:true,
+                    minlength : 5
+                },
+                password : {
+                    required:true,
+                    minlength : 5
                 }
+            },
+            messages: {
+            },
+            submitHandler: function() {
 
-            });
-        }
-    });
-    $(".cancel").click(function() {
-        loginValidator.resetForm();
-    });
+                //alert('start');
+                //$("#charge-btn").attr("disabled", true);
+                $.ajax({
+                    type: "POST",
+                    url: makeURL('login'),
+                    data: $("#login-form").serialize(),
+                    success: function (msg) {
+                        getMessages(msg,"#response")
+                        $(".loader").hide();
+                        if(msg.success){
+                            console.log(msg);
+                            msg.result.password=$("#login-form #password").val();
+                            window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                            window.location.href="index.html";
+                        }
+                    }
+
+                });
+            }
+        });
+        $(".cancel").click(function() {
+            loginValidator.resetForm();
+        });
+    }
+
 }
