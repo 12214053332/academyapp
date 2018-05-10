@@ -25,7 +25,7 @@ courses ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="price"><h5>'+singleCourse.course_section.ksa_price+'$</h5></div></div></div>';
+        html+='</div>'+((!singleCourse.hasCourse)?'<a class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
         return html;
     },
     coursesPage:function(){
@@ -67,6 +67,28 @@ courses ={
                     $("#courseDate").html(course.createdtime);
                     $("#courseViews").html(course.view);
                     $("#courseDescription").html(course.description);
+                    html='';
+                    x=0;
+                    course.sections.forEach(function(section){
+                        html+='<div class="panel panel-default"><div class="panel-heading" role="tab" id="section-'+section.id+'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-'+section.id+'" aria-expanded="true" aria-controls="collapse-'+section.id+'"><i class="fa fa-plus"></i> '+section.name+'</a></h4></div><div id="collapse-'+section.id+'" class="panel-collapse collapse '+((x==0)?'in':'')+'" role="tabpanel" aria-labelledby="section-'+section.id+'"><div class="panel-body">';
+                        section.curriculum.forEach(function(item){
+                            switch (item.type){
+                                case 'default':
+                                    html+='<div class="container"><div class="row"><div class="col s10">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s2">'+((item.duration)?item.duration:'')+'</div><div class="col s3"><a class="link-watch">مشاهدة</a></div><div class="col s3"><a class="link-listen">أستماع</a></div></div></div>';
+                                    break;
+                                case'training':
+                                    html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء التدريب</a></div></div></div>';
+                                    break;
+                                case'exam':
+                                    html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء الأختبار</a></div></div></div>';
+                                    break;
+                            }
+
+                        });
+                        html+='</div></div></div>';
+                        x++;
+                    });
+                    $("#accordion").html(html);
                 }else{
                     //el.redirectToCourse();
                 }

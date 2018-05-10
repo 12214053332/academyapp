@@ -2040,3 +2040,7 @@ html *{
 	background-color: #f2dede;
 	border-color: #ebccd1;
 }
+.link-watch,.link-listen{
+	color:#23527c;
+	text-decoration: underline;
+}
