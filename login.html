@@ -20,45 +20,47 @@
 	<link rel="stylesheet" href="css/select2.min.css">
 </head>
 <body>
-	<div w3-include-html="include/header.html"></div>
-	
-	<!-- login-->
-	<div class="login app-pages app-section">
-		<div class="container">
-			<div class="pages-title">
-				<h3>Login</h3>
-			</div>
-			<form action="#">
-				<div class="input-field">
-					<input id="email" type="email" class="validate" placeholder="Email">
-				</div>
-				<div class="input-field">
-					<input id="password" type="password" class="validate" placeholder="Password">
-				</div>
-				<div><a href="#" class="forgot">Forgot Password?</a></div>
-				<div class="chebox">
-					<input type="checkbox" id="checkbox" />
-  					<label for="checkbox">Remember me</label>
-				</div>
-				<button class="button">Login</button>
-				<div class="create-account">Not Registered? <a href="#">Create an account</a></div>
-			</form>
-			<div class="or">
-				<h5>OR</h5>
-				<button class="button facebook">Login with Facebook</button>
-				<button class="button twitter">Login with Twitter</button>
-				<button class="button google">Login with Google+</button>
-			</div>
+<div w3-include-html="include/header.html"></div>
+
+<!-- login-->
+<div class="login app-pages app-section">
+	<div class="container">
+		<div class="pages-title">
+			<h3>سجل دخولك</h3>
 		</div>
+		<form action="#" id="login-form">
+			<div id="response"></div>
+			<div class="input-field">
+				<input id="email" type="email" name="email" class="validate" placeholder="Email">
+			</div>
+			<div class="input-field">
+				<input id="password" type="password" name="password" class="validate" placeholder="Password">
+			</div>
+			<div><a href="#" class="forgot">نسيت كلمة المرور?</a></div>
+			<div class="chebox">
+				<input type="checkbox" id="checkbox" />
+				<label for="checkbox">تذكرنى</label>
+			</div>
+			<button class="button">تسجيل دخول</button>
+			<div class="create-account">لا تمتلك حساب على إعمل بيزنس ؟  <a href="#">حساب جديد</a></div>
+		</form>
+		<!--<div class="or">
+            <h5>OR</h5>
+            <button class="button facebook">Login with Facebook</button>
+            <button class="button twitter">Login with Twitter</button>
+            <button class="button google">Login with Google+</button>
+        </div>-->
 	</div>
-	<!-- end login -->
-	<div w3-include-html="include/footer.html"></div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/materialize.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/select2.full.min.js"></script>
-	<script src="js/index.js"></script>
+</div>
+<!-- end login -->
+<div w3-include-html="include/footer.html"></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/select2.full.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/index.js"></script>
 
 </body>
 </html>

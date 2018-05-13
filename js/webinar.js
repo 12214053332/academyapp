@@ -1,20 +1,12 @@
 webinar ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('webinar'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('webinar'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(webinarID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleWebinar',{webinarID:webinarID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleWebinar',{webinarID:webinarID}),function (msg) {
+            func(msg);
         });
     },
     coursesSingleDiv:function(singleCourse){

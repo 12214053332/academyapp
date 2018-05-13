@@ -1,20 +1,12 @@
 diplomas ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('diplomas'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('diplomas'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(diplomaID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleDiplomas',{diplomaID:diplomaID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleDiplomas',{diplomaID:diplomaID}),function (msg) {
+            func(msg);
         });
     },
     coursesSingleDiv:function(singleCourse){

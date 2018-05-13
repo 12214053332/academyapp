@@ -1,20 +1,12 @@
 workShop ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('workShop'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('workShop'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(workShopID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleWorkShop',{workShopID:workShopID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleWorkShop',{workShopID:workShopID}),function (msg) {
+            func(msg);
         });
     },
     coursesSingleDiv:function(singleCourse){

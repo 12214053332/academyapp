@@ -1,29 +1,17 @@
 blogCategories ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('blogCategories'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('blogCategories'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(blogCategoryID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleBlogCategory',{blogCategoryID:blogCategoryID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleBlogCategory',{blogCategoryID:blogCategoryID}),function (msg) {
+            func(msg);
         });
     },
     getSingleArticle:function(blogCategoryID,blogID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleBlog',{blogCategoryID:blogCategoryID,blogID:blogID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleBlog',{blogCategoryID:blogCategoryID,blogID:blogID}),function (msg) {
+            func(msg);
         });
     },
 
@@ -140,13 +128,4 @@ blogCategories ={
     }
 };
 
-function strip_tags (html)
-{
-    var tmp = document.createElement("DIV");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText;
-}
-function limit(str,limit){
-    limit=(typeof limit=='undefined')?10:limit;
-    return (str.length > limit)?str.substring(0,limit)+'...':str.substring(0,limit);
-}
+

@@ -1,20 +1,17 @@
 courses ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('courses'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('courses'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(courseID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleCourse',{courseID:courseID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleCourse',{courseID:courseID}),function (msg) {
+            func(msg);
+        });
+    },
+    getSingleCurriculum:function(courseID,curriculumID,func){
+        ajaxRequest(makeURL('singleCurriculum',{courseID:courseID,curriculumID:curriculumID}),function (msg) {
+            func(msg);
         });
     },
     coursesSingleDiv:function(singleCourse){
@@ -70,18 +67,20 @@ courses ={
                     html='';
                     x=0;
                     course.sections.forEach(function(section){
-                        html+='<div class="panel panel-default"><div class="panel-heading" role="tab" id="section-'+section.id+'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-'+section.id+'" aria-expanded="true" aria-controls="collapse-'+section.id+'"><i class="fa fa-plus"></i> '+section.name+'</a></h4></div><div id="collapse-'+section.id+'" class="panel-collapse collapse '+((x==0)?'in':'')+'" role="tabpanel" aria-labelledby="section-'+section.id+'"><div class="panel-body">';
+                        if(section.curriculum[0].type!='exam'){
+                            html+='<div class="panel panel-default"><div class="panel-heading" role="tab" id="section-'+section.id+'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-'+section.id+'" aria-expanded="true" aria-controls="collapse-'+section.id+'"><i class="fa fa-plus"></i> '+section.name+'</a></h4></div><div id="collapse-'+section.id+'" class="panel-collapse collapse '+((x==0)?'in':'')+'" role="tabpanel" aria-labelledby="section-'+section.id+'"><div class="panel-body">';
+                        }
                         section.curriculum.forEach(function(item){
                             switch (item.type){
                                 case 'default':
-                                    html+='<div class="container"><div class="row"><div class="col s10">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s2">'+((item.duration)?item.duration:'')+'</div><div class="col s3"><a class="link-watch">مشاهدة</a></div><div class="col s3"><a class="link-listen">أستماع</a></div></div></div>';
+                                    html+='<div class="container"><div class="row"><div class="col s10">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s2">'+((item.duration)?item.duration:'')+'</div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+'  class="link-watch">مشاهدة</a></div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+' href="#" class="link-listen">أستماع</a></div></div></div>';
                                     break;
-                                case'training':
+                               /* case'training':
                                     html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء التدريب</a></div></div></div>';
                                     break;
                                 case'exam':
                                     html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء الأختبار</a></div></div></div>';
-                                    break;
+                                    break;*/
                             }
 
                         });
@@ -98,5 +97,40 @@ courses ={
         }
 
 
+    },
+    watchVideoMenu:function(msg){
+        course=msg.result;
+        currentVideo=course.currentVideo;
+        html='';
+        course.sections.forEach(function(section){
+            if(section.curriculum[0].type!='exam'){
+                html+=' <li> <div class="collapsible-header '+((section.id==currentVideo.section_id)?'active':'')+'"><i class="fa fa-arrow-left"></i>'+section.name+' <span><i class="fa '+((section.id==currentVideo.section_id)?'fa-chevron-right fa-chevron-up':'fa-chevron-right')+'"></i></span></div> <div class="collapsible-body" '+((section.id==currentVideo.section_id)?'style="display: block;"':'')+'> <ul class="side-nav-panel"> ';
+                section.curriculum.forEach(function(video){
+                    html+='<li '+((video.id==currentVideo.id)?'class="active"':'')+'><a '+((msg.userSuccess||video.isfree=='yes')?'data-id="'+video.id+'" href="#"':'href="login.html"')+' class="link-watch">'+((video.name)?video.name:'')+((video.description)?video.description:'')+'</a></li>';
+                });
+                html+=' </ul> </div> </li>';
+            }
+
+        });
+        return html;
+    },
+    watchVideoPage:function(){
+        el=this;
+        courseID=window.sessionStorage.getItem("courseID")
+        curriculumID=window.sessionStorage.getItem("watchVideoID");
+        if(courseID&&curriculumID){
+            el.getSingleCurriculum(courseID,curriculumID,function(msg){
+                course=msg.result;
+                currentVideo=course.currentVideo;
+                if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
+                    html=el.watchVideoMenu(msg);
+                    $("#slide-out-left.curriculum-menu").html(html);
+                }else{
+                    window.location.href="login.html";
+                }
+
+
+            })
+        }
     }
 };

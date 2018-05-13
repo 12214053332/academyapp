@@ -1,20 +1,12 @@
 books ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('books'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('books'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(courseID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleBooks',{bookID:bookID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleBooks',{bookID:bookID}),function (msg) {
+            func(msg);
         });
     },
     booksSingleDiv:function(singleBook){

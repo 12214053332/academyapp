@@ -1990,8 +1990,11 @@ ul:not(.browser-default){
 }
 
 /*global*/
-.single-course{
-	min-height: 230px!important;
+.single-course,.single-webinar,.single-successtories,.single-books,.single-workShops{
+	min-height: 250px!important;
+}
+.single-course .entry,.single-webinar .entry,.single-successtories .entry,.single-books .entry,.single-workShops .entry{
+	min-height: 240px!important;
 }
 .text-center{
 	text-align: center;
@@ -2046,4 +2049,13 @@ html *{
 }
 .hidden{
 	display: none;
+}
+.single-category .entry{
+	min-height: 200px!important;
+}
+.single-category{
+	min-height: 210px!important;
+}
+#slide-out-left.curriculum-menu{
+	width: 330px;
 }

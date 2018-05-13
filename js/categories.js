@@ -1,40 +1,24 @@
 categories ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('categories'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('categories'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(categoryID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleCategories',{categoryID:categoryID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleCategories',{categoryID:categoryID}),function (msg) {
+            func(msg);
         });
     },
 
     getSingleCourse:function(courseID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleCourse',{courseID:courseID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleCourse',{courseID:courseID}),function (msg) {
+            func(msg);
         });
     },
 
     getMore:function(type,categoryID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleCategoriesType',{type:type,categoryID:categoryID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleCategoriesType',{type:type,categoryID:categoryID}),function (msg) {
+            func(msg);
         });
     },
 
@@ -93,32 +77,32 @@ categories ={
 
                     html+=el.singleCategoryPage(item);
                 });
-html+="<a href='' id='more_courses'>المزيد</a>";
+                html+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_courses'>المزيد</a></div>";
 
                msg.result.webinars.forEach(function(item){
 
                    html_webinars+=el.singleCategoryPagewebinars(item);
                });
-               html_webinars+="<a href='' id='more_webinars'>المزيد</a>";
+               html_webinars+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_webinars'>المزيد</a></div>";
 
                msg.result.successtories.forEach(function(item){
 
                    html_successtories+=el.singleCategoryPagesuccesstories(item);
                });
-               html_successtories+="<a href='' id='more_successtories'>المزيد</a>";
+               html_successtories+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_successtories'>المزيد</a></div>";
 
                msg.result.books.forEach(function(item){
 
                    html_books+=el.singleCategoryPagebooks(item);
                });
-               html_books+="<a href='' id='more_books'>المزيد</a>";
+               html_books+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_books'>المزيد</a></div>";
 
 
                msg.result.workShops.forEach(function(item){
 
                    html_workShops+=el.singleCategoryPageworkShops(item);
                });
-               html_workShops+="<a href='' id='more_workShops'>المزيد</a>";
+               html_workShops+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_workShops'>المزيد</a></div>";
 
                $("#allinnercategoryPageData").html(html);
                $("#allwebinarsData").html(html_webinars);
@@ -143,31 +127,30 @@ html+="<a href='' id='more_courses'>المزيد</a>";
 
          $(document).on('click','#more_webinars',function(e){
              e.preventDefault();
-            var  type=webinar;
+            var  type="webinar";
              window.sessionStorage.setItem("type", type);
              //  el.redirectToSingleCourse();
              window.location.href="coursesByCategory.html";
          });
 
          $(document).on('click','#more_successtories',function(e){
-
              e.preventDefault();
+             var  type="successtories";
              window.sessionStorage.setItem("type", type);
              window.location.href="coursesByCategory.html";
          });
 
          $(document).on('click','#more_books',function(e){
              e.preventDefault();
-            var  type=books;
+            var  type="books";
              window.sessionStorage.setItem("type", type);
-
              window.location.href="coursesByCategory.html";
          });
 
 
          $(document).on('click','#more_workShops',function(e){
              e.preventDefault();
-             var type=workShop;
+             var type="workShop";
              window.sessionStorage.setItem("type", type);
              window.location.href="coursesByCategory.html";
          });
@@ -271,15 +254,32 @@ html+="<a href='' id='more_courses'>المزيد</a>";
        var  type=window.sessionStorage.getItem("type");
        var  categoryID=window.sessionStorage.getItem("categoryID");
 
-
         if(categoryID && type){
             el.getMore(type,categoryID,function(msg){
                 course=msg.result;
                 if(msg.success){
                     html='';
-                    msg.result.courses.forEach(function(item){
+                    msg.result[type].forEach(function(item){
                         html+=el.coursesByCat(item);
                     });
+                    switch (type){
+                        case 'courses':
+                            title="كورسات"
+                            break;
+                        case 'webinar':
+                            title="ندوات"
+                            break;
+                        case 'successtories':
+                            title="قصص نجاح"
+                            break;
+                        case 'books':
+                            title="كتب"
+                            break;
+                        case 'workShop':
+                            title="ورش عمل"
+                            break;
+                    }
+                    $("#category-title").html(title);
                     $("#allCoursesCategoryData").html(html);
                 }else{
                     //el.redirectToCourse();

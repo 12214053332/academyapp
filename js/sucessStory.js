@@ -1,20 +1,12 @@
 successtories ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('successtories'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('successtories'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(storyID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleSuccesstories',{successtoriesID:storyID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleSuccesstories',{successtoriesID:storyID}),function (msg) {
+            func(msg);
         });
     },
     storiesSingleDiv:function(singleStory){

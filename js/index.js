@@ -69,6 +69,16 @@ var errorMessages={
     "duration_required.":"Duration is required",
     "cost_required.":"Cost is required",
 };
+function strip_tags (html)
+{
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText;
+}
+function limit(str,limit){
+    limit=(typeof limit=='undefined')?10:limit;
+    return (str.length > limit)?str.substring(0,limit)+'...':str.substring(0,limit);
+}
 function makeURL(action,parameters){
     parametersText='';
     if(typeof parameters==='object'){
@@ -83,6 +93,35 @@ function makeURL(action,parameters){
         parametersText+='&sessionUser='+userDataJson.session_user;
     }
     return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
+}
+function ajaxRequest(url,method,data,func){
+    ajaxData={};
+    ajaxData.url=url;
+    if(typeof method==='function'){
+        ajaxData.method='GET';
+        func=method;
+    }else if(typeof method==='string'&&(method.toUpperCase()=='GET'||method.toUpperCase()=='POST')){
+        ajaxData.method=method.toUpperCase();
+    }else{
+        ajaxData.method='GET';
+    }
+    if(typeof data==='function'){
+        ajaxData.data={};
+        func=data;
+    }else if(typeof data==='object'){
+        ajaxData.data=data;
+    }else if(typeof data==='string'){
+        ajaxData.data=data;
+    }else{
+        ajaxData.data={};
+    }
+    ajaxData.success=function (msg) {
+        if(typeof msg.userSuccess!='undefined'&&!msg.userSuccess){
+            window.sessionStorage.removeItem("userData");
+        }
+        func(msg);
+    };
+    $.ajax(ajaxData);
 }
 function getMessages(response,element){
     html='<div class="alert '+((response.success)?'alert-success':'alert-danger')+'">';
@@ -155,19 +194,14 @@ function onDeviceReady() {
         $("#userDataFullName").html(userDataJson.fullName);
     }
     if(filename=='register.html'){
-        $.ajax({
-            type: "GET",
-            url: makeURL('countries'),
-            success: function (msg) {
-                if(msg.success){
-                    html='<option value="">اختر  الدولة</option>';
-                    msg.result.forEach(function(item){
-                        html+='<option value="'+item.id+'" data-code="'+item.code+'"> '+item.name+'    +'+item.code+' </option>'
-                    });
-                    $("#country").html(html).trigger('change');
-                }
+        ajaxRequest(makeURL('countries'),function (msg) {
+            if(msg.success){
+                html='<option value="">اختر  الدولة</option>';
+                msg.result.forEach(function(item){
+                    html+='<option value="'+item.id+'" data-code="'+item.code+'"> '+item.name+'    +'+item.code+' </option>'
+                });
+                $("#country").html(html).trigger('change');
             }
-
         });
         if(filename=='register.html'){
             var validator = $("#signup-form").validate({
@@ -365,7 +399,17 @@ function onDeviceReady() {
 
                 //alert('start');
                 //$("#charge-btn").attr("disabled", true);
-                $.ajax({
+                ajaxRequest(makeURL('login'),'POST',$("#login-form").serialize(),function (msg) {
+                    getMessages(msg,"#response")
+                    $(".loader").hide();
+                    if(msg.success){
+                        console.log(msg);
+                        msg.result.password=$("#login-form #password").val();
+                        window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                        window.location.href="index.html";
+                    }
+                });
+                /*$.ajax({
                     type: "POST",
                     url: makeURL('login'),
                     data: $("#login-form").serialize(),
@@ -380,12 +424,22 @@ function onDeviceReady() {
                         }
                     }
 
-                });
+                });*/
             }
         });
         $(".cancel").click(function() {
             loginValidator.resetForm();
         });
     }
+    $(document).on('click','.link-watch',function(e){
+        e.preventDefault();
+        window.sessionStorage.setItem('watchVideoID',$(this).data('id'));
+        window.location.href="watch-video.html";
+    });
+    $(document).on('click','.link-listen',function(e){
+        e.preventDefault();
+        window.sessionStorage.setItem('listenVideoID',$(this).data('id'));
+        window.location.href="listen-video.html";
+    });
 
 }

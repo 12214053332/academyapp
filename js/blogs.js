@@ -1,20 +1,12 @@
 blogs ={
     getAll:function(func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('blogs'),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('blogs'),function (msg) {
+            func(msg);
         });
     },
     getSingle:function(blogID,func){
-        $.ajax({
-            type: "GET",
-            url: makeURL('singleBlog',{blogID:blogID}),
-            success: function (msg) {
-                func(msg);
-            }
+        ajaxRequest(makeURL('singleBlog',{blogID:blogID}),function (msg) {
+            func(msg);
         });
     },
     coursesSingleDiv:function(singleCourse){
