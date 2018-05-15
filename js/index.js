@@ -138,6 +138,7 @@ function getMessages(response,element){
     $(element).html(html);
 }
 $(document).ready(function(){
+
     document.addEventListener("deviceready",onDeviceReady,false);
     $(".select2").select2()
 });
