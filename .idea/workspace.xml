@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0924c69-3643-45f2-9cc8-feffcd0c4eb2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/indexPage.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/artical-single.html" afterPath="$PROJECT_DIR$/artical-single.html" />
-      <change beforePath="$PROJECT_DIR$/articals.html" afterPath="$PROJECT_DIR$/articals.html" />
-      <change beforePath="$PROJECT_DIR$/blog-single.html" afterPath="$PROJECT_DIR$/blog-single.html" />
-      <change beforePath="$PROJECT_DIR$/blog.html" afterPath="$PROJECT_DIR$/blog.html" />
-      <change beforePath="$PROJECT_DIR$/blogcategories.html" afterPath="$PROJECT_DIR$/blogcategories.html" />
-      <change beforePath="$PROJECT_DIR$/blogcategory-single.html" afterPath="$PROJECT_DIR$/blogcategory-single.html" />
-      <change beforePath="$PROJECT_DIR$/book-single.html" afterPath="$PROJECT_DIR$/book-single.html" />
-      <change beforePath="$PROJECT_DIR$/book.html" afterPath="$PROJECT_DIR$/book.html" />
-      <change beforePath="$PROJECT_DIR$/categories.html" afterPath="$PROJECT_DIR$/categories.html" />
-      <change beforePath="$PROJECT_DIR$/category-single.html" afterPath="$PROJECT_DIR$/category-single.html" />
-      <change beforePath="$PROJECT_DIR$/contact.html" afterPath="$PROJECT_DIR$/contact.html" />
-      <change beforePath="$PROJECT_DIR$/coursesByCategory.html" afterPath="$PROJECT_DIR$/coursesByCategory.html" />
-      <change beforePath="$PROJECT_DIR$/css/style_rtl.css" afterPath="$PROJECT_DIR$/css/style_rtl.css" />
       <change beforePath="$PROJECT_DIR$/diploma-single.html" afterPath="$PROJECT_DIR$/diploma-single.html" />
-      <change beforePath="$PROJECT_DIR$/diploma.html" afterPath="$PROJECT_DIR$/diploma.html" />
-      <change beforePath="$PROJECT_DIR$/faq.html" afterPath="$PROJECT_DIR$/faq.html" />
-      <change beforePath="$PROJECT_DIR$/include/header.html" afterPath="$PROJECT_DIR$/include/header.html" />
-      <change beforePath="$PROJECT_DIR$/include/header_old_10-5-2018.html" afterPath="$PROJECT_DIR$/include/header_old_10-5-2018.html" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/js/books.js" afterPath="$PROJECT_DIR$/js/books.js" />
-      <change beforePath="$PROJECT_DIR$/js/categories.js" afterPath="$PROJECT_DIR$/js/categories.js" />
-      <change beforePath="$PROJECT_DIR$/js/courses.js" afterPath="$PROJECT_DIR$/js/courses.js" />
-      <change beforePath="$PROJECT_DIR$/js/diploma.js" afterPath="$PROJECT_DIR$/js/diploma.js" />
-      <change beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
-      <change beforePath="$PROJECT_DIR$/js/sucessStory.js" afterPath="$PROJECT_DIR$/js/sucessStory.js" />
-      <change beforePath="$PROJECT_DIR$/js/webinar.js" afterPath="$PROJECT_DIR$/js/webinar.js" />
-      <change beforePath="$PROJECT_DIR$/js/workshop.js" afterPath="$PROJECT_DIR$/js/workshop.js" />
-      <change beforePath="$PROJECT_DIR$/listen-video.html" afterPath="$PROJECT_DIR$/listen-video.html" />
-      <change beforePath="$PROJECT_DIR$/login.html" afterPath="$PROJECT_DIR$/login.html" />
-      <change beforePath="$PROJECT_DIR$/sucessStory-single.html" afterPath="$PROJECT_DIR$/sucessStory-single.html" />
-      <change beforePath="$PROJECT_DIR$/sucessStory.html" afterPath="$PROJECT_DIR$/sucessStory.html" />
-      <change beforePath="$PROJECT_DIR$/testimonial.html" afterPath="$PROJECT_DIR$/testimonial.html" />
-      <change beforePath="$PROJECT_DIR$/watch-video.html" afterPath="$PROJECT_DIR$/watch-video.html" />
-      <change beforePath="$PROJECT_DIR$/webinar-single.html" afterPath="$PROJECT_DIR$/webinar-single.html" />
-      <change beforePath="$PROJECT_DIR$/webinar.html" afterPath="$PROJECT_DIR$/webinar.html" />
-      <change beforePath="$PROJECT_DIR$/workshop-single.html" afterPath="$PROJECT_DIR$/workshop-single.html" />
-      <change beforePath="$PROJECT_DIR$/workshop.html" afterPath="$PROJECT_DIR$/workshop.html" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,13 +21,51 @@
     <favorites_list name="www" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="diploma.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/diploma.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="36" column="47" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diploma-single.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/diploma-single.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="271" column="18" lean-forward="true" selection-start-line="268" selection-start-column="12" selection-end-line="271" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diploma.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/diploma.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>singleStory</find>
-      <find>redirectToSingleBook</find>
-      <find>redirectToSingleCourse</find>
       <find>single-course</find>
       <find>request</find>
       <find>owl-carousel</find>
@@ -92,6 +93,9 @@
       <find>\n\n</find>
       <find>hasDiploma</find>
       <find>.invalid</find>
+      <find>alldiplomaData</find>
+      <find>كورسات الدبلومة</find>
+      <find>description</find>
     </findStrings>
     <replaceStrings>
       <replace>message</replace>
@@ -150,7 +154,6 @@
         <option value="$PROJECT_DIR$/category-single.html" />
         <option value="$PROJECT_DIR$/coursesByCategory.html" />
         <option value="$PROJECT_DIR$/diploma.html" />
-        <option value="$PROJECT_DIR$/diploma-single.html" />
         <option value="$PROJECT_DIR$/faq.html" />
         <option value="$PROJECT_DIR$/sucessStory.html" />
         <option value="$PROJECT_DIR$/testimonial.html" />
@@ -161,6 +164,7 @@
         <option value="$PROJECT_DIR$/contact.html" />
         <option value="$PROJECT_DIR$/js/index.js" />
         <option value="$PROJECT_DIR$/css/style_rtl.css" />
+        <option value="$PROJECT_DIR$/diploma-single.html" />
       </list>
     </option>
   </component>
@@ -277,7 +281,7 @@
       <workItem from="1525762091779" duration="7199000" />
       <workItem from="1525932819388" duration="14256000" />
       <workItem from="1526199092181" duration="17459000" />
-      <workItem from="1526280953242" duration="35655000" />
+      <workItem from="1526280953242" duration="36996000" />
     </task>
     <task id="LOCAL-00001" summary="last update template 7-5-2018">
       <created>1525686983144</created>
@@ -335,16 +339,23 @@
       <option name="project" value="LOCAL" />
       <updated>1526296766593</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="last update 15-5-2018">
+      <created>1526387844819</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1526387844819</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90632000" />
+    <option name="totallyTimeSpent" value="91973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33585477" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33585477" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -377,7 +388,8 @@
     <MESSAGE value="update of courses 10-5-2018" />
     <MESSAGE value="last update 13-5-2018" />
     <MESSAGE value="last update courses and change request to custom function 14-5-2018" />
-    <option name="LAST_COMMIT_MESSAGE" value="last update courses and change request to custom function 14-5-2018" />
+    <MESSAGE value="last update 15-5-2018" />
+    <option name="LAST_COMMIT_MESSAGE" value="last update 15-5-2018" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -567,14 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/diploma.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="20" column="115" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/webinar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -687,34 +691,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/diploma.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/diploma-single.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="110" column="4" lean-forward="false" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/faq.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="115" column="4" lean-forward="false" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="425" column="53" lean-forward="false" selection-start-line="425" selection-start-column="53" selection-end-line="425" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -803,6 +783,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
           <caret line="299" column="20" lean-forward="false" selection-start-line="299" selection-start-column="19" selection-end-line="299" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/diploma.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diploma.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="36" column="47" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="271" column="18" lean-forward="true" selection-start-line="268" selection-start-column="12" selection-end-line="271" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diploma-single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
