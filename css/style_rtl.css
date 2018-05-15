@@ -1990,10 +1990,10 @@ ul:not(.browser-default){
 }
 
 /*global*/
-.single-course,.single-webinar,.single-successtories,.single-books,.single-workShops{
+.single-course,.single-diploma,.single-category,.single-book,.single-work-shop,.single-story,.single-webinar,.single-successtories,.single-books,.single-workShops{
 	min-height: 250px!important;
 }
-.single-course .entry,.single-webinar .entry,.single-successtories .entry,.single-books .entry,.single-workShops .entry{
+.single-course .entry,.single-diploma .entry,.single-category .entry,.single-book .entry,.single-work-shop .entry,.single-story .entry,.single-webinar .entry,.single-successtories .entry,.single-books .entry,.single-workShops .entry{
 	min-height: 240px!important;
 }
 .text-center{
@@ -2008,7 +2008,7 @@ html *{
 .selection .select2-selection{
 	margin-bottom: 20px;
 }
-.select2-selection.select2-selection--single.invalid{
+.select2-selection.select2-selection--single.invalid,textarea.invalid{
 	border-bottom: 1px solid #F44336;
 	box-shadow: 0 1px 0 0 #F44336;
 }

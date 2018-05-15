@@ -36,13 +36,6 @@ courses ={
                 $("#allCoursesData").html(html);
            }
         });
-        $(document).on('click','.single-course a',function(e){
-            e.preventDefault();
-            courseID=$(this).data('id');
-            console.log(courseID);
-            window.sessionStorage.setItem("courseID", courseID);
-            el.redirectToSingleCourse();
-        });
     },
     redirectToSingleCourse:function(){
         window.location.href="courses-single.html";
@@ -126,6 +119,7 @@ courses ={
                     $("#courseIframe").attr('src',currentVideo.link)
                     html=el.watchVideoMenu(msg);
                     $("#slide-out-left.curriculum-menu").html(html);
+                    el.trackUser(course);
                 }else{
                     window.location.href="login.html";
                 }
@@ -134,6 +128,246 @@ courses ={
             })
         }
     },
+    trackUser:function(course){
+        currentVideo=course.currentVideo;
+        if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
+            $("#courseIframe").attr('src',currentVideo.audio_link)
+            html=el.watchVideoMenu(msg);
+            $("#slide-out-left.curriculum-menu").html(html);
+
+            $('#draggable-point').draggable({
+                axis: 'x',
+                containment: "#audio-progress"
+            });
+            $('#draggable-point').draggable({
+                drag: function() {
+                    var offset = $(this).offset();
+                    var xPos = (100 * parseFloat($(this).css("left"))) / (parseFloat($(this).parent().css("width"))) + "%";
+
+                    $('#audio-progress-bar').css({
+                        'width': xPos
+                    });
+                }
+            });
+            var mousedown=false,
+                currenttime= 0,
+                $progress = $('.vjs-progress-holder.vjs-slider.vjs-slider-horizontal');
+            /*$progress.on('click', function(e){
+             var percent = ((e.pageX-$progress.offset().left)/$progress.width());
+             var seek = percent*player.getDuration();
+             //$('.vjs-progress-holder.vjs-slider').css('width', percent*100 + '%');
+             $('.vjs-play-progress.vjs-slider-bar').css('width', percent*100 + '%');
+             player.seek(seek)
+             });*/
+
+            $progress.mousedown(function(e) {
+                mousedown=true;
+            });
+
+            $progress.mouseup(function(e) {
+
+                if  (mousedown===true)
+                    player.seek(currenttime);
+                mousedownn=false;
+            });
+
+            $progress.mouseleave(function(e) {
+                if  (window.mousedown===true)
+                    player.seek(currenttime);
+                mousedown=false;
+            });
+
+            $progress.mousemove(function(e) {
+                console.log(player.getDuration());
+                if (mousedown===true){
+                    /*var progresswidth=$('.vjs-progress-control.vjs-control').width();
+                     var parentOffset = $(this).parent().offset();
+                     var relX = e.pageX - parentOffset.left;
+                     var seekingpostion=((relX*100)/progresswidth);
+                     $('.vjs-play-progress.vjs-slider-bar').css('width', seekingpostion +'%');
+                     currenttime=(seekingpostion*player.getDuration())/100;*/
+                    var percent = ((e.pageX-$progress.offset().left)/$progress.width());
+                    var seek = percent*player.getDuration();
+                    currenttime=seek;
+                    $('.vjs-play-progress.vjs-slider-bar').css('width', percent*100 + '%');
+
+
+
+                }
+            });
+
+
+
+            $(".sproutvideo-player").attr('height',$(window).height()-10);
+            $("#left-information").css({'max-height':$(window).height()-10});
+            $(document).on('click','#hidden-left-info',function(e){
+                e.preventDefault();
+                $("#left-information").hide('slide', {direction: 'left'}, 1000,function(){$('#open-left-info').css({'display':''});});
+
+            });
+
+            $(document).on('click','#open-left-info a',function(e){
+                e.preventDefault();
+                $('#open-left-info').hide();
+                $("#left-information").show('slide', {direction: 'left'}, 1000,function(){});
+            });
+            $(document).on('click','#saveData',function () {
+                saveData();
+            })
+            currentVideolink=currentVideo.audio_link;
+            splitLinks=currentVideolink.split('/');
+            videoID=splitLinks[splitLinks.length-2];
+            var userData=window.sessionStorage.getItem('userData');
+            email="";
+            if(userData){
+                userData=JSON.parse(userData)
+                email=userData.email
+            }
+            var videoID=splitLinks[splitLinks.length-2];
+            var video_time=currentVideo.video_time;
+            var current_time=currentVideo.current_time;
+            var player = new SV.Player({videoId:videoID });
+            var curriculum_id=currentVideo.id;
+            Cookies.remove('curriculum-'+curriculum_id);
+            var course_id=courseID;
+            window.onbeforeunload = closingCode;
+            dataCookies=Cookies.getJSON();
+            console.log(dataCookies);
+            var saveData=function (){
+                dataCookies=Cookies.getJSON();
+                console.log(dataCookies);
+                $.ajax({
+                    type: 'post',
+                    url: APIURL+'?page=courses&action=saveCoursesData&email='+email ,
+                    data:{dataCookies:dataCookies},
+                    success: function (response) {
+                        //console.log('saveDataDone')
+                        Cookies.remove('curriculum-'+curriculum_id);
+                    }
+                });
+            };
+            function closingCode(){
+                // do something...
+                saveData();
+                return null;
+            }
+            if(typeof Cookies.get(course_id)=='undefined'){
+                Cookies.set('curriculum-'+curriculum_id,{type:'curriculum',course_id:course_id,id:curriculum_id,video_time:parseFloat(video_time),current_time:parseFloat(current_time),max_time:0,completed:0});
+                //console.log(Cookies.getJSON('curriculum-'+curriculum_id));
+            }
+            player.bind('ready',function(){
+
+                console.log('ready');
+                var CurrentTime=player.getDuration();
+                console.log(CurrentTime);
+                //player.seek(parseInt(current_time));
+                //player.setVolume(1);
+                //player.play();
+
+
+            });
+
+            $('#play').bind('click', function(e){
+                player.play();
+                if ( !$(this).hasClass('playing')){
+                    $(this).addClass('playing');
+
+                }else
+                {
+                    $(this).removeClass('playing');
+                }
+            });
+
+            player.bind('play',function(){
+                console.log('play');
+                //player.seek(parseInt(current_time));
+                //player.setVolume(1);
+                /* if ( !$(this).hasClass('playing')){
+                 $(this).addClass('playing');
+
+                 }*/
+                var CurrentTime=player.getDuration();
+                console.log(player.getDuration());
+                var minutes=Math.floor(CurrentTime/60);
+                var seconds=Math.floor(CurrentTime-(minutes*60));
+                $('.duration').html(minutes+ ":" +seconds );
+
+
+            });
+            //player.play();
+            hasRequest=false;
+            player.bind('progress',function(){
+
+                dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
+                //console.log(dataCookies);
+                //console.log(player.getPercentLoaded());
+                console.log(player.getDuration());
+                durationTime=player.getDuration();
+                durationTime=(durationTime>0)?durationTime:video_time;
+                var CurrentTime=player.getCurrentTime();
+                var minutes=Math.floor(CurrentTime/60);
+                var seconds=Math.floor(CurrentTime-(minutes*60));
+                $('.currenttime').html(minutes+ ":" +seconds );
+                percentageTime=(CurrentTime/durationTime)*100
+                dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
+                //console.log(dataCookies);
+                dataCookies.video_time=player.getDuration();
+                dataCookies.current_time=player.getCurrentTime();
+                dataCookies.max_time=(dataCookies.max_time>dataCookies.current_time)?dataCookies.max_time:player.getCurrentTime();
+                if(percentageTime>=70&&!hasRequest){dataCookies.completed=1;}
+                Cookies.set('curriculum_id-'+curriculum_id,dataCookies);
+                if(percentageTime>=70&&!hasRequest){
+                    hasRequest=true;
+                    console.log(percentageTime);
+                    saveData();
+                }
+
+                if (mousedown===false){
+                    // $('.vjs-play-progress.vjs-slider-bar').css('width', player.getPercentLoaded()*100 +'%');
+                    $('.vjs-play-progress.vjs-slider-bar').css('width',(CurrentTime*100)/player.getDuration() +'%');
+                }
+            });
+            player.bind('completed',function(){
+                dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
+                dataCookies.completed+=1
+                Cookies.set('curriculum-'+curriculum_id,dataCookies);
+                saveData();
+                next_id=$(".playing-data").attr('next-id');
+                if(next_id>0){
+                    window.location='courses/showCurriculumaudio/'+next_id + '/'+ course_id;
+                }
+            });
+            $(document).on('click',"#player-next",function(){
+                //console.log('asd');
+                next_id=$(".playing-data").attr('next-id');
+                if(next_id>0){
+                    window.location='courses/showCurriculumaudio/'+next_id + '/'+ course_id;
+
+                }
+            });
+
+            $(document).on('click',"#player-prev",function(){
+                ////console.log('asd');
+                prev_id=$(".playing-data").attr('prev-id');
+                if(prev_id>0){
+                    window.location='courses/showCurriculumaudio/'+prev_id + '/'+ course_id;
+
+                }
+            });
+
+
+            $(document).on('mousemove mouseover','#videoIframe,#videoIframe iframe.sproutvideo-player html',function(){
+                //console.log('sad');
+                $("#backToCourse,#continue").css({'opacity':'1'});
+            });
+
+
+
+        }else{
+            window.location.href="login.html";
+        }
+
+        },
     listenVideoPage:function(){
         el=this;
         courseID=window.sessionStorage.getItem("courseID")
@@ -141,235 +375,7 @@ courses ={
         if(courseID&&curriculumID){
             el.getSingleCurriculum(courseID,curriculumID,function(msg){
                 course=msg.result;
-                currentVideo=course.currentVideo;
-                if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-                    $("#courseIframe").attr('src',currentVideo.audio_link)
-                    html=el.watchVideoMenu(msg);
-                    $("#slide-out-left.curriculum-menu").html(html);
-
-                    $('#draggable-point').draggable({
-                        axis: 'x',
-                        containment: "#audio-progress"
-                    });
-                    $('#draggable-point').draggable({
-                        drag: function() {
-                            var offset = $(this).offset();
-                            var xPos = (100 * parseFloat($(this).css("left"))) / (parseFloat($(this).parent().css("width"))) + "%";
-
-                            $('#audio-progress-bar').css({
-                                'width': xPos
-                            });
-                        }
-                    });
-                    var mousedown=false,
-                        currenttime= 0,
-                        $progress = $('.vjs-progress-holder.vjs-slider.vjs-slider-horizontal');
-                    /*$progress.on('click', function(e){
-                     var percent = ((e.pageX-$progress.offset().left)/$progress.width());
-                     var seek = percent*player.getDuration();
-                     //$('.vjs-progress-holder.vjs-slider').css('width', percent*100 + '%');
-                     $('.vjs-play-progress.vjs-slider-bar').css('width', percent*100 + '%');
-                     player.seek(seek)
-                     });*/
-
-                    $progress.mousedown(function(e) {
-                        mousedown=true;
-                    });
-
-                    $progress.mouseup(function(e) {
-
-                        if  (mousedown===true)
-                            player.seek(currenttime);
-                        mousedownn=false;
-                    });
-
-                    $progress.mouseleave(function(e) {
-                        if  (window.mousedown===true)
-                            player.seek(currenttime);
-                        mousedown=false;
-                    });
-
-                    $progress.mousemove(function(e) {
-                        console.log(player.getDuration());
-                        if (mousedown===true){
-                            /*var progresswidth=$('.vjs-progress-control.vjs-control').width();
-                             var parentOffset = $(this).parent().offset();
-                             var relX = e.pageX - parentOffset.left;
-                             var seekingpostion=((relX*100)/progresswidth);
-                             $('.vjs-play-progress.vjs-slider-bar').css('width', seekingpostion +'%');
-                             currenttime=(seekingpostion*player.getDuration())/100;*/
-                            var percent = ((e.pageX-$progress.offset().left)/$progress.width());
-                            var seek = percent*player.getDuration();
-                            currenttime=seek;
-                            $('.vjs-play-progress.vjs-slider-bar').css('width', percent*100 + '%');
-
-
-
-                        }
-                    });
-
-
-
-                    $(".sproutvideo-player").attr('height',$(window).height()-10);
-                    $("#left-information").css({'max-height':$(window).height()-10});
-                    $(document).on('click','#hidden-left-info',function(e){
-                        e.preventDefault();
-                        $("#left-information").hide('slide', {direction: 'left'}, 1000,function(){$('#open-left-info').css({'display':''});});
-
-                    });
-
-                    $(document).on('click','#open-left-info a',function(e){
-                        e.preventDefault();
-                        $('#open-left-info').hide();
-                        $("#left-information").show('slide', {direction: 'left'}, 1000,function(){});
-                    });
-                    currentVideolink=currentVideo.audio_link;
-                    splitLinks=currentVideolink.split('/');
-                    videoID=splitLinks[splitLinks.length-2];
-                    var videoID=splitLinks[splitLinks.length-2];
-                    var video_time=currentVideo.video_time;
-                    var current_time=currentVideo.current_time;
-                    var player = new SV.Player({videoId:videoID });
-                    var curriculum_id=currentVideo.id;
-                    Cookies.remove('curriculum-'+curriculum_id);
-                    var course_id=courseID;
-                    window.onbeforeunload = closingCode;
-                    dataCookies=Cookies.getJSON();
-                    var saveData=function (){
-                        dataCookies=Cookies.getJSON();
-                        $.ajax({
-                            type: 'post',
-                            url: '?page=courses&action=saveCoursesData',
-                            data:{dataCookies:dataCookies},
-                            success: function (response) {
-                                //console.log('saveDataDone')
-                                Cookies.remove('curriculum-'+curriculum_id);
-                            }
-                        });
-                    };
-                    function closingCode(){
-                        // do something...
-                        saveData();
-                        return null;
-                    }
-                    if(typeof Cookies.get(course_id)=='undefined'){
-                        Cookies.set('curriculum-'+curriculum_id,{type:'curriculum',course_id:course_id,id:curriculum_id,video_time:parseFloat(video_time),current_time:parseFloat(current_time),max_time:0,completed:0});
-                        //console.log(Cookies.getJSON('curriculum-'+curriculum_id));
-                    }
-                    player.bind('ready',function(){
-
-                        console.log('ready');
-                        var CurrentTime=player.getDuration();
-                        console.log(CurrentTime);
-                        //player.seek(parseInt(current_time));
-                        //player.setVolume(1);
-                        //player.play();
-
-
-                    });
-
-                    $('#play').bind('click', function(e){
-                        player.play();
-                        if ( !$(this).hasClass('playing')){
-                            $(this).addClass('playing');
-
-                        }else
-                        {
-                            $(this).removeClass('playing');
-                        }
-                    });
-
-                    player.bind('play',function(){
-                        console.log('play');
-                        //player.seek(parseInt(current_time));
-                        //player.setVolume(1);
-                        /* if ( !$(this).hasClass('playing')){
-                         $(this).addClass('playing');
-
-                         }*/
-                        var CurrentTime=player.getDuration();
-                        console.log(player.getDuration());
-                        var minutes=Math.floor(CurrentTime/60);
-                        var seconds=Math.floor(CurrentTime-(minutes*60));
-                        $('.duration').html(minutes+ ":" +seconds );
-
-
-                    });
-                    //player.play();
-                    hasRequest=false;
-                    player.bind('progress',function(){
-
-                        dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
-                        //console.log(dataCookies);
-                        //console.log(player.getPercentLoaded());
-                        console.log(player.getDuration());
-                        durationTime=player.getDuration();
-                        durationTime=(durationTime>0)?durationTime:video_time;
-                        var CurrentTime=player.getCurrentTime();
-                        var minutes=Math.floor(CurrentTime/60);
-                        var seconds=Math.floor(CurrentTime-(minutes*60));
-                        $('.currenttime').html(minutes+ ":" +seconds );
-                        percentageTime=(CurrentTime/durationTime)*100
-                        dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
-                        //console.log(dataCookies);
-                        dataCookies.video_time=player.getDuration();
-                        dataCookies.current_time=player.getCurrentTime();
-                        dataCookies.max_time=(dataCookies.max_time>dataCookies.current_time)?dataCookies.max_time:player.getCurrentTime();
-                        if(percentageTime>=70&&!hasRequest){dataCookies.completed=1;}
-                        Cookies.set('curriculum_id-'+curriculum_id,dataCookies);
-                        if(percentageTime>=70&&!hasRequest){
-                            hasRequest=true;
-                            console.log(percentageTime);
-                            saveData();
-                        }
-
-                        if (mousedown===false){
-                            // $('.vjs-play-progress.vjs-slider-bar').css('width', player.getPercentLoaded()*100 +'%');
-                            $('.vjs-play-progress.vjs-slider-bar').css('width',(CurrentTime*100)/player.getDuration() +'%');
-                        }
-                    });
-                    player.bind('completed',function(){
-                        dataCookies=Cookies.getJSON('curriculum-'+curriculum_id);
-                        dataCookies.completed+=1
-                        Cookies.set('curriculum-'+curriculum_id,dataCookies);
-                        saveData();
-                        next_id=$(".playing-data").attr('next-id');
-                        if(next_id>0){
-                            window.location='courses/showCurriculumaudio/'+next_id + '/'+ "<?=$course->url?>";
-                        }
-                    });
-                    $(document).on('click',"#player-next",function(){
-                        //console.log('asd');
-                        next_id=$(".playing-data").attr('next-id');
-                        if(next_id>0){
-                            window.location='courses/showCurriculumaudio/'+next_id + '/'+ "<?=$course->url?>";
-
-                        }
-                    });
-
-                    $(document).on('click',"#player-prev",function(){
-                        ////console.log('asd');
-                        prev_id=$(".playing-data").attr('prev-id');
-                        if(prev_id>0){
-                            window.location='courses/showCurriculumaudio/'+prev_id + '/'+ "<?=$course->url?>";
-
-                        }
-                    });
-
-
-                    $(document).on('mousemove mouseover','#videoIframe,#videoIframe iframe.sproutvideo-player html',function(){
-                        //console.log('sad');
-                        $("#backToCourse,#continue").css({'opacity':'1'});
-                    });
-
-
-
-
-                }else{
-                    window.location.href="login.html";
-                }
-
-
+                el.trackUser(course);
             })
         }
     }

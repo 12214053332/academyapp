@@ -9,15 +9,16 @@ workShop ={
             func(msg);
         });
     },
-    coursesSingleDiv:function(singleCourse){
-        html='<div class="col s6 single-course"><div class="entry"><img src="'+APIURL+singleCourse.image+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+    coursesSingleDiv:function(singleCourse,isExpired){
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
+        html='<div class="col s6 single-work-shop"><div class="entry"><img src="'+APIURL+singleCourse.image+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCourse.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div></div></div>';
+        html+='</div>'+((isExpired)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     workShopPage:function(){
@@ -26,18 +27,12 @@ workShop ={
            if(msg.success){
                html='';
                 msg.result.forEach(function(item){
-                    html+=el.coursesSingleDiv(item);
+                    html+=el.coursesSingleDiv(item,msg.isExpired);
                 });
                 $("#allworkshopData").html(html);
            }
         });
-        $(document).on('click','.single-course a',function(e){
-            e.preventDefault();
-            workShopID=$(this).data('id');
-            console.log(workShopID);
-            window.sessionStorage.setItem("workShopID", workShopID);
-            el.redirectToSingleCourse();
-        });
+
     },
     redirectToSingleCourse:function(){
         window.location.href="workshop-single.html";
@@ -54,7 +49,11 @@ workShop ={
             el.getSingle(workShopID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                   $("#courseIframe").attr('src',APIURL+course.image);
+                    if(course.link){
+                        $("#courseIframe").attr('src',course.link).removeClass('hidden');
+                    }else{
+                        $("#courseImageIframe").attr('src',APIURL+course.image).removeClass('hidden');
+                    }
                    $("#courseTitle").html(course.name);
                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);

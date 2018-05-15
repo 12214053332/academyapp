@@ -22,7 +22,6 @@ var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
-
     // deviceready Event Handler
     //
     // Bind any cordova events here. Common events are:
@@ -30,26 +29,21 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
     },
-
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
-
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
     }
 };
-
 app.initialize();*/
 var userData = window.sessionStorage.getItem("userData")
 var APIURL="https://www.e3melbusiness.com/";
 var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
 url = window.location.pathname;
-
 var filename = url.substring(url.lastIndexOf('/')+1);
 var errorMessages={
     "email_exist":"The Email Is Already Exist",
@@ -92,6 +86,7 @@ function makeURL(action,parameters){
         parametersText+='&password='+userDataJson.password;
         parametersText+='&sessionUser='+userDataJson.session_user;
     }
+    console.log(parametersText);
     return APIURL+'?page=academyAPI&action='+action+parametersText+'&tokenNumber='+tokenNumber;
 }
 function ajaxRequest(url,method,data,func){
@@ -182,9 +177,15 @@ function IsJsonString(str) {
     return true;
 }
 includeHTML();
+$(document).on('click',"#logout-menu a",function(e){
+    e.preventDefault();
+    window.sessionStorage.removeItem('userData');
+    window.location.reload();
+});
 function onDeviceReady() {
     if(userData){
         $("#login-menu,#register-menu").addClass('hidden');
+        $("#logout-menu").removeClass('hidden');
         userDataJson=JSON.parse(userData);
         if(userDataJson.image){
             $("#userDataImage").attr('src',APIURL+userDataJson.image)
@@ -192,6 +193,94 @@ function onDeviceReady() {
             $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png')
         }
         $("#userDataFullName").html(userDataJson.fullName);
+    }
+    if(filename=='contact.html'){
+        var validator = $("#contactus-form").validate({
+            /*errorPlacement: function(error, element) {
+                // Append error within linked label
+                $( element )
+                    .closest( "form" )
+                    .find( "label[for='" + element.attr( "id" ) + "']" )
+                    .append( error );
+            },*/
+            highlight: function(element) {
+                console.log(element);
+                if($(element).hasClass('select2')){
+                    console.log("#select2-"+$(element).attr('id')+"-container")
+                    $("#select2-"+$(element).attr('id')+"-container").parent().addClass('invalid');
+                }else{
+                    $(element).addClass('invalid')
+                }
+                //$(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                if($(element).hasClass('select2')){
+                    console.log("#select2-"+$(element).attr('id')+"-container")
+                    $("#select2-"+$(element).attr('id')+"-container").parent().removeClass('invalid');
+                }else {
+                    $(element).removeClass('invalid')
+                }
+                //$(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: "span",
+            rules : {
+                name : {
+                    required:true,
+                    minlength : 5,
+                },
+                email : {
+                    required:true,
+                },
+                phone : {
+                    required:true,
+                },
+                message : {
+                    required:true,
+                    minlength : 5,
+                    maxlength : 255,
+                },
+                type : {
+                    required:true,
+                },
+            },
+            messages: {
+                name : {
+                    required:"من فضلك ادخل الاسم",
+                    minlength : "على الاقل 5 حروف",
+                },
+                email : {
+                    required:"من فضلك ادخل البريد الإلكترونى",
+                    minlength : "على الاقل 5 حروف",
+                },
+                phone : {
+                    required:"من فضلك ادخل رقم الهاتف",
+                },
+                message : {
+                    required:"من فضلك ادخل الإستفسار",
+                    minlength : "على الاقل 5 حروف",
+                    maxlength : "على الأكثر 255 حروف",
+                },
+            },
+            submitHandler: function() {
+                // $('#SearchSpinner').addClass('spinner');
+                $.ajax({
+                    type: 'post',
+                    url: /****/APIURL+'?page=contactus&action=contactus',
+                    data: $('#contactus-form').serialize(),
+                    success: function (data) {
+                        $('#contactus-response').html(data);
+                        $("input[type='text']").val('');
+                        $("input[type='email']").val('');
+                        $("input[type='phone']").val('');
+                        $('textarea').val('');
+                        $('select').val('');
+                    }
+                });
+            }
+        });
+        $(".cancel").click(function() {
+            validator.resetForm();
+        });
     }
     if(filename=='register.html'){
         ajaxRequest(makeURL('countries'),function (msg) {
@@ -207,7 +296,6 @@ function onDeviceReady() {
             var validator = $("#signup-form").validate({
                 errorPlacement: function(error, element) {
                     // Append error within linked label
-
                     /*$( element )
                         .closest( "form" )
                         .find( "label[for='" + element.attr( "id" ) + "']" )
@@ -221,9 +309,7 @@ function onDeviceReady() {
                     }else{
                         $(element).addClass('invalid')
                     }
-
                     //$(element).closest('.form-group').addClass('has-error');
-
                 },
                 unhighlight: function(element) {
                     if($(element).hasClass('select2')){
@@ -233,7 +319,6 @@ function onDeviceReady() {
                         $(element).removeClass('invalid')
                     }
                     //$(element).closest('.form-group').removeClass('has-error');
-
                 },
                 errorElement: "span",
                 rules : {
@@ -261,7 +346,6 @@ function onDeviceReady() {
                         minlength : 5,
                         equalTo : "#password"
                     },
-
                 },
                 messages: {
                 },
@@ -285,10 +369,8 @@ function onDeviceReady() {
                             } else {
                                 if (data.indexOf('شكر')!=-1){
                                     $('input').val('')
-
                                     $('select option[value=""]').attr('selected','selected');
                                     window.location.assign('?page=thanks');
-
                                     // window.location.assign("?page=profile")
                                 }else{
                                     // $('.registerresult').html(data);
@@ -296,17 +378,12 @@ function onDeviceReady() {
                             }
                         }
                     });
-
                 }
             });
-
             $(".cancel").click(function() {
                 validator.resetForm();
             });
         }
-
-
-
     }
     // sidenav control left
     $(".sidenav-control").sideNav({
@@ -327,7 +404,6 @@ function onDeviceReady() {
         }
         $(".collapsible-body").not(el).not('.faq').css({"display":"none"});
     });
-
     // slick slider
     $('.slider-slick').slick({
         dots: true,
@@ -336,24 +412,20 @@ function onDeviceReady() {
         slidesToShow: 1,
         autoplay: true
     });
-
     // faq collapse icon
     $(document).on("click",".faq-collapsible",function(e){
         $(this).parent().siblings().find('i').removeClass('fa-minus')
         $(this).find('i').toggleClass('fa-minus')
     });
-
     // testimonial
-    $("#testimonial").owlCarousel({
+   /*var testimonialOWL=$("#testimonial").owlCarousel({
         slideSpeed : 300,
         paginationSpeed : 400,
         singleItem: true
-    });
-
+    });*/
     // tabs
     $('ul.tabs').tabs();
     function objectifyForm(formArray) {//serialize data function
-
         var returnArray = {};
         for (var i = 0; i < formArray.length; i++){
             console.log(formArray)
@@ -372,18 +444,13 @@ function onDeviceReady() {
                 //$(element).parent().parent().addClass('has-error');
             },
             highlight: function(element) {
-
                 $(element).closest('.form-group').addClass('has-error');
-
             },
             unhighlight: function(element) {
-
                 $(element).closest('.form-group').removeClass('has-error');
-
             },
             errorElement: "span",
             rules : {
-
                 email : {
                     required:true,
                     minlength : 5
@@ -396,7 +463,6 @@ function onDeviceReady() {
             messages: {
             },
             submitHandler: function() {
-
                 //alert('start');
                 //$("#charge-btn").attr("disabled", true);
                 ajaxRequest(makeURL('login'),'POST',$("#login-form").serialize(),function (msg) {
@@ -423,7 +489,6 @@ function onDeviceReady() {
                             window.location.href="index.html";
                         }
                     }
-
                 });*/
             }
         });
@@ -441,5 +506,60 @@ function onDeviceReady() {
         window.sessionStorage.setItem('listenVideoID',$(this).data('id'));
         window.location.href="listen-video.html";
     });
-
+    /*click on category*/
+    $(document).on('click','.single-category a',function(e){
+        e.preventDefault();
+        categoryID=$(this).data('id');
+        console.log(categoryID);
+        window.sessionStorage.setItem("categoryID", categoryID);
+        window.location.href="category-single.html";
+    });
+    /*click on diploma*/
+    $(document).on('click','.single-diploma a',function(e){
+        e.preventDefault();
+        diplomaID=$(this).data('id');
+        console.log(diplomaID);
+        window.sessionStorage.setItem("diplomaID", diplomaID);
+        window.location.href="diploma-single.html";
+    });
+    /*click on course*/
+    $(document).on('click','.single-course a',function(e){
+        e.preventDefault();
+        courseID=$(this).data('id');
+        console.log(courseID);
+        window.sessionStorage.setItem("courseID", courseID);
+        window.location.href="courses-single.html";
+    });
+    /*click on book*/
+    $(document).on('click','.single-book a',function(e){
+        e.preventDefault();
+        bookID=$(this).data('id');
+        console.log(bookID);
+        window.sessionStorage.setItem("bookID", bookID);
+        window.location.href="book-single.html";
+    });
+    /*click on webinar*/
+    $(document).on('click','.single-webinar a',function(e){
+        e.preventDefault();
+        webinarID=$(this).data('id');
+        console.log(webinarID);
+        window.sessionStorage.setItem("webinarID", webinarID);
+        window.location.href="webinar-single.html";
+    });
+    /*click on work shop*/
+    $(document).on('click','.single-work-shop a',function(e){
+        e.preventDefault();
+        workShopID=$(this).data('id');
+        console.log(workShopID);
+        window.sessionStorage.setItem("workShopID", workShopID);
+        window.location.href="workshop-single.html";
+    });
+    /*click on story*/
+    $(document).on('click','.single-story a',function(e){
+        e.preventDefault();
+        storyID=$(this).data('id');
+        console.log(storyID);
+        window.sessionStorage.setItem("storyID", storyID);
+        window.location.href="sucessStory-single.html";
+    });
 }

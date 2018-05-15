@@ -41,13 +41,7 @@ books ={
                 $("#allBooksData").html(html);
             }
         });
-        $(document).on('click','.single-book a',function(e){
-            e.preventDefault();
-            bookID=$(this).data('id');
-            console.log(bookID);
-            window.sessionStorage.setItem("bookID", bookID);
-            el.redirectToSingleBook();
-        });
+
     },
     redirectToSingleBook:function(){
         window.location.href="book-single.html";

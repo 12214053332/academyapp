@@ -47,13 +47,7 @@ categories ={
                 $("#allcategoryData").html(html);
            }
         });
-        $(document).on('click','.single-category a',function(e){
-            e.preventDefault();
-            categoryID=$(this).data('id');
-            console.log(categoryID);
-            window.sessionStorage.setItem("categoryID", categoryID);
-            el.redirectToSingleCourse();
-        });
+
     },
 	 innercategoryPage:function(){
         el=this;

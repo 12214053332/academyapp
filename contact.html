@@ -30,25 +30,23 @@
 	<div class="contact app-pages app-section">
 		<div class="container">
 			<div class="pages-title">
-				<h3>Contact us</h3>
+				<h3>إتصل بنا</h3>
 			</div>
-			<form action="#">
+			<form action="#" id="contactus-form">
+				<div id="contactus-response"></div>
 				<div class="input-field">
-					<input id="name" type="text" class="validate" placeholder="Name">
+					<input id="request_name" name="name" type="text" class="validate" placeholder=" الإسم *">
 				</div>
 				<div class="input-field">
-					<input id="email" type="email" class="validate" placeholder="Email">
+					<input id="request_phone" name="phone" type="text" class="validate" placeholder="التليفون *">
 				</div>
 				<div class="input-field">
-					<input id="number" type="number" class="validate" placeholder="Number">
+					<input id="request_email" name="email" type="email" class="validate" placeholder="البريد الإلكترونى *">
 				</div>
 				<div class="input-field">
-					<input id="website" type="text" class="validate" placeholder="Website">
+					<textarea cols="20" rows="10" id="request_description" name="message" class="validate" placeholder="الإستفسار *"></textarea>
 				</div>
-				<div class="input-field">
-					<textarea cols="20" rows="10" id="your-message" class="validate" placeholder="Your Message"></textarea>
-				</div>
-				<button class="button">Submit</button>
+				<button class="button">إرسال</button>
 			</form>
 		</div>
 	</div>
@@ -62,6 +60,7 @@
 	<script src="js/slick.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/select2.full.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/index.js"></script>
 </body>
 </html>

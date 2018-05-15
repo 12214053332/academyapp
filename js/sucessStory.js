@@ -9,8 +9,8 @@ successtories ={
             func(msg);
         });
     },
-    storiesSingleDiv:function(singleStory){
-		
+    storiesSingleDiv:function(singleStory,isExpired){
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="col s6 single-story"><div class="entry"><img src="'+APIURL+singleStory.image+'" alt=""><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleStory.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
@@ -19,7 +19,7 @@ successtories ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
        // html+='</div><div class="price"><h5>'+singleStory.course_section.ksa_price+'$</h5></div></div></div>';
-	     html+='</div></div></div>';
+        html+='</div>'+((isExpired)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
 
         return html;
     },
@@ -29,18 +29,12 @@ successtories ={
            if(msg.success){
                html='';
                 msg.result.forEach(function(item){
-                    html+=el.storiesSingleDiv(item);
+                    html+=el.storiesSingleDiv(item,msg.isExpired);
                 });
                 $("#allsucessStorysData").html(html);
            }
         });
-        $(document).on('click','.single-story a',function(e){
-            e.preventDefault();
-            storyID=$(this).data('id');
-            console.log(storyID);
-            window.sessionStorage.setItem("storyID", storyID);
-            el.redirectToSingleCourse();
-        });
+
     },
     redirectToSingleCourse:function(){
         window.location.href="sucessStory-single.html";
@@ -55,7 +49,11 @@ successtories ={
             el.getSingle(storyID,function(msg){
                 story=msg.result;
                 if(msg.success){
-                   $("#storyIframe").attr('src',story.link);
+                    if(story.link){
+                        $("#storyIframe").attr('src',story.link).removeClass('hidden');
+                    }else{
+                        $("#storyImageIframe").attr('src',APIURL+story.image).removeClass('hidden');
+                    }
                    $("#storyTitle").html(story.name);
                    $("#instructorImage").attr('src',APIURL+story.instractor_pic);
                     $("#instructorNname").html(story.instractor_name);
