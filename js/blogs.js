@@ -10,7 +10,7 @@ blogs ={
         });
     },
     coursesSingleDiv:function(singleCourse){
-        html='<div class="col s12 single-course"><div class="entry"><img src="'+APIURL+singleCourse.image+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+        html='<div class="col s12 single-course"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCourse.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }

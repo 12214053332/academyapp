@@ -11,14 +11,14 @@ diplomas ={
         });
     },
     coursesSingleDiv:function(singleCourse){
-        html='<div class="col s6 single-diploma"><div class="entry"><img src="'+APIURL+singleCourse.image+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+        html='<div class="col s6 single-diploma"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCourse.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div>'+((!singleCourse.hasDiploma)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div>'+((!singleCourse.hasDiploma)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     diplomasPage:function(){

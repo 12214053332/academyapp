@@ -16,7 +16,7 @@ blogCategories ={
     },
 
     coursesSingleDiv:function(singleCourse){
-        html='<div class="col s6 single-course"><div class="entry"><img src="'+APIURL+singleCourse.picpath+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div ">';
+        html='<div class="col s6 single-course"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.picpath+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div ">';
         // for(x=1;x<=singleCourse.rating;x++){
         //     html+='<span class="active"><i class="fa fa-star"></i></span>';
         // }

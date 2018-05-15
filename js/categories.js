@@ -24,7 +24,7 @@ categories ={
 
     categorySingleDiv:function(singleCategory){
 
-        html='<div class="col s6 single-category"><div class="entry"><img src="'+APIURL+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
        /* for(x=1;x<=singleCategory.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }

@@ -3,7 +3,7 @@ $(function(){
 
 	// sidenav control left
 	$(".sidenav-control").sideNav({
-		edge: 'left',
+		edge: 'right',
 		closeOnClick: false
 	});
 

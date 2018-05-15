@@ -20,7 +20,7 @@ books ={
       //   html+='</div><div class="price"><h5>'+singleBook.book_section.ksa_price+'$</h5></div></div></div>';
       // /*------------------------*/
        html="";
-       html+='<div class="col s6 single-book"><div class="entry" ><img src="'+APIURL+singleBook.image+'" alt=""><h6><a data-id="'+singleBook.id+'" href="#">'+singleBook.title+'</a></h6><div class="rating">';
+       html+='<div class="col s6 single-book"><div class="entry" ><a data-id="'+singleBook.id+'" href="#"><img src="'+APIURL+singleBook.image+'" alt=""></a><h6><a data-id="'+singleBook.id+'" href="#">'+singleBook.title+'</a></h6><div class="rating">';
         for(x=1;x<=singleBook.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }

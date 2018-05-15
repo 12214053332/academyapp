@@ -182,17 +182,45 @@ $(document).on('click',"#logout-menu a",function(e){
     window.sessionStorage.removeItem('userData');
     window.location.reload();
 });
+$(document).on('click','.goHome',function(e){
+    e.preventDefault();
+    window.location.href="index.html";
+});
+$(document).on('click','.goProfile',function(e){
+    e.preventDefault();
+    window.location.href="profile.html";
+});
 function onDeviceReady() {
     if(userData){
         $("#login-menu,#register-menu").addClass('hidden');
         $("#logout-menu").removeClass('hidden');
         userDataJson=JSON.parse(userData);
         if(userDataJson.image){
-            $("#userDataImage").attr('src',APIURL+userDataJson.image)
+            $("#userDataImage").attr('src',APIURL+userDataJson.image).removeClass('goHome').addClass('goProfile')
         }else{
-            $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png')
+            $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png').removeClass('goHome').addClass('goProfile')
         }
-        $("#userDataFullName").html(userDataJson.fullName);
+        $("#userDataFullName").html(userDataJson.fullName).removeClass('goHome').addClass('goProfile');
+        if(filename=='profile.html'){
+            console.log(userDataJson);
+            $("#editProfileForm #email").val(userDataJson.email);
+            $("#editProfileForm #name").val(userDataJson.fullName);
+            $("#editProfileForm #google").val(userDataJson.google);
+            $("#editProfileForm #twitter").val(userDataJson.twitter);
+            $("#editProfileForm #facebook").val(userDataJson.facebook);
+            $("#editProfileForm #linkedin").val(userDataJson.linkedin);
+            $("#editProfileForm").submit(function(){
+                el=$(this);
+                $.ajax({
+                    type: 'post',
+                    url: APIURL+'?page=_usersaction&action=editProfile',
+                    data:el.serialize(),
+                    success: function (data) {
+                        $("#"+el.data('message')).html(data);
+                    }
+                });
+            })
+        }
     }
     if(filename=='contact.html'){
         var validator = $("#contactus-form").validate({

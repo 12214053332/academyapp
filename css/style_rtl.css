@@ -57,7 +57,7 @@ body {
 	background: #fff;
 	color: #999;
 	font-size: 13px;
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 
 }
 
@@ -74,7 +74,7 @@ h6 {
 	padding: 0;
 	margin: 0;
 	color: #232323;
-	font-family: 'Raleway', sans-serif;
+	font-family: "cocon",'Raleway', sans-serif;
 }
 
 h1 {
@@ -152,7 +152,7 @@ p {
 }
 
 .site-title h1 {
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 	font-size: 21px;
 	padding: 0;
 	margin: 0;
@@ -413,7 +413,7 @@ p {
 	font-weight: 600;
 	font-size: 20px;
 	text-transform: uppercase;
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 }
 
 .slider-slick .caption p {
@@ -585,7 +585,7 @@ p {
 	color: #fff;
 	margin-bottom: 15px;
 	color: #f9a231;
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 }
 
 .note .button {
@@ -954,7 +954,7 @@ p {
 .words h4 {
 	color: #f9a231;
 	font-weight: 500;
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 }
 
 .words .button {
@@ -1146,7 +1146,7 @@ p {
 	font-weight: 600;
 	font-size: 22px;
 	margin-bottom: 5px;
-	font-family: 'Roboto', sans-serif;
+	font-family: "cocon",'Roboto', sans-serif;
 	text-align: right;
 }
 
@@ -2058,4 +2058,7 @@ html *{
 }
 #slide-out-left.curriculum-menu{
 	width: 330px;
+}
+.goHome:hover{
+	cursor:pointer;
 }

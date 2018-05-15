@@ -7,7 +7,7 @@ indexPage={
     makeCategoriesSection:function(categories){
         html='<div class="app-title"><h4>تخصصات</h4><div class="line"></div></div><div class="row">';
         categories.forEach(function(singleCategory){
-            html+='<div class="col s6 single-category"><div class="entry"><img src="'+APIURL+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
             html+='</div></div></div>';
         });
         html+='<div class="text-center"><a href="categories.html" class="button">المزيد</a></div>';
@@ -17,14 +17,14 @@ indexPage={
     makeDiplomasSection:function(diplomas){
         html='<div class="app-title"><h4>دبلومة احتراف</h4><div class="line"></div></div><div class="row">';
         diplomas.forEach(function(singleDiploma){
-            html+='<div class="col s6 single-diploma"><div class="entry"><img src="'+APIURL+singleDiploma.image+'" alt=""><h6><a data-id="'+singleDiploma.id+'" href="#">'+singleDiploma.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-diploma"><div class="entry"><a data-id="'+singleDiploma.id+'" href="#"><img src="'+APIURL+singleDiploma.image+'" alt=""></a><h6><a data-id="'+singleDiploma.id+'" href="#">'+singleDiploma.name+'</a></h6><div class="rating">';
             for(x=1;x<=singleDiploma.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((!singleDiploma.hasDiploma)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div>'+((!singleDiploma.hasDiploma)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="diploma.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -33,14 +33,14 @@ indexPage={
     makeCoursesSection:function(courses){
         html='<div class="app-title"><h4>كورسات</h4><div class="line"></div></div><div class="row">';
         courses.forEach(function(singleCourse){
-            html+='<div class="col s6 single-course"><div class="entry"><img src="'+APIURL+singleCourse.image+'" alt=""><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-course"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
             for(x=1;x<=singleCourse.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((!singleCourse.hasCourse)?'<a class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
+            html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
         });
         html+='<div class="text-center"><a href="courses.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -49,7 +49,7 @@ indexPage={
     makeBooksSection:function(books){
         html='<div class="app-title"><h4>كتب</h4><div class="line"></div></div><div class="row">';
         books.forEach(function(singleBook){
-            html+='<div class="col s6 single-book"><div class="entry" ><img src="'+APIURL+singleBook.image+'" alt=""><h6><a data-id="'+singleBook.id+'" href="#">'+singleBook.title+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-book"><div class="entry" ><a data-id="'+singleBook.id+'" href="#"><img src="'+APIURL+singleBook.image+'" alt=""></a><h6><a data-id="'+singleBook.id+'" href="#">'+singleBook.title+'</a></h6><div class="rating">';
             for(x=1;x<=singleBook.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
@@ -66,14 +66,14 @@ indexPage={
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="app-title"><h4>ندوات</h4><div class="line"></div></div><div class="row">';
         webinars.forEach(function(singleWebinar){
-            html+='<div class="col s6 single-webinar"><div class="entry"><img src="'+APIURL+singleWebinar.image+'" alt=""><h6><a data-id="'+singleWebinar.id+'" href="#">'+singleWebinar.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-webinar"><div class="entry"><a data-id="'+singleWebinar.id+'" href="#"><img src="'+APIURL+singleWebinar.image+'" alt=""></a><h6><a data-id="'+singleWebinar.id+'" href="#">'+singleWebinar.name+'</a></h6><div class="rating">';
             for(x=1;x<=singleWebinar.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((isExpired)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="webinar.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -83,14 +83,14 @@ indexPage={
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="app-title"><h4>ورش عمل</h4><div class="line"></div></div><div class="row">';
         workShops.forEach(function(singleWorkShop){
-            html+='<div class="col s6 single-work-shop"><div class="entry"><img src="'+APIURL+singleWorkShop.image+'" alt=""><h6><a data-id="'+singleWorkShop.id+'" href="#">'+singleWorkShop.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-work-shop"><div class="entry"><a data-id="'+singleWorkShop.id+'" href="#"><img src="'+APIURL+singleWorkShop.image+'" alt=""></a><h6><a data-id="'+singleWorkShop.id+'" href="#">'+singleWorkShop.name+'</a></h6><div class="rating">';
             for(x=1;x<=singleWorkShop.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((isExpired)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="workshop.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -100,7 +100,7 @@ indexPage={
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="app-title"><h4>قصص نجاح</h4><div class="line"></div></div><div class="row">';
         successtories.forEach(function(singleStory){
-            html+='<div class="col s6 single-story"><div class="entry"><img src="'+APIURL+singleStory.image+'" alt=""><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';
+            html+='<div class="col s6 single-story"><div class="entry"><a data-id="'+singleStory.id+'" href="#"><img src="'+APIURL+singleStory.image+'" alt=""></a><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';
             for(x=1;x<=singleStory.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
             }
@@ -108,7 +108,7 @@ indexPage={
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
             // html+='</div><div class="price"><h5>'+singleStory.course_section.ksa_price+'$</h5></div></div></div>';
-            html+='</div>'+((isExpired)?'<a class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="sucessStory.html" class="button">المزيد</a></div>';
         html+='</div>'
