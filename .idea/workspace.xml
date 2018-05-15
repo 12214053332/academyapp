@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b0924c69-3643-45f2-9cc8-feffcd0c4eb2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -402,7 +400,13 @@
       <option name="project" value="LOCAL" />
       <updated>1526391242865</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add cordova  &amp; include head">
+      <created>1526392475928</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526392475928</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
