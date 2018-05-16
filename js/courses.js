@@ -50,7 +50,7 @@ courses ={
             el.getSingle(courseID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                   $("#courseIframe").attr('src',course.intro_vedio);
+                   $("#courseIframe").attr('src','https:'+course.intro_vedio);
                    $("#courseTitle").html(course.name);
                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);
