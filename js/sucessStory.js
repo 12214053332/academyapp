@@ -9,6 +9,7 @@ successtories ={
             func(msg);
         });
     },
+
     storiesSingleDiv:function(singleStory,isExpired){
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="col s6 single-story"><div class="entry"><a data-id="'+singleStory.id+'" href="#"><img src="'+APIURL+singleStory.image+'" alt=""></a><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';

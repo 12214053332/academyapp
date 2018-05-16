@@ -9,6 +9,7 @@ webinar ={
             func(msg);
         });
     },
+    
     coursesSingleDiv:function(singleCourse,isExpired){
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='<div class="col s6 single-webinar"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
