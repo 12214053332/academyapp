@@ -22,7 +22,7 @@ courses ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     coursesPage:function(){
@@ -66,7 +66,7 @@ courses ={
                         section.curriculum.forEach(function(item){
                             switch (item.type){
                                 case 'default':
-                                    html+='<div class="container"><div class="row"><div class="col s10">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s2">'+((item.duration)?item.duration:'')+'</div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+'  class="link-watch">مشاهدة</a></div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+' href="#" class="link-listen">أستماع</a></div></div></div>';
+                                    html+='<div class="container"><div class="row"><div class="col s10">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s2">'+((item.duration)?item.duration:'')+'</div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+'  class="'+((msg.userSuccess||item.isfree=='yes')?'':'loginRedirect')+' link-watch">مشاهدة</a></div><div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+' href="#" class="'+((msg.userSuccess||item.isfree=='yes')?'':'loginRedirect')+' link-listen">أستماع</a></div></div></div>';
                                     break;
                                /* case'training':
                                     html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء التدريب</a></div></div></div>';
@@ -117,7 +117,6 @@ courses ={
                 currentVideo=course.currentVideo;
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
                     $("#courseIframe").attr('src','https:'+currentVideo.link)
-                    $("#slide-out-left.curriculum-menu").html(html);
                     el.trackUser(course,msg);
                 }else{
                     window.location.href="login.html";
@@ -235,15 +234,15 @@ courses ={
             var saveData=function (){
                 dataCookies=Cookies.getJSON();
                 console.log(dataCookies);
-                /*$.ajax({
-                    type: 'post',
+                $.ajax({
+                    type: 'GET',
                     url: APIURL+'?page=courses&action=saveCoursesData&email='+email ,
-                    data:{dataCookies:dataCookies},
+                    data:{'curriculum-1998':{'completed':0,'course_id':78,'current_time':null,'id':1998,'max_time':0,'type':'curriculum','video_time':null}},
                     success: function (response) {
                         //console.log('saveDataDone')
                         Cookies.remove('curriculum-'+curriculum_id);
                     }
-                });*/
+                });
             };
             function closingCode(){
                 // do something...

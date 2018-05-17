@@ -27,7 +27,7 @@ books ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-       html+='</div><div class="price"><h5></h5></div></div></div>';
+       html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleBook.view+'</div><div class="price"><h5></h5></div></div></div>';
         return html;
     },
     booksPage:function(){

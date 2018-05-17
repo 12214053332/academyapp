@@ -197,7 +197,7 @@ function onDeviceReady() {
         $("#logout-menu").removeClass('hidden');
         userDataJson=JSON.parse(userData);
         if(userDataJson.image){
-            $("#userDataImage").attr('src',APIURL+userDataJson.image).removeClass('goHome').addClass('goProfile')
+            $("#userDataImage").attr('src',APIURL+'assets/images/'+userDataJson.image).removeClass('goHome').addClass('goProfile')
         }else{
             $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png').removeClass('goHome').addClass('goProfile')
         }
@@ -595,4 +595,7 @@ function onDeviceReady() {
         e.preventDefault();
         window.location.href="login.html";
     })
+    $(document).on('click','#goBack',function(){
+        window.history.back();
+    });
 }

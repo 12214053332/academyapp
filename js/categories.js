@@ -32,7 +32,7 @@ categories ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }*/
        // html+='</div><div class="price"><h5>'+singleCategory.course_section.ksa_price+'$</h5></div></div></div>';
-	     html+='</div></div></div>';
+	     html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div></div></div>';
 
         return html;
     },
@@ -54,8 +54,8 @@ categories ={
          categoryID=window.sessionStorage.getItem("categoryID")
         el.getSingle(categoryID,function(msg){
            if(msg.success){
-               html='';
-               html+='<div style="padding: 12px"> <h5> كورسات</h5></div>';
+               html_course='';
+               html_course+='<div style="padding: 12px"> <h5> كورسات</h5></div>';
                html_webinars='';
                html_webinars+='<div style="padding: 12px"> <h5> ندوات</h5></div>';
                html_successtories='';
@@ -68,37 +68,35 @@ categories ={
                window.sessionStorage.setItem("categoryID", msg.result.id);
 
                msg.result.courses.forEach(function(item){
-
-                    html+=el.singleCategoryPage(item);
+                    html_course+=el.singleCategoryCourse(item);
                 });
-                html+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_courses'>المزيد</a></div>";
+                html_course+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_courses'>المزيد</a></div>";
 
                msg.result.webinars.forEach(function(item){
-
-                   html_webinars+=el.singleCategoryPagewebinars(item);
+                   html_webinars+=el.singleCategoryWebinars(item,msg.isExpired);
                });
                html_webinars+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_webinars'>المزيد</a></div>";
 
                msg.result.successtories.forEach(function(item){
 
-                   html_successtories+=el.singleCategoryPagesuccesstories(item);
+                   html_successtories+=el.singleCategorySuccesstories(item,msg.isExpired);
                });
                html_successtories+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_successtories'>المزيد</a></div>";
 
                msg.result.books.forEach(function(item){
 
-                   html_books+=el.singleCategoryPagebooks(item);
+                   html_books+=el.singleCategoryBooks(item);
                });
                html_books+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_books'>المزيد</a></div>";
 
 
                msg.result.workShops.forEach(function(item){
 
-                   html_workShops+=el.singleCategoryPageworkShops(item);
+                   html_workShops+=el.singleCategoryWorkShops(item,msg.isExpired);
                });
                html_workShops+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_workShops'>المزيد</a></div>";
 
-               $("#allinnercategoryPageData").html(html);
+               $("#allinnercategoryPageData").html(html_course);
                $("#allwebinarsData").html(html_webinars);
                $("#allsuccessStoryData").html(html_successtories);
                $("#allbooksData").html(html_books);
@@ -200,46 +198,90 @@ categories ={
     redirectToCourse: function(){
         window.location.href="categories.html";
     },
-    singleCategoryPage:function(singleCategory){
-        html='<div class="col s6 single-course"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-        html+='</div></div></div>';
+    singleCategoryCourse:function(singleCourse){
+        html='';
+        html+='<div class="col s6 single-course"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+        for(x=1;x<=singleCourse.rating;x++){
+            html+='<span class="active"><i class="fa fa-star"></i></span>';
+        }
+        for(y=x;y<=5;y++){
+            html+='<span class=""><i class="fa fa-star"></i></span>';
+        }
+        //html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
-    singleCategoryPagewebinars:function(singleCategory){
+    singleCategoryWebinars:function(singleWebinar,isExpired){
         //  APIURL=APIURL+'assets/images/';
         // html='<div> <h6> كورسات</h6></div>';
-        html_webinars='<div class="col s6 single-webinar"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-        html_webinars+='</div></div></div>';
-        return html_webinars;
+        html='';
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
+        html+='<div class="col s6 single-webinar"><div class="entry"><a data-id="'+singleWebinar.id+'" href="#"><img src="'+APIURL+singleWebinar.image+'" alt=""></a><h6><a data-id="'+singleWebinar.id+'" href="#">'+singleWebinar.name+'</a></h6><div class="rating">';
+        for(x=1;x<=singleWebinar.rating;x++){
+            html+='<span class="active"><i class="fa fa-star"></i></span>';
+        }
+        for(y=x;y<=5;y++){
+            html+='<span class=""><i class="fa fa-star"></i></span>';
+        }
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWebinar.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        return html;
     },
-    singleCategoryPagesuccesstories:function(singleCategory){
+    singleCategorySuccesstories:function(singleStory,isExpired){
         //  APIURL=APIURL+'assets/images/';
         // html='<div> <h6> كورسات</h6></div>';
-        html_successtories='<div class="col s6 single-successtories"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-        html_successtories+='</div></div></div>';
-        return html_successtories;
+        html='';
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
+        html+='<div class="col s6 single-story"><div class="entry"><a data-id="'+singleStory.id+'" href="#"><img src="'+APIURL+singleStory.image+'" alt=""></a><h6><a data-id="'+singleStory.id+'" href="#">'+singleStory.name+'</a></h6><div class="rating">';
+        for(x=1;x<=singleStory.rating;x++){
+            html+='<span class="active"><i class="fa fa-star"></i></span>';
+        }
+        for(y=x;y<=5;y++){
+            html+='<span class=""><i class="fa fa-star"></i></span>';
+        }
+        // html+='</div><div class="price"><h5>'+singleStory.course_section.ksa_price+'$</h5></div></div></div>';
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleStory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        return html;
     },
-    singleCategoryPagebooks:function(singleCategory){
-        html_books='<div class="col s6 single-books"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.title+'</a></h6><div class="rating">';
-        html_books+='</div></div></div>';
-        return html_books;
+    singleCategoryBooks:function(singleBook){
+        html='';
+        html+='<div class="col s6 single-book"><div class="entry" ><a data-id="'+singleBook.id+'" href="#"><img src="'+APIURL+singleBook.image+'" alt=""></a><h6><a data-id="'+singleBook.id+'" href="#">'+singleBook.title+'</a></h6><div class="rating">';
+        for(x=1;x<=singleBook.rating;x++){
+            html+='<span class="active"><i class="fa fa-star"></i></span>';
+        }
+        for(y=x;y<=5;y++){
+            html+='<span class=""><i class="fa fa-star"></i></span>';
+        }
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleBook.view+'</div><div class="price"><h5></h5></div></div></div>';
+        return html;
     },
-    singleCategoryPageworkShops:function(singleCategory){
-        html_workShops='<div class="col s6 single-workShops"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-        html_workShops+='</div></div></div>';
-        return html_workShops;
+    singleCategoryWorkShops:function(singleWorkShop,isExpired){
+        html='';
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
+        html+='<div class="col s6 single-work-shop"><div class="entry"><a data-id="'+singleWorkShop.id+'" href="#"><img src="'+APIURL+singleWorkShop.image+'" alt=""></a><h6><a data-id="'+singleWorkShop.id+'" href="#">'+singleWorkShop.name+'</a></h6><div class="rating">';
+        for(x=1;x<=singleWorkShop.rating;x++){
+            html+='<span class="active"><i class="fa fa-star"></i></span>';
+        }
+        for(y=x;y<=5;y++){
+            html+='<span class=""><i class="fa fa-star"></i></span>';
+        }
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWorkShop.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        return html;
     },
-    coursesByCat:function(singleCategory){
-
+    coursesByCat:function(singleCategory,isExpired){
+        isExpired=(typeof isExpired=='undefined')?false:isExpired;
+        html='';
         html='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-        /* for(x=1;x<=singleCategory.rating;x++){
-         html+='<span class="active"><i class="fa fa-star"></i></span>';
-         }
-         for(y=x;y<=5;y++){
-         html+='<span class=""><i class="fa fa-star"></i></span>';
-         }*/
+        if(singleCategory.rating){
+            for(x=1;x<=singleCategory.rating;x++){
+                html+='<span class="active"><i class="fa fa-star"></i></span>';
+            }
+            for(y=x;y<=5;y++){
+                html+='<span class=""><i class="fa fa-star"></i></span>';
+            }
+        }
+
         // html+='</div><div class="price"><h5>'+singleCategory.course_section.ksa_price+'$</h5></div></div></div>';
-        html+='</div></div></div>';
+        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
 
         return html;
     },
@@ -254,7 +296,7 @@ categories ={
                 if(msg.success){
                     html='';
                     msg.result[type].forEach(function(item){
-                        html+=el.coursesByCat(item);
+                        html+=el.coursesByCat(item,msg.isExpired);
                     });
                     switch (type){
                         case 'courses':

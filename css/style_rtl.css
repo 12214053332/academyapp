@@ -2050,17 +2050,20 @@ html *{
 .hidden{
 	display: none;
 }
-.single-category .entry{
+/*.single-category .entry{
 	min-height: 200px!important;
 }
 .single-category{
 	min-height: 210px!important;
-}
+}*/
 #slide-out-left.curriculum-menu{
 	width: 330px;
 }
-.goHome:hover,.loginRedirect:hover{
+.goHome:hover,.loginRedirect:hover,#goBack:hover{
 	cursor:pointer;
+}
+#goBack{
+	padding: 15px;
 }
 .fake-youtube {
 	left: 45%;

@@ -8,7 +8,7 @@ indexPage={
         html='<div class="app-title"><h4>تخصصات</h4><div class="line"></div></div><div class="row">';
         categories.forEach(function(singleCategory){
             html+='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-            html+='</div></div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div></div></div>';
         });
         html+='<div class="text-center"><a href="categories.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -24,7 +24,7 @@ indexPage={
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((!singleDiploma.hasDiploma)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleDiploma.view+'</div>'+((!singleDiploma.hasDiploma)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="diploma.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -41,7 +41,7 @@ indexPage={
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
             //html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
-            html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="courses.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -57,7 +57,7 @@ indexPage={
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div><div class="price"><h5></h5></div></div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleBook.view+'</div><div class="price"><h5></h5></div></div></div>';
         });
         html+='<div class="text-center"><a href="book.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -74,7 +74,7 @@ indexPage={
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWebinar.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="webinar.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -91,7 +91,7 @@ indexPage={
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWorkShop.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="workshop.html" class="button">المزيد</a></div>';
         html+='</div>'
@@ -109,7 +109,7 @@ indexPage={
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
             // html+='</div><div class="price"><h5>'+singleStory.course_section.ksa_price+'$</h5></div></div></div>';
-            html+='</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleStory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="sucessStory.html" class="button">المزيد</a></div>';
         html+='</div>'
