@@ -215,7 +215,7 @@ courses ={
             $(document).on('click','#saveData',function () {
                 saveData();
             })
-            currentVideolink=currentVideo.audio_link;
+            currentVideolink='https:'+ currentVideo.audio_link;
             splitLinks=currentVideolink.split('/');
             videoID=splitLinks[splitLinks.length-2];
             var userData=window.sessionStorage.getItem('userData');
