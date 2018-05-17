@@ -240,7 +240,8 @@ courses ={
                 $.ajax({
                     type: 'GET',
                     url: APIURL+'?page=courses&action=saveCoursesData&email='+email ,
-                    data:{'curriculum-1998':{'completed':0,'course_id':78,'current_time':null,'id':1998,'max_time':0,'type':'curriculum','video_time':null}},
+                    //data:{'curriculum-1998':{'completed':0,'course_id':78,'current_time':null,'id':1998,'max_time':0,'type':'curriculum','video_time':null}},
+                    data:{"dataCookies":dataCookies},
                     success: function (response) {
                         //console.log('saveDataDone')
                         Cookies.remove('curriculum-'+curriculum_id);
