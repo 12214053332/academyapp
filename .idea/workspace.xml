@@ -3,30 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b0924c69-3643-45f2-9cc8-feffcd0c4eb2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/artical-single.html" afterPath="$PROJECT_DIR$/artical-single.html" />
-      <change beforePath="$PROJECT_DIR$/blog-single.html" afterPath="$PROJECT_DIR$/blog-single.html" />
-      <change beforePath="$PROJECT_DIR$/blogcategory-single.html" afterPath="$PROJECT_DIR$/blogcategory-single.html" />
-      <change beforePath="$PROJECT_DIR$/css/style_rtl.css" afterPath="$PROJECT_DIR$/css/style_rtl.css" />
-      <change beforePath="$PROJECT_DIR$/diploma-single.html" afterPath="$PROJECT_DIR$/diploma-single.html" />
-      <change beforePath="$PROJECT_DIR$/include/header.html" afterPath="$PROJECT_DIR$/include/header.html" />
-      <change beforePath="$PROJECT_DIR$/include/header_old_10-5-2018.html" afterPath="$PROJECT_DIR$/include/header_old_10-5-2018.html" />
-      <change beforePath="$PROJECT_DIR$/index_old.html" afterPath="$PROJECT_DIR$/index_old.html" />
-      <change beforePath="$PROJECT_DIR$/js/blogcategories.js" afterPath="$PROJECT_DIR$/js/blogcategories.js" />
-      <change beforePath="$PROJECT_DIR$/js/blogs.js" afterPath="$PROJECT_DIR$/js/blogs.js" />
-      <change beforePath="$PROJECT_DIR$/js/books.js" afterPath="$PROJECT_DIR$/js/books.js" />
-      <change beforePath="$PROJECT_DIR$/js/categories.js" afterPath="$PROJECT_DIR$/js/categories.js" />
       <change beforePath="$PROJECT_DIR$/js/courses.js" afterPath="$PROJECT_DIR$/js/courses.js" />
-      <change beforePath="$PROJECT_DIR$/js/diploma.js" afterPath="$PROJECT_DIR$/js/diploma.js" />
-      <change beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
-      <change beforePath="$PROJECT_DIR$/js/indexPage.js" afterPath="$PROJECT_DIR$/js/indexPage.js" />
-      <change beforePath="$PROJECT_DIR$/js/sucessStory.js" afterPath="$PROJECT_DIR$/js/sucessStory.js" />
-      <change beforePath="$PROJECT_DIR$/js/webinar.js" afterPath="$PROJECT_DIR$/js/webinar.js" />
-      <change beforePath="$PROJECT_DIR$/js/workshop.js" afterPath="$PROJECT_DIR$/js/workshop.js" />
-      <change beforePath="$PROJECT_DIR$/listen-video.html" afterPath="$PROJECT_DIR$/listen-video.html" />
-      <change beforePath="$PROJECT_DIR$/sucessStory-single.html" afterPath="$PROJECT_DIR$/sucessStory-single.html" />
-      <change beforePath="$PROJECT_DIR$/watch-video.html" afterPath="$PROJECT_DIR$/watch-video.html" />
-      <change beforePath="$PROJECT_DIR$/webinar-single.html" afterPath="$PROJECT_DIR$/webinar-single.html" />
-      <change beforePath="$PROJECT_DIR$/workshop-single.html" afterPath="$PROJECT_DIR$/workshop-single.html" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +25,18 @@
       <file leaf-file-name="courses.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/courses.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="68" column="711" lean-forward="true" selection-start-line="68" selection-start-column="711" selection-end-line="68" selection-end-column="711" />
+            <state relative-caret-position="344">
+              <caret line="102" column="299" lean-forward="false" selection-start-line="102" selection-start-column="299" selection-end-line="102" selection-end-column="299" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listen-video.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/listen-video.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="516" column="18" lean-forward="true" selection-start-line="516" selection-start-column="18" selection-end-line="516" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -59,10 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Iframe&quot;)</find>
-      <find>-webkit-transform-origin: %50</find>
-      <find>fake-youtube</find>
-      <find>courseImageIframe</find>
       <find>listenVideoPage</find>
       <find>postMessage</find>
       <find>$(&quot;#slide-out-left.curriculum-menu&quot;).html(html);</find>
@@ -89,6 +72,10 @@
       <find>Surreal Digital Painting: Introduction</find>
       <find>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt nemo tempore itaque voluptates. Temporibus iste, illo eius ex ducimus eligendi animi possimus aliquam excepturi omnis eaque veritatis ad. Atque, quas Lorem ipsum dolor sit amet, consectetur adipisicing elit.</find>
       <find>courseTitle</find>
+      <find>trackUser</find>
+      <find>!='exam'</find>
+      <find>tra</find>
+      <find>train</find>
     </findStrings>
     <replaceStrings>
       <replace>message</replace>
@@ -415,11 +402,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526549675419</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="last update 17-5-2018">
+      <created>1526558080954</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1526558080954</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114820000" />
+    <option name="totallyTimeSpent" value="115164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1093,14 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/listen-video.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="444" column="14" lean-forward="true" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1259,10 +1245,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/listen-video.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="516" column="18" lean-forward="true" selection-start-line="516" selection-start-column="18" selection-end-line="516" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/courses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="68" column="711" lean-forward="true" selection-start-line="68" selection-start-column="711" selection-end-line="68" selection-end-column="711" />
+        <state relative-caret-position="344">
+          <caret line="102" column="299" lean-forward="false" selection-start-line="102" selection-start-column="299" selection-end-line="102" selection-end-column="299" />
           <folding />
         </state>
       </provider>

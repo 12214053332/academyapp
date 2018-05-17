@@ -91,7 +91,7 @@ courses ={
 
 
     },
-    watchVideoMenu:function(msg){
+    watchVideoMenu:function(msg,dataClass){
         course=msg.result;
         currentVideo=course.currentVideo;
         html='';
@@ -99,7 +99,10 @@ courses ={
             if(section.curriculum[0].type!='exam'){
                 html+=' <li> <div class="collapsible-header '+((section.id==currentVideo.section_id)?'active':'')+'"><i class="fa fa-arrow-left"></i>'+section.name+' <span><i class="fa '+((section.id==currentVideo.section_id)?'fa-chevron-right fa-chevron-up':'fa-chevron-right')+'"></i></span></div> <div class="collapsible-body" '+((section.id==currentVideo.section_id)?'style="display: block;"':'')+'> <ul class="side-nav-panel"> ';
                 section.curriculum.forEach(function(video){
-                    html+='<li '+((video.id==currentVideo.id)?'class="active"':'')+'><a '+((msg.userSuccess||video.isfree=='yes')?'data-id="'+video.id+'" href="#"':'href="login.html"')+' class="link-watch">'+((video.name)?video.name:'')+((video.description)?video.description:'')+'</a></li>';
+                    if(video.type!='training'){
+                        html+='<li '+((video.id==currentVideo.id)?'class="active"':'')+'><a '+((msg.userSuccess||video.isfree=='yes')?'data-id="'+video.id+'" href="#"':'href="login.html"')+' class="'+dataClass+'">'+((video.name)?video.name:'')+((video.description)?video.description:'')+'</a></li>';
+                    }
+
                 });
                 html+=' </ul> </div> </li>';
             }
@@ -117,7 +120,7 @@ courses ={
                 currentVideo=course.currentVideo;
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
                     $("#courseIframe").attr('src','https:'+currentVideo.link)
-                    el.trackUser(course,msg);
+                    el.trackUser(course,msg,'link-watch');
                 }else{
                     window.location.href="login.html";
                 }
@@ -126,11 +129,11 @@ courses ={
             })
         }
     },
-    trackUser:function(course,msg){
+    trackUser:function(course,msg,dataClass){
         currentVideo=course.currentVideo;
         if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
 
-            html=el.watchVideoMenu(msg);
+            html=el.watchVideoMenu(msg,dataClass);
             $("#slide-out-left.curriculum-menu").html(html);
 
             $('#draggable-point').draggable({
@@ -377,7 +380,7 @@ courses ={
                 console.log(currentVideo);
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
                     $("#courseIframe").attr('src',/*'https:'+*/currentVideo.audio_link)
-                    el.trackUser(course,msg);
+                    el.trackUser(course,msg,'link-listen');
                 }else{
                     window.location.href="login.html";
                 }
