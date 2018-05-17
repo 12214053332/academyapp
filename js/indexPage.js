@@ -8,7 +8,7 @@ indexPage={
         html='<div class="app-title"><h4>تخصصات</h4><div class="line"></div></div><div class="row">';
         categories.forEach(function(singleCategory){
             html+='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
-            html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div></div></div>';
+            html+='</div></div></div>';
         });
         html+='<div class="text-center"><a href="categories.html" class="button">المزيد</a></div>';
         html+='</div>'
