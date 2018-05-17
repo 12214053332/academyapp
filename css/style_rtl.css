@@ -2059,7 +2059,7 @@ html *{
 #slide-out-left.curriculum-menu{
 	width: 330px;
 }
-.goHome:hover,.login:hover{
+.goHome:hover,.loginRedirect:hover{
 	cursor:pointer;
 }
 .fake-youtube {

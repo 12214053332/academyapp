@@ -591,7 +591,7 @@ function onDeviceReady() {
         window.sessionStorage.setItem("storyID", storyID);
         window.location.href="sucessStory-single.html";
     });
-    $(document).on('click','.fake-youtube,.login',function(e){
+    $(document).on('click','.fake-youtube,.loginRedirect',function(e){
         e.preventDefault();
         window.location.href="login.html";
     })
