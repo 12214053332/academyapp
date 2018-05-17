@@ -40,7 +40,8 @@ indexPage={
             for(y=x;y<=5;y++){
                 html+='<span class=""><i class="fa fa-star"></i></span>';
             }
-            html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
+            //html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
+            html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
         });
         html+='<div class="text-center"><a href="courses.html" class="button">المزيد</a></div>';
         html+='</div>'

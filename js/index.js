@@ -552,7 +552,7 @@ function onDeviceReady() {
         window.location.href="diploma-single.html";
     });
     /*click on course*/
-    $(document).on('click','.single-course a',function(e){
+    $(document).on('click','.single-course a[href!=\'subscriptions.html\']',function(e){
         e.preventDefault();
         courseID=$(this).data('id');
         console.log(courseID);
@@ -560,7 +560,7 @@ function onDeviceReady() {
         window.location.href="courses-single.html";
     });
     /*click on book*/
-    $(document).on('click','.single-book a',function(e){
+    $(document).on('click','.single-book a[href!=\'subscriptions.html\']',function(e){
         e.preventDefault();
         bookID=$(this).data('id');
         console.log(bookID);
@@ -568,7 +568,7 @@ function onDeviceReady() {
         window.location.href="book-single.html";
     });
     /*click on webinar*/
-    $(document).on('click','.single-webinar a',function(e){
+    $(document).on('click','.single-webinar a[href!=\'subscriptions.html\']',function(e){
         e.preventDefault();
         webinarID=$(this).data('id');
         console.log(webinarID);
@@ -576,7 +576,7 @@ function onDeviceReady() {
         window.location.href="webinar-single.html";
     });
     /*click on work shop*/
-    $(document).on('click','.single-work-shop a',function(e){
+    $(document).on('click','.single-work-shop a[href!=\'subscriptions.html\']',function(e){
         e.preventDefault();
         workShopID=$(this).data('id');
         console.log(workShopID);
@@ -584,11 +584,15 @@ function onDeviceReady() {
         window.location.href="workshop-single.html";
     });
     /*click on story*/
-    $(document).on('click','.single-story a',function(e){
+    $(document).on('click','.single-story a[href!=\'subscriptions.html\']',function(e){
         e.preventDefault();
         storyID=$(this).data('id');
         console.log(storyID);
         window.sessionStorage.setItem("storyID", storyID);
         window.location.href="sucessStory-single.html";
     });
+    $(document).on('click','.fake-youtube,.login',function(e){
+        e.preventDefault();
+        window.location.href="login.html";
+    })
 }

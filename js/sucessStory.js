@@ -51,7 +51,7 @@ successtories ={
                 story=msg.result;
                 if(msg.success){
                     if(story.link){
-                        $("#storyIframe").attr('src',story.link).removeClass('hidden');
+                        $("#storyIframe").attr('src','https:'+story.link).removeClass('hidden');
                     }else{
                         $("#storyImageIframe").attr('src',APIURL+story.image).removeClass('hidden');
                     }

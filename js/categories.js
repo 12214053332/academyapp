@@ -201,37 +201,37 @@ categories ={
         window.location.href="categories.html";
     },
     singleCategoryPage:function(singleCategory){
-        html='<div class="col s6 single-course"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html='<div class="col s6 single-course"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html+='</div></div></div>';
         return html;
     },
     singleCategoryPagewebinars:function(singleCategory){
         //  APIURL=APIURL+'assets/images/';
         // html='<div> <h6> كورسات</h6></div>';
-        html_webinars='<div class="col s6 single-webinar"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html_webinars='<div class="col s6 single-webinar"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html_webinars+='</div></div></div>';
         return html_webinars;
     },
     singleCategoryPagesuccesstories:function(singleCategory){
         //  APIURL=APIURL+'assets/images/';
         // html='<div> <h6> كورسات</h6></div>';
-        html_successtories='<div class="col s6 single-successtories"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html_successtories='<div class="col s6 single-successtories"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html_successtories+='</div></div></div>';
         return html_successtories;
     },
     singleCategoryPagebooks:function(singleCategory){
-        html_books='<div class="col s6 single-books"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.title+'</a></h6><div class="rating">';
+        html_books='<div class="col s6 single-books"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.title+'</a></h6><div class="rating">';
         html_books+='</div></div></div>';
         return html_books;
     },
     singleCategoryPageworkShops:function(singleCategory){
-        html_workShops='<div class="col s6 single-workShops"><div class="entry" style="height: 200px;"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html_workShops='<div class="col s6 single-workShops"><div class="entry" style="height: 200px;"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         html_workShops+='</div></div></div>';
         return html_workShops;
     },
     coursesByCat:function(singleCategory){
 
-        html='<div class="col s6 single-category"><div class="entry"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         /* for(x=1;x<=singleCategory.rating;x++){
          html+='<span class="active"><i class="fa fa-star"></i></span>';
          }

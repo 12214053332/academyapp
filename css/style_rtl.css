@@ -2059,6 +2059,12 @@ html *{
 #slide-out-left.curriculum-menu{
 	width: 330px;
 }
-.goHome:hover{
+.goHome:hover,.login:hover{
 	cursor:pointer;
+}
+.fake-youtube {
+	left: 45%;
+	top: 38%;
+	position: absolute;
+	width: 75px;
 }

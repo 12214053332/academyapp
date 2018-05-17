@@ -49,8 +49,9 @@ webinar ={
                 course=msg.result;
                 if(msg.success){
                     if(course.link){
-                        $("#courseIframe").attr('src',course.link).removeClass('hidden');
+                        $("#courseIframe").attr('src','https:'+course.link).removeClass('hidden');
                     }else{
+                        $(".fake-youtube").removeClass('hidden');
                         $("#courseImageIframe").attr('src',APIURL+course.image).removeClass('hidden');
                     }
 

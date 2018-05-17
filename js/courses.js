@@ -117,9 +117,8 @@ courses ={
                 currentVideo=course.currentVideo;
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
                     $("#courseIframe").attr('src','https:'+currentVideo.link)
-                    html=el.watchVideoMenu(msg);
                     $("#slide-out-left.curriculum-menu").html(html);
-                    el.trackUser(course);
+                    el.trackUser(course,msg);
                 }else{
                     window.location.href="login.html";
                 }
@@ -128,10 +127,10 @@ courses ={
             })
         }
     },
-    trackUser:function(course){
+    trackUser:function(course,msg){
         currentVideo=course.currentVideo;
         if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-            $("#courseIframe").attr('src',currentVideo.audio_link)
+
             html=el.watchVideoMenu(msg);
             $("#slide-out-left.curriculum-menu").html(html);
 
@@ -236,7 +235,7 @@ courses ={
             var saveData=function (){
                 dataCookies=Cookies.getJSON();
                 console.log(dataCookies);
-                $.ajax({
+                /*$.ajax({
                     type: 'post',
                     url: APIURL+'?page=courses&action=saveCoursesData&email='+email ,
                     data:{dataCookies:dataCookies},
@@ -244,7 +243,7 @@ courses ={
                         //console.log('saveDataDone')
                         Cookies.remove('curriculum-'+curriculum_id);
                     }
-                });
+                });*/
             };
             function closingCode(){
                 // do something...
@@ -375,7 +374,14 @@ courses ={
         if(courseID&&curriculumID){
             el.getSingleCurriculum(courseID,curriculumID,function(msg){
                 course=msg.result;
-                el.trackUser(course);
+                currentVideo=course.currentVideo;
+                console.log(currentVideo);
+                if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
+                    $("#courseIframe").attr('src',/*'https:'+*/currentVideo.audio_link)
+                    el.trackUser(course,msg);
+                }else{
+                    window.location.href="login.html";
+                }
             })
         }
     }

@@ -11,7 +11,7 @@
 }
 
 .newloading{
-	background-image: url(../images/loading.svg);
+    background-image: url(../img/loading.svg);
     background-repeat: no-repeat;
     padding-left: 46px;
     background-position-y: -12px;
@@ -23,8 +23,8 @@
     display:none;
 }
 #imageProfile:hover .uploadImage{
-    display: block;#userMenuImage
-    background: #dadada;
+    display: block;
+background: #dadada;
 }
 #imageProfile:hover{
     cursor:pointer;
@@ -316,7 +316,7 @@ th {
         display: table-header-group
     }
     tr,
-   
+
     p,
     h2,
     h3 {
@@ -2840,7 +2840,7 @@ th {
     width: 100%;
     max-width: 100%;
     margin-bottom: 21px;
-	direction:rtl;
+    direction:rtl;
 }
 
 .table>thead>tr>th,
@@ -4532,7 +4532,6 @@ tbody.collapse.in {
     text-decoration: none;
     background-color: transparent;
     background-image: none;
-    filter: progid: DXImageTransform.Microsoft.gradient(enabled=false);
     cursor: not-allowed
 }
 
@@ -4719,7 +4718,6 @@ tbody.collapse.in {
 
 .btn-lg .caret {
     border-width: 5px 5px 0;
-    border-bottom-width: 0
 }
 
 .dropup .btn-lg .caret {
@@ -6380,10 +6378,10 @@ a.thumbnail.active {
 .progress-bar.active {
     -moz-animation: progress-bar-stripes 2s linear infinite;
     -ms-animation: progress-bar-stripes 2s linear infinite;
-    -webkit-transform-origin: %50;
-    -o-transform-origin: %50;
-    -ms-transform-origin: %50;
-    transform-origin: %50;
+    /* -webkit-transform-origin: %50;
+     -o-transform-origin: %50;
+     -ms-transform-origin: %50;
+     transform-origin: %50;*/
     -webkit-animation: progress-bar-stripes 2s linear infinite;
     -o-animation: progress-bar-stripes 2s linear infinite;
     animation: progress-bar-stripes 2s linear infinite
@@ -7383,7 +7381,6 @@ button.close {
     line-break: auto;
     line-height: 1.43;
     text-align: left;
-    text-align: start;
     text-decoration: none;
     text-shadow: none;
     text-transform: none;
@@ -7517,7 +7514,6 @@ button.close {
     line-break: auto;
     line-height: 1.43;
     text-align: left;
-    text-align: start;
     text-decoration: none;
     text-shadow: none;
     text-transform: none;
@@ -7529,7 +7525,6 @@ button.close {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
@@ -10992,10 +10987,10 @@ a:hover {
     display: inline-block;
     -moz-animation: spin 1s infinite linear;
     -ms-animation: spin 1s infinite linear;
-    -webkit-transform-origin: %50;
-    -o-transform-origin: %50;
-    -ms-transform-origin: %50;
-    transform-origin: %50;
+    /* -webkit-transform-origin: %50;
+     -o-transform-origin: %50;
+     -ms-transform-origin: %50;
+     transform-origin: %50;*/
     -webkit-animation: spin 1s infinite linear;
     -o-animation: spin 1s infinite linear;
     animation: spin 1s infinite linear;
@@ -11090,10 +11085,10 @@ a:hover {
 .udi-circle-loader {
     -moz-animation: spin 1.5s infinite linear;
     -ms-animation: spin 1.5s infinite linear;
-    -webkit-transform-origin: %50;
-    -o-transform-origin: %50;
-    -ms-transform-origin: %50;
-    transform-origin: %50;
+    /* -webkit-transform-origin: %50;
+     -o-transform-origin: %50;
+     -ms-transform-origin: %50;
+     transform-origin: %50;*/
     -webkit-animation: spin 1.5s infinite linear;
     -o-animation: spin 1.5s infinite linear;
     animation: spin 1.5s infinite linear;
@@ -13881,7 +13876,7 @@ table.no-border td {
 .js-simple-collapse {
     overflow: hidden;
     position: relative;
-	margin-bottom:30px;
+    margin-bottom:30px;
 }
 
 .js-simple-collapse-more-btn {
@@ -16514,7 +16509,7 @@ body.modal-open .c_header {
 
 .mb10 {
     margin-bottom: 10px;
-	text-align:right;
+    text-align:right;
 }
 
 .ml10 {
@@ -21734,7 +21729,6 @@ input[name*=tabs] {
     width: 1px;
     height: 8px;
     display: inline-block;
-    box-shadow: -1px 0 #bebebe, -2px 0 #fff, 1px 0 #fff;
     margin: 0 1px
 }
 
@@ -21897,7 +21891,6 @@ ul.as-selections li {
     background: #8EA6C7 !important;
     color: #fff !important;
     height: 24px;
-    line-height: 24px;
     padding: 2px 4px 2px 10px !important;
     line-height: 22px
 }
@@ -24070,7 +24063,7 @@ div.form-item-block {
 
 .loginbox-v4 .submit-row {
     text-align: center;
-	direction:rtl;
+    direction:rtl;
 }
 
 .loginbox-v4 .submit-row>input {
@@ -24101,8 +24094,8 @@ div.form-item-block {
     font-size: 16px;
     color: #355368;
     margin: 0;
-	text-align:right;
-	direction:rtl;
+    text-align:right;
+    direction:rtl;
 }
 
 .loginbox-v4 .social-btn {
@@ -24182,8 +24175,8 @@ div.form-item-block {
 .loginbox-v4 .secondary-text {
     margin-top: 10px;
     font-size: 15px;
-	text-align:right;
-	direction:rtl;
+    text-align:right;
+    direction:rtl;
 }
 
 .loginbox-v4 .fancy {
@@ -24280,8 +24273,8 @@ div.form-item-block {
     outline: 0;
     font-size: 18px;
     color: #355368;
-	text-align:right;
-	direction:rtl;
+    text-align:right;
+    direction:rtl;
 }
 
 .loginbox-v4 .manage-fields-wrapper input[type=text]:focus,
@@ -27613,10 +27606,10 @@ div.form-item-block {
 .content-loader--list li>div {
     -moz-animation: flash 1.5s ease-out infinite;
     -ms-animation: flash 1.5s ease-out infinite;
-    -webkit-transform-origin: %50;
-    -o-transform-origin: %50;
-    -ms-transform-origin: %50;
-    transform-origin: %50;
+    /* -webkit-transform-origin: %50;
+     -o-transform-origin: %50;
+     -ms-transform-origin: %50;
+     transform-origin: %50;*/
     -webkit-animation: flash 1.5s ease-out infinite;
     -o-animation: flash 1.5s ease-out infinite;
     animation: flash 1.5s ease-out infinite
@@ -27630,10 +27623,10 @@ div.form-item-block {
 .content-loader--card li>div {
     -moz-animation: flash 1.5s ease-out infinite;
     -ms-animation: flash 1.5s ease-out infinite;
-    -webkit-transform-origin: %50;
+    /*-webkit-transform-origin: %50;
     -o-transform-origin: %50;
     -ms-transform-origin: %50;
-    transform-origin: %50;
+    transform-origin: %50;*/
     -webkit-animation: flash 1.5s ease-out infinite;
     -o-animation: flash 1.5s ease-out infinite;
     animation: flash 1.5s ease-out infinite
@@ -27646,10 +27639,10 @@ div.form-item-block {
 .content-loader--featured li>div {
     -moz-animation: flash 1.5s ease-out infinite;
     -ms-animation: flash 1.5s ease-out infinite;
-    -webkit-transform-origin: %50;
+    /*-webkit-transform-origin: %50;
     -o-transform-origin: %50;
     -ms-transform-origin: %50;
-    transform-origin: %50;
+    transform-origin: %50;*/
     -webkit-animation: flash 1.5s ease-out infinite;
     -o-animation: flash 1.5s ease-out infinite;
     animation: flash 1.5s ease-out infinite
@@ -32943,8 +32936,8 @@ html.terms-popup-is-open body {
     top: 0;
     font-size: 15px;
     padding-right: 55px;
-	text-align:right;
-	direction: rtl;
+    text-align:right;
+    direction: rtl;
 
 }
 
@@ -32955,10 +32948,10 @@ html.terms-popup-is-open body {
 .c_header .quick-search__input.search--loading~.quick-search__btn:before {
     -moz-animation: spin 1.5s infinite linear;
     -ms-animation: spin 1.5s infinite linear;
-    -webkit-transform-origin: %50;
-    -o-transform-origin: %50;
-    -ms-transform-origin: %50;
-    transform-origin: %50;
+    /* -webkit-transform-origin: %50;
+     -o-transform-origin: %50;
+     -ms-transform-origin: %50;
+     transform-origin: %50;*/
     -webkit-animation: spin 1.5s infinite linear;
     -o-animation: spin 1.5s infinite linear;
     display: inline-block;
@@ -33322,14 +33315,14 @@ html.terms-popup-is-open body {
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    **display: block;
+    /* **display: block;*/
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
-    -ms-flex-pack: flex-end;
+    /*-ms-flex-pack: flex-end;*/
     -o-justify-content: flex-end;
     justify-content: flex-end;
     -ms-flex-pack: end
@@ -33626,7 +33619,7 @@ html.terms-popup-is-open body {
 .footer-v42-wrapper,
 .footer-v42 {
     height: 61px;
-	
+
 }
 
 @media (max-width:1200px) {
@@ -33795,7 +33788,7 @@ html.terms-popup-is-open body {
         border-radius: 2px;
         top: 6px;
         animation: none
-		
+
     }
     .c_header .overlay--mobile-show {
         visibility: visible;
@@ -33926,7 +33919,7 @@ html.terms-popup-is-open body {
         -webkit-backface-visibility: hidden;
         overflow-y: auto;
         height: 100%;
-		margin-top:40px;
+        margin-top:40px;
     }
     .c_header .overflow-nav__back-bt {
         line-height: 1;
@@ -33964,7 +33957,7 @@ html.terms-popup-is-open body {
         left: 0;
         top: 0;
         background: #f4f4f4;
-		margin-top:50px;
+        margin-top:50px;
     }
     .c_header .overflow-nav--sub header {
         background-color: #17aa1c;
@@ -34075,9 +34068,9 @@ html.terms-popup-is-open body {
         -o-transition-delay: 0s;
         transition-delay: 0s
     }
-	
-	
-	.c_header__left {
+
+
+    .c_header__left {
         -webkit-box-flex: initial;
         -webkit-flex: initial;
         -moz-flex: initial;
@@ -40033,7 +40026,7 @@ html.terms-popup-is-open body {
     font-size: 35px;
     margin: 30px 0 10px 0;
     font-weight: 300;
-	text-align:right;
+    text-align:right;
 }
 .ci-d {
     text-align: right;
@@ -40056,8 +40049,8 @@ html.terms-popup-is-open body {
     -o-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: 10px 0;
-	text-align: right;
-	direction:rtl;
+    text-align: right;
+    direction:rtl;
 }
 
 .rating-and-enrolled__element {
@@ -40127,9 +40120,9 @@ html.terms-popup-is-open body {
 
 .list {
     font-size: 13px;
-	direction: rtl;
+    direction: rtl;
     float: right;
-	
+
 }
 
 .list .udi-check {
@@ -41052,7 +41045,7 @@ p {
 }
 
 #desc ul {
-    **list-style: disc;
+    /* **list-style: disc;*/
     padding-left: 35px
 }
 
@@ -41293,10 +41286,10 @@ p {
 .course-cta--add-to-cart.disabled {
     -moz-animation: disabled-bt 700ms ease-in-out forwards;
     -ms-animation: disabled-bt 700ms ease-in-out forwards;
-    -webkit-transform-origin: %50;
+    /*-webkit-transform-origin: %50;
     -o-transform-origin: %50;
     -ms-transform-origin: %50;
-    transform-origin: %50;
+    transform-origin: %50;*/
     -webkit-animation: disabled-bt 700ms ease-in-out forwards;
     -o-animation: disabled-bt 700ms ease-in-out forwards;
     animation: disabled-bt 700ms ease-in-out forwards;
@@ -46805,20 +46798,20 @@ span.error {
     text-align: right;
     color: red;
     direction: rtl;
-	float:right;
+    float:right;
 }
 
 #contactus-form span.error {
     text-align: right;
     color: red;
     direction: rtl;
-	float:left;
-	font-size:13px;
+    float:left;
+    font-size:13px;
 }
 
 .alert-box.error {
     color: red;
-	text-align: right;
+    text-align: right;
 }
 .c_discovery-units__title {
     font-weight: 500;
@@ -46826,8 +46819,8 @@ span.error {
 }
 
 span.mr30{
-	direction:rtl !important;
-	display: block;
+    direction:rtl !important;
+    display: block;
 }
 .jumbotron-header-bar h1 {
     font-size: 30px;
@@ -46845,7 +46838,7 @@ span.mr30{
     padding: 34px 0;
     display: table;
     width: 100%;
-	text-align:right;
+    text-align:right;
 }
 
 .jumbotron-header-bar h2 {
@@ -46860,24 +46853,24 @@ span.mr30{
 }
 
 .js-simple-collapse{
-	text-align:right;
+    text-align:right;
 }
 
 .instractor
 {
-	text-align:right;
+    text-align:right;
 }
 .instractor h4 {
     font-size: 23px;
 }
 
 .fancybox-outer,.fancybox-inner{
-	**height:500px !important;
+    /***height:500px !important;*/
 }
 
 .aboutus  {
-	text-align:right;
-	direction:rtl;
+    text-align:right;
+    direction:rtl;
 }
 
 
@@ -46951,7 +46944,7 @@ input {
 }
 
 .form-btn{
-	    width: 50px !important;
+    width: 50px !important;
 }
 .button-large:hover, .button-large:active, .button-large:focus, input[type=submit]:hover, input[type=submit]:active, input[type=submit]:focus {
     background-color: #0b500d;
@@ -46959,11 +46952,11 @@ input {
 
 
 .alert.alert-success  {
-	top: 20px;
+    top: 20px;
     position: relative;
     display: block;
     margin: 10px 10px;
-	text-align:center !important;
+    text-align:center !important;
 }
 
 ul.dropdown__menu-list li .fa {
@@ -46980,7 +46973,7 @@ a.social-btn {
     text-align: right !important;
 }
 
-            .fake-youtube {
+.fake-youtube {
     left: 45%;
     top: 38%;
     position: absolute;
@@ -46991,9 +46984,9 @@ img.udemy-logo.user-header.mt10 {
     margin-top: -95px;
 }
 
-form label 
+form label
 {
-	    float: right;
+    float: right;
     margin-right: 9px !important;
 }
 
@@ -47011,7 +47004,7 @@ ul.tab-btns.nav li a {
 }
 
 .no-padding{
-	padding:0;
+    padding:0;
 }
 
 h2.full-lines.sm-font {
@@ -47020,15 +47013,15 @@ h2.full-lines.sm-font {
 
 .form-group input[type=password] ,.form-group input[type=text],.form-group label,.form-group input[type=email] {
     text-align: right;float:right;
-		direction:rtl;
+    direction:rtl;
 }
 .form-group label {
-float:right;
+    float:right;
 }
 
 .form-btn
 {
-	direction:rtl;
+    direction:rtl;
 }
 
 
@@ -47039,18 +47032,18 @@ float:right;
 ul.contactus.fxw.fxwrap li {
     margin-left: 7px;
     font-size: 23px;
-  
+
 }
 
 
 .card--home {
-   
+
     margin-bottom: 25px;
 }
 
 .alert-box.success {
     text-align: right;
-     direction:rtl;
+    direction:rtl;
     color: green;
 }
 
@@ -47060,26 +47053,26 @@ ul.contactus.fxw.fxwrap li {
 }
 
 @media (max-width: 480px){
-.footer-v42 .fxw.mt10 {
-margin:0;
-}
+    .footer-v42 .fxw.mt10 {
+        margin:0;
+    }
 }
 
 
 
 
 @media (max-width:768px) {
-.c_header__search input.quick-search__input {
-    display: none;
-}
-.c_header__search.search-open input.quick-search__input {
-    display: block;
-}
+    .c_header__search input.quick-search__input {
+        display: none;
+    }
+    .c_header__search.search-open input.quick-search__input {
+        display: block;
+    }
 }
 
 .showall{
     display: block;
-     height: 28px;
+    height: 28px;
     font-size: 18px;
     margin-top: 21px;
     margin-left: 15px;

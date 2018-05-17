@@ -53,7 +53,7 @@ blogCategories ={
     },
     articalsSingleDiv:function(singleArticals) {
         newDescription=strip_tags(singleArticals.description)
-        html = '<div class="col s6 single-articals"><div class="entry"><img src="' + APIURL + singleArticals.picpath + '" alt=""><h6><a data-id="' + singleArticals.id + '" href="#">' + singleArticals.name + '</a></h6><p>'  +limit(newDescription,70)+ '</p><div ">';
+        html = '<div class="col s6 single-articals"><div class="entry"><a data-id="' + singleArticals.id + '" href="#"><img src="' + APIURL + singleArticals.picpath + '" alt=""></a><h6><a data-id="' + singleArticals.id + '" href="#">' + singleArticals.name + '</a></h6><p>'  +limit(newDescription,70)+ '</p><div ">';
         // for(x=1;x<=singleCourse.rating;x++){
         //     html+='<span class="active"><i class="fa fa-star"></i></span>';
         // }

@@ -44,7 +44,7 @@ diplomas ={
 	    singleCategoryPage:function(singleCategory,hasDiploma){
             hasDiploma=(typeof hasDiploma=='undefined')?false:hasDiploma;
 		console.log(singleCategory);
-		 htmly='<div class="col s6 '+((singleCategory.hasCourse&&hasDiploma)?'single-course':'')+'"><div class="entry"><img src="'+APIURL+singleCategory.image+'" alt=""><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+		 htmly='<div class="col s6 '+((singleCategory.hasCourse&&hasDiploma)?'single-course':'')+'"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCategory.rating;x++){
             htmly+='<span class="active"><i class="fa fa-star"></i></span>';
         }

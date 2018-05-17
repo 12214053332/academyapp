@@ -17,7 +17,8 @@ blogs ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="price"><h5>'+singleCourse.course_section.ksa_price+'$</h5></div></div></div>';
+        //html+='</div><div class="price"><h5>'+singleCourse.course_section.ksa_price+'$</h5></div></div></div>';
+        html+='</div></div></div>';
         return html;
     },
     blogsPage:function(){
@@ -52,7 +53,7 @@ blogs ={
             el.getSingle(courseID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                    $("#courseIframe").attr('src',course.intro_vedio);
+                    $("#courseIframe").attr('src','https:'+course.intro_vedio);
                     $("#courseTitle").html(course.name);
                     $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);
