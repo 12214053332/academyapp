@@ -215,7 +215,7 @@ courses ={
             $(document).on('click','#saveData',function () {
                 saveData();
             })
-            currentVideolink='https:'+ currentVideo.audio_link;
+            currentVideolink='https:'+currentVideo.audio_link;
             splitLinks=currentVideolink.split('/');
             videoID=splitLinks[splitLinks.length-2];
             var userData=window.sessionStorage.getItem('userData');
@@ -269,14 +269,17 @@ courses ={
 
             });
 
+
+
             $('#play').bind('click', function(e){
-                player.play();
+
                 if ( !$(this).hasClass('playing')){
                     $(this).addClass('playing');
-
+                    player.play();
                 }else
                 {
                     $(this).removeClass('playing');
+                    player.pause();
                 }
             });
 
