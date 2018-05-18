@@ -278,10 +278,12 @@ courses ={
 
                     $(this).addClass('playing');
                     player.play();
+                    console.log('play','playing');
                 }else
                 {
                     $(this).removeClass('playing');
                     player.pause();
+                    console.log('pause','pause');
                 }
             });
 
