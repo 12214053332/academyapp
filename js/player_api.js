@@ -91,6 +91,7 @@ if (!SV) {
     }
     if (!SV.Player) {
         SV.Player = function (options) {
+            console.log('player.option',options);
             var _videoId = options.videoId;
             var _playlistId = options.playlistId;
             var _volume = 1, _duration = 0, _currentTime = 0, _loaded = 0, _email = null, _listeners = {};
