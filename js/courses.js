@@ -273,6 +273,7 @@ courses ={
 
             $('#play').bind('click', function(e){
 
+                $('.player-play-pause.player-button').click();
                 //window.location.protocol="https:";
                 if ( !$(this).hasClass('playing')){
 
