@@ -113,6 +113,7 @@ if (!SV) {
             }
             var public = {
                 events: options.events, play: function (index) {
+                    console.log('player.playplaer',index);
                     if (typeof index != "undefined") {
                         _sendMessage('{"name":"playVideo", "data":"' + index + '"}')
                     } else {
