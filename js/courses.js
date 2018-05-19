@@ -296,6 +296,17 @@ courses ={
                  $(this).addClass('playing');
 
                  }*/
+                if ( !$('#play').hasClass('playing')){
+
+                    $('#play').addClass('playing');
+
+                    console.log('play','playing');
+                }else
+                {
+                    $('#play').removeClass('playing');
+
+                    console.log('pause','pause');
+                }
                 var CurrentTime=player.getDuration();
                 console.log(player.getDuration());
                 var minutes=Math.floor(CurrentTime/60);
