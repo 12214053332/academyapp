@@ -261,7 +261,7 @@ courses ={
 
                 console.log('ready');
                 var CurrentTime=player.getDuration();
-                console.log(CurrentTime);
+               // console.log(CurrentTime);
                 //player.seek(parseInt(current_time));
                 //player.setVolume(1);
                 //player.play();
