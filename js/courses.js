@@ -168,7 +168,7 @@ courses ={
             });
             $(".courses-menu").html(html);
 
-            $('#draggable-point').draggable({
+           /* $('#draggable-point').draggable({
                 axis: 'x',
                 containment: "#audio-progress"
             });
@@ -181,7 +181,7 @@ courses ={
                         'width': xPos
                     });
                 }
-            });
+            });*/
             var mousedown=false,
                 currenttime= 0,
                 $progress = $('.vjs-progress-holder.vjs-slider.vjs-slider-horizontal');
