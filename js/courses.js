@@ -133,8 +133,40 @@ courses ={
         currentVideo=course.currentVideo;
         if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
 
-            html=el.watchVideoMenu(msg,dataClass);
-            $("#slide-out-left.curriculum-menu").html(html);
+            //html=el.watchVideoMenu(msg,dataClass);
+            //$("#slide-out-left.curriculum-menu").html(html);
+            html='';
+            x=0;
+            course.sections.forEach(function(section){
+                if(section.curriculum[0].type!='exam'){
+                    html+='<div class="panel panel-default"><div class="panel-heading" role="tab" id="section-'+section.id+'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-'+section.id+'" aria-expanded="true" aria-controls="collapse-'+section.id+'"><i class="fa fa-plus"></i> '+section.name+'</a></h4></div><div id="collapse-'+section.id+'" class="panel-collapse collapse '+((section.id==currentVideo.section_id)?'in':'')+'" role="tabpanel" aria-labelledby="section-'+section.id+'"><div class="panel-body">';
+                }
+                section.curriculum.forEach(function(item){
+                    switch (item.type){
+                        case 'default':
+                            html+='<div class="container '+((item.id==currentVideo.id)?'selected-video':'')+'" data-id="'+item.id+'"><div class="row "><div class="col s7">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div>';
+                            if(dataClass=='link-watch'){
+                                html+='<div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+'  class="'+((msg.userSuccess||item.isfree=='yes')?'':'loginRedirect')+' link-watch">مشاهدة</a></div>';
+                            }else{
+                                html+='<div class="col s3"><a '+((msg.userSuccess||item.isfree=='yes')?'data-id="'+item.id+'" href="#"':'href="login.html"')+' href="#" class="'+((msg.userSuccess||item.isfree=='yes')?'':'loginRedirect')+' link-listen">أستماع</a></div>';
+                            }
+                            html+='<div class="col s2">'+((item.duration)?item.duration:'')+'</div>';
+
+                            html+='</div></div>';
+                            break;
+                        /* case'training':
+                             html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء التدريب</a></div></div></div>';
+                             break;
+                         case'exam':
+                             html+='<div class="container"><div class="row"><div class="col s8">'+((item.name)?item.name:'')+' '+((item.description)?item.description:'')+' '+ ((item.isfree=='yes')?'(شاهد مجانا)':'')+'</div><div class="col s4 text-center"><a class="button">بدء الأختبار</a></div></div></div>';
+                             break;*/
+                    }
+
+                });
+                html+='</div></div></div>';
+                x++;
+            });
+            $(".courses-menu").html(html);
 
             $('#draggable-point').draggable({
                 axis: 'x',
@@ -365,19 +397,33 @@ courses ={
             });
             $(document).on('click',"#player-next",function(){
                 //console.log('asd');
-                next_id=$(".playing-data").attr('next-id');
+                /*next_id=$(".playing-data").attr('next-id');
                 if(next_id>0){
                     window.location='courses/showCurriculumaudio/'+next_id + '/'+ course_id;
 
+                }*/
+                console.log($("div.container.selected-video").next().data('id'));
+                listenVideoID=$("div.container.selected-video").next().data('id');
+                if(listenVideoID){
+                    window.sessionStorage.setItem('listenVideoID',listenVideoID);
+                    window.location.href="listen-video.html";
                 }
+
+
             });
 
             $(document).on('click',"#player-prev",function(){
                 ////console.log('asd');
-                prev_id=$(".playing-data").attr('prev-id');
+               /* prev_id=$(".playing-data").attr('prev-id');
                 if(prev_id>0){
                     window.location='courses/showCurriculumaudio/'+prev_id + '/'+ course_id;
 
+                }*/
+                console.log($("div.container.selected-video").prev().data('id'));
+                listenVideoID=$("div.container.selected-video").prev().data('id');
+                if(listenVideoID){
+                    window.sessionStorage.setItem('listenVideoID',listenVideoID);
+                    window.location.href="listen-video.html";
                 }
             });
 

@@ -32,7 +32,7 @@ categories ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }*/
        // html+='</div><div class="price"><h5>'+singleCategory.course_section.ksa_price+'$</h5></div></div></div>';
-	     html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div></div></div>';
+	     html+='</div></div></div>';
 
         return html;
     },
