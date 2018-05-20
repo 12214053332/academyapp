@@ -450,7 +450,7 @@ courses ={
                 currentVideo=course.currentVideo;
                 console.log(currentVideo);
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link)
+                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link+'?showControls=false')
                     el.trackUser(course,msg,'link-listen');
                 }else{
                     window.location.href="login.html";
