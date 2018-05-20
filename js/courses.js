@@ -301,11 +301,6 @@ courses ={
                     $('#play').addClass('playing');
 
                     console.log('play','playing');
-                }else
-                {
-                    $('#play').removeClass('playing');
-
-                    console.log('pause','pause');
                 }
                 var CurrentTime=player.getDuration();
                 console.log(player.getDuration());
@@ -315,6 +310,16 @@ courses ={
 
 
             });
+            player.bind('pause',function(){
+
+                if ( $('#play').hasClass('playing')){
+
+                    $('#play').removeClass('playing');
+
+                }
+
+            });
+
             //player.play();
             hasRequest=false;
             player.bind('progress',function(){
