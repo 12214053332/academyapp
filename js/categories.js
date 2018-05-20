@@ -270,7 +270,7 @@ categories ={
     coursesByCat:function(singleCategory,isExpired){
         isExpired=(typeof isExpired=='undefined')?false:isExpired;
         html='';
-        html='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+'/assets/images/'+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
+        html='<div class="col s6 single-category"><div class="entry"><a data-id="'+singleCategory.id+'" href="#"><img src="'+APIURL+singleCategory.image+'" alt=""></a><h6><a data-id="'+singleCategory.id+'" href="#">'+singleCategory.name+'</a></h6><div class="rating">';
         if(singleCategory.rating){
             for(x=1;x<=singleCategory.rating;x++){
                 html+='<span class="active"><i class="fa fa-star"></i></span>';
