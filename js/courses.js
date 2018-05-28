@@ -168,7 +168,7 @@ courses ={
             });
             $(".courses-menu").html(html);
 
-            $('#draggable-point').draggable({
+           /* $('#draggable-point').draggable({
                 axis: 'x',
                 containment: "#audio-progress"
             });
@@ -181,7 +181,7 @@ courses ={
                         'width': xPos
                     });
                 }
-            });
+            });*/
             var mousedown=false,
                 currenttime= 0,
                 $progress = $('.vjs-progress-holder.vjs-slider.vjs-slider-horizontal');
@@ -450,7 +450,7 @@ courses ={
                 currentVideo=course.currentVideo;
                 console.log(currentVideo);
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link)
+                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link+'?showControls=false')
                     el.trackUser(course,msg,'link-listen');
                 }else{
                     window.location.href="login.html";
