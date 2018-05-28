@@ -66,36 +66,42 @@ categories ={
                html_books+='<div style="padding: 12px"> <h5> كتب </h5></div>';
                $("#category-name").html(msg.result.name);
                window.sessionStorage.setItem("categoryID", msg.result.id);
-
                msg.result.courses.forEach(function(item){
                     html_course+=el.singleCategoryCourse(item);
-                });
-                html_course+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_courses'>المزيد</a></div>";
-
+               });
+               html_course+="<div class='clearfix'></div><div class='text-center col s12'><a href='' class='button btn-block clearfix button-more' id='more_courses'>المزيد</a></div>";
                msg.result.webinars.forEach(function(item){
                    html_webinars+=el.singleCategoryWebinars(item,msg.isExpired);
                });
-               html_webinars+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_webinars'>المزيد</a></div>";
-
+               html_webinars+="<div class='clearfix'></div><div class='text-center col s12'><a href='' class='button btn-block clearfix button-more' id='more_webinars'>المزيد</a></div>";
                msg.result.successtories.forEach(function(item){
-
                    html_successtories+=el.singleCategorySuccesstories(item,msg.isExpired);
                });
-               html_successtories+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_successtories'>المزيد</a></div>";
-
+               html_successtories+="<div class='clearfix'></div><div class='text-center col s12'><a href='' class='button btn-block clearfix button-more' id='more_successtories'>المزيد</a></div>";
                msg.result.books.forEach(function(item){
-
                    html_books+=el.singleCategoryBooks(item);
                });
-               html_books+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_books'>المزيد</a></div>";
-
-
+               html_books+="<div class='clearfix'></div><div class='text-center col s12'><a href='' class='button btn-block clearfix button-more' id='more_books'>المزيد</a></div>";
                msg.result.workShops.forEach(function(item){
-
                    html_workShops+=el.singleCategoryWorkShops(item,msg.isExpired);
                });
-               html_workShops+="<div class='clearfix'></div><div class='text-center'><a href='' class='button' id='more_workShops'>المزيد</a></div>";
+               html_workShops+="<div class='clearfix'></div><div class='text-center col s12'><a href='' class='button btn-block clearfix button-more' id='more_workShops'>المزيد</a></div>";
 
+               if(msg.result.courses.length==0){
+                   html_course='';
+               }
+               if(msg.result.webinars.length==0){
+                   html_webinars='';
+               }
+               if(msg.result.successtories.length==0){
+                   html_successtories='';
+               }
+               if(msg.result.books.length==0){
+                   html_books='';
+               }
+               if(msg.result.workShops.length==0){
+                   html_workShops='';
+               }
                $("#allinnercategoryPageData").html(html_course);
                $("#allwebinarsData").html(html_webinars);
                $("#allsuccessStoryData").html(html_successtories);
@@ -106,60 +112,13 @@ categories ={
         });
 
          //links
-         $(document).on('click','#more_courses',function(e){
-             e.preventDefault();
-            var type="courses";
-             //console.log("courseID",courseID);
-            // window.sessionStorage.setItem("courseID", courseID);
-             window.sessionStorage.setItem("type", type);
-             //  el.redirectToSingleCourse();
-             window.location.href="coursesByCategory.html";
-         });
 
-
-         $(document).on('click','#more_webinars',function(e){
-             e.preventDefault();
-            var  type="webinar";
-             window.sessionStorage.setItem("type", type);
-             //  el.redirectToSingleCourse();
-             window.location.href="coursesByCategory.html";
-         });
-
-         $(document).on('click','#more_successtories',function(e){
-             e.preventDefault();
-             var  type="successtories";
-             window.sessionStorage.setItem("type", type);
-             window.location.href="coursesByCategory.html";
-         });
-
-         $(document).on('click','#more_books',function(e){
-             e.preventDefault();
-            var  type="books";
-             window.sessionStorage.setItem("type", type);
-             window.location.href="coursesByCategory.html";
-         });
-
-
-         $(document).on('click','#more_workShops',function(e){
-             e.preventDefault();
-             var type="workShop";
-             window.sessionStorage.setItem("type", type);
-             window.location.href="coursesByCategory.html";
-         });
 
 
 
 
          // end links
-        $(document).on('click','.single-course a',function(e){
-            e.preventDefault();
-            courseID=$(this).data('id');
-            console.log(categoryID);
-            window.sessionStorage.setItem("courseID", courseID);
-          //  el.redirectToSingleCourse();
-            window.location.href="courses-single.html";
-        });
-         $(document).on('click','.single-webinar a',function(e){
+         /*$(document).on('click','.single-webinar a[href!=\'subscriptions.html\']',function(e){
              e.preventDefault();
              webinarID=$(this).data('id');
              console.log(webinarID);
@@ -167,7 +126,7 @@ categories ={
             // el.redirectToSingleCourse();
              window.location.href="webinar-single.html";
          });
-         $(document).on('click','.single-successtories a',function(e){
+         $(document).on('click','.single-successtories a[href!=\'subscriptions.html\']',function(e){
              e.preventDefault();
              successtoriesID=$(this).data('id');
              console.log(successtoriesID);
@@ -175,7 +134,7 @@ categories ={
             // el.redirectToSingleCourse();
              window.location.href="sucessStory-single.html";
          });
-         $(document).on('click','.single-books a',function(e){
+         $(document).on('click','.single-books a[href!=\'subscriptions.html\']',function(e){
              e.preventDefault();
              booksID=$(this).data('id');
              console.log(bookssID);
@@ -183,14 +142,14 @@ categories ={
             // el.redirectToSingleCourse();
              window.location.href="book-single.html";
          });
-         $(document).on('click','.single-workShops a',function(e){
+         $(document).on('click','.single-workShops a[href!=\'subscriptions.html\']',function(e){
              e.preventDefault();
              workShopsID=$(this).data('id');
              console.log(workShopsID);
              window.sessionStorage.setItem("workShopsID", workShopsID);
              //el.redirectToSingleCourse();
              window.location.href="workshop-single.html";
-         });
+         });*/
     },
     redirectToSingleCourse:function(){
         window.location.href="category-single.html";
@@ -208,7 +167,7 @@ categories ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
         //html+='</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'<div class="price"><h5>'+singleCourse.ksa_price+'$</h5></div></div></div>';
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="subscriptions.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     singleCategoryWebinars:function(singleWebinar,isExpired){
@@ -223,7 +182,7 @@ categories ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWebinar.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleWebinar.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     singleCategorySuccesstories:function(singleStory,isExpired){
@@ -239,7 +198,7 @@ categories ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
         // html+='</div><div class="price"><h5>'+singleStory.course_section.ksa_price+'$</h5></div></div></div>';
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleStory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleStory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     singleCategoryBooks:function(singleBook){
@@ -251,7 +210,7 @@ categories ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleBook.view+'</div><div class="price"><h5></h5></div></div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleBook.view+'</div><div class="price"><h5></h5></div></div></div>';
         return html;
     },
     singleCategoryWorkShops:function(singleWorkShop,isExpired){
@@ -264,7 +223,7 @@ categories ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleWorkShop.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleWorkShop.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     coursesByCat:function(singleCategory,isExpired){
@@ -281,7 +240,7 @@ categories ={
         }
 
         // html+='</div><div class="price"><h5>'+singleCategory.course_section.ksa_price+'$</h5></div></div></div>';
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCategory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button pull-left">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCategory.view+'</div>'+((isExpired)?'<a href="subscriptions.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
 
         return html;
     },

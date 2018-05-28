@@ -178,7 +178,7 @@ function IsJsonString(str) {
     return true;
 }
 includeHTML();
-$(document).on('click',"#logout-menu a",function(e){
+$(document).on('click',"#logout-menu a,a.logoutLink",function(e){
     e.preventDefault();
     window.sessionStorage.removeItem('userData');
     window.location.reload();
@@ -193,8 +193,8 @@ $(document).on('click','.goProfile',function(e){
 });
 function onDeviceReady() {
     if(userData){
-        $("#login-menu,#register-menu").addClass('hidden');
-        $("#logout-menu").removeClass('hidden');
+        $("#login-menu,#register-menu,.loginLink").addClass('hidden');
+        $("#logout-menu,.logoutLink").removeClass('hidden');
         userDataJson=JSON.parse(userData);
         if(userDataJson.image){
             $("#userDataImage").attr('src',APIURL+'assets/images/'+userDataJson.image).removeClass('goHome').addClass('goProfile')
@@ -591,10 +591,53 @@ function onDeviceReady() {
         window.sessionStorage.setItem("storyID", storyID);
         window.location.href="sucessStory-single.html";
     });
+
+    $(document).on('click','#more_courses',function(e){
+        e.preventDefault();
+        var type="courses";
+        //console.log("courseID",courseID);
+        // window.sessionStorage.setItem("courseID", courseID);
+        window.sessionStorage.setItem("type", type);
+        //  el.redirectToSingleCourse();
+        window.location.href="coursesByCategory.html";
+    });
+
+
+    $(document).on('click','#more_webinars',function(e){
+        e.preventDefault();
+        var  type="webinar";
+        window.sessionStorage.setItem("type", type);
+        //  el.redirectToSingleCourse();
+        window.location.href="coursesByCategory.html";
+    });
+
+    $(document).on('click','#more_successtories',function(e){
+        e.preventDefault();
+        var  type="successtories";
+        window.sessionStorage.setItem("type", type);
+        window.location.href="coursesByCategory.html";
+    });
+
+    $(document).on('click','#more_books',function(e){
+        e.preventDefault();
+        var  type="books";
+        window.sessionStorage.setItem("type", type);
+        window.location.href="coursesByCategory.html";
+    });
+
+
+    $(document).on('click','#more_workShops',function(e){
+        e.preventDefault();
+        var type="workShop";
+        window.sessionStorage.setItem("type", type);
+        window.location.href="coursesByCategory.html";
+    });
     $(document).on('click','.fake-youtube,.loginRedirect',function(e){
         e.preventDefault();
         window.location.href="login.html";
     })
+
+
     $(document).on('click','#goBack',function(){
         window.history.back();
     });

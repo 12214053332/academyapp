@@ -1990,11 +1990,17 @@ ul:not(.browser-default){
 }
 
 /*global*/
-.single-course,.single-diploma,.single-category,.single-book,.single-work-shop,.single-story,.single-webinar,.single-successtories,.single-books,.single-workShops{
-	min-height: 250px!important;
+.single-course,.single-diploma,.single-book,.single-work-shop,.single-story,.single-webinar,.single-successtories,.single-books,.single-workShops{
+	min-height: 270px!important;
 }
-.single-course .entry,.single-diploma .entry,.single-category .entry,.single-book .entry,.single-work-shop .entry,.single-story .entry,.single-webinar .entry,.single-successtories .entry,.single-books .entry,.single-workShops .entry{
+.single-course .entry,.single-diploma .entry,.single-book .entry,.single-work-shop .entry,.single-story .entry,.single-webinar .entry,.single-successtories .entry,.single-books .entry,.single-workShops .entry{
 	min-height: 240px!important;
+}
+.single-category{
+	min-height: 200px!important;
+}
+.single-category .entry{
+	min-height: 180px!important;
 }
 .text-center{
 	text-align: center;
@@ -2079,4 +2085,10 @@ html *{
     max-height: 500px;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+button,a.button{
+	box-shadow: 0 3px 8px 0 rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.08);
+}
+button:hover,a.button:hover{
+	box-shadow:inset 0 0 10px rgba(0,0,0,0.23);
 }

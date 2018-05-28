@@ -23,7 +23,7 @@ blogCategories ={
         // for(y=x;y<=5;y++){
         //     html+='<span class=""><i class="fa fa-star"></i></span>';
         // }
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div></div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div></div></div>';
         return html;
     },
     blogCategoriesPage:function(){
@@ -60,7 +60,7 @@ blogCategories ={
         // for(y=x;y<=5;y++){
         //     html+='<span class=""><i class="fa fa-star"></i></span>';
         // }
-        html += '</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleArticals.view+'</div></div></div>';
+        html += '</div><div class="views-count"><i class="fa fa-eye"></i>'+singleArticals.view+'</div></div></div>';
         return html;
     },
     singleBlogCategoryPage:function() {

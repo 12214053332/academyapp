@@ -18,7 +18,7 @@ blogs ={
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
         //html+='</div><div class="price"><h5>'+singleCourse.course_section.ksa_price+'$</h5></div></div></div>';
-        html+='</div><div class="pull-right"><i class="fa fa-eye"></i>'+singleCourse.view+'</div></div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div></div></div>';
         return html;
     },
     blogsPage:function(){
