@@ -59,10 +59,12 @@ courses ={
                     $("#courseDescription").html(course.description);
                     html='';
                     x=0;
+                    options='';
                     course.sections.forEach(function(section){
                         if(section.curriculum[0].type!='exam'){
                             html+='<div class="panel panel-default"><div class="panel-heading" role="tab" id="section-'+section.id+'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-'+section.id+'" aria-expanded="true" aria-controls="collapse-'+section.id+'"><i class="fa fa-plus"></i> '+section.name+'</a></h4></div><div id="collapse-'+section.id+'" class="panel-collapse collapse '+((x==0)?'in':'')+'" role="tabpanel" aria-labelledby="section-'+section.id+'"><div class="panel-body">';
                         }
+                        options+='<option data-id="'+section.id+'" value="'+section.id+'">'+section.name+'</option>'
                         section.curriculum.forEach(function(item){
                             switch (item.type){
                                 case 'default':
@@ -81,6 +83,52 @@ courses ={
                         x++;
                     });
                     $("#accordion").html(html);
+                    html='';
+                    html+='<div class="row" id="ask-question"> <div class="status-question"> '+((!msg.userSuccess)?'<p>من فضلك <a href="login.html">سجل دخولك</a> اولا ثم اضف سؤالك </p>':'')+' <div id="questionMessage"></div> <div class="form-group"><select '+((!msg.userSuccess)?'disabled="disabled"':'')+' name="section_id" class="form-control" id="section_id"> <option value="0">اختر المحاضرة ... </option>';
+                    html+=options;
+                    html+=' </select></div> <textarea '+((!msg.userSuccess)?'disabled="disabled"':'')+' id="questionText" placeholder="اضف سؤالك هنا ..."></textarea> <div class="text-center"> <button type="button" id="addNewQuetion" '+((!msg.userSuccess)?'disabled="disabled"':'')+' class="btn btn-success green"><i class="fa fa-share"></i> أضافة سؤالك </button> </div> '+((!msg.userSuccess)?'<p>من فضلك <a href="login.html">سجل دخولك</a> اولا ثم اضف سؤالك </p>':'')+' </div> <!-- Status Upload --> <div class="clearfix"></div> <div class="clearfix" style="height: 20px;"></div> <div id="questions-answers">';
+                    course.coursesQuestions.forEach(function(question){
+                        html+='<div class="col s10"><div class="panel panel-default"><div class="panel-body">'+question.question+'<div class="clearfix" style="height: 20px"></div><span class="date">'+formatDate(new Date(question.createdtime))+'<i class="fa fa-calendar"></i></span> <span class="section">'+question.section_name+'</span></div><!-- /panel-body --></div><!-- /panel panel-default --></div>';
+                        html+='<div class="col s2"><div class="thumbnail"><img class="img-responsive user-photo" src="'+APIURL+question.image+'" alt="'+question.section_name+'" title="'+question.section_name+'"></div><!-- /thumbnail --></div>';
+                        if(question.answer){
+                            html+='<div class="clearfix"></div>';
+                            html+='<div class="col s10"><div class="panel panel-default answer"><div class="panel-body">'+question.answer+'<span class="date">'+question.answertime+'<i class="fa fa-calendar"></i></span><div class="clearfix"></div></div><!-- /panel-body --></div><!-- /panel panel-default --></div>';
+                            html+='<div class="col-sm-2"><div class="thumbnail"><img class="img-responsive user-photo" src="'+APIURL+'assets/images/logo.png" alt="شعار إعمل بيزنس" title="شعار إعمل بيزنس"></div></div>';
+                            html+='<div class="clearfix"></div>';
+                        }
+
+
+                    });
+                    html+=' </div> </div>';
+                    $("#addQuestion").html(html);
+                    if(msg.userSuccess){
+                        var userData = window.sessionStorage.getItem("userData")
+                        if(userData){
+                            userDataJson=JSON.parse(userData);
+                            $(document).on('click', '#addNewQuetion', function () {
+                                question = $("#questionText").val();
+                                sectionName = $("#section_id option:selected").text();
+                                console.log(sectionName)
+                                section_id = $("#section_id option:selected").val();
+                                $.ajax({
+                                    type: 'post',
+                                    url: /****/APIURL+'?page=courses&course_id='+course.id+'&action=addNewQuestion&email='+userDataJson.email,
+                                    data: { section_id: section_id,question: question},
+                                    success: function (data) {
+                                        var d = new Date();
+                                        $("#questionMessage").html(data);
+                                        if (data.indexOf('تم اضافة سؤالك') != -1) {
+                                            imageSRC = $("#userDataImage").attr('src');
+                                            $("#questions-answers").append('<div class="col s10"><div class="panel panel-default"><div class="panel-body">' + question + '<div class="clearfix" style="height: 20px"></div><span class="date">Jun 11,2017 <i class="fa fa-calendar"></i></span><span class="section">' + sectionName + '</span></div></div></div><div class="col s2"><div class="thumbnail"><img class="img-responsive user-photo" src="' + imageSRC + '"></div></div>');
+                                            $("#questionText").val('');
+                                        }
+                                    }
+                                });
+                            });
+                        }
+
+                    }
+
                 }else{
                     //el.redirectToCourse();
                 }

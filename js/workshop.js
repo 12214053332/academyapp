@@ -61,6 +61,26 @@ workShop ={
                     $("#courseDate").html(course.createdtime);
                     $("#courseViews").html(course.view);
                     $("#courseDescription").html(course.description);
+                    html='';
+                    course.supWebinars.forEach(function(item){
+                        html+='<div class="col s6" style="background: #ffffff;padding: 0px;border: 15px solid #f4f4f4;">'
+                        if(msg.userSuccess){
+                            if(item.link){
+                                if(!msg.isExpired){
+                                    html+=' <iframe class="sproutvideo-player" width="100%" height="150" src="https:'+item.link+'" frameborder="0" allowfullscreen></iframe>'
+                                }else{
+                                    html+=' <a href="sub"><img class="fake-youtube-sup" src="'+APIURL+'assets/images/youtube.png"  alt="يوتيوب إعمل بيزنس" title="يوتيوب إعمل بيزنس"  /><img width="100%" height="210" src="'+APIURL+item.image+'" alt="'+item.name+'" title="'+item.name+'" /></a>'
+                                }
+                            }else{
+                                html+='<img width="100%" height="315" src="'+APIURL+item.image+'" alt="'+item.name+'" title="'+item.name+'" />';
+                            }
+                        }else{
+                        html+='<a href="login.html"><img class="fake-youtube-sup" src="'+APIURL+'assets/images/youtube.png"  alt="يوتيوب إعمل بيزنس" title="يوتيوب إعمل بيزنس"  /><img width="100%" height="210" src="'+APIURL+item.image+'" alt="'+item.name+'" title="'+item.name+'" /></a>'
+                        }
+                        html+='<p class="text-center">'+item.name+'</p>'
+                        html+='</div>';
+                    });
+                    $("#supWebinars").html(html)
                 }else{
                     //el.redirectToCourse();
                 }

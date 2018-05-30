@@ -63,6 +63,13 @@ var errorMessages={
     "duration_required.":"Duration is required",
     "cost_required.":"Cost is required",
 };
+function formatDate(date) {
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    return monthNames[monthIndex] + ' ' + day + ',' + year;
+}
 function strip_tags (html)
 {
     var tmp = document.createElement("DIV");

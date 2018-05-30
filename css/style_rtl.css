@@ -2075,7 +2075,15 @@ html *{
 	left: 45%;
 	top: 38%;
 	position: absolute;
-	width: 75px;
+	width: 75px!important;
+	height: 75px!important;
+}
+.fake-youtube-sup{
+	margin-top: 30px;
+	margin-right: 65px;
+	position: absolute;
+	width: 60px!important;
+	height: 60px!important;
 }
 .selected-video{
 	background: #8ec6ff;
@@ -2091,4 +2099,190 @@ button,a.button{
 }
 button:hover,a.button:hover{
 	box-shadow:inset 0 0 10px rgba(0,0,0,0.23);
+}
+
+/*single course */
+.widget-area.blank {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+}
+.widget-area {
+	background-color: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+	-ms-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+	-o-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+	float: left;
+	margin-top: 30px;
+	padding: 15px;
+	position: relative;
+	width: 100%;
+}
+.status-question {
+	background: none repeat scroll 0 0 #f5f5f5;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	float: left;
+	width: 100%;
+	padding: 10px;
+	background: whitesmoke;
+}
+.status-question {
+	float: left;
+	width: 100%;
+}
+.status-question textarea {
+	margin-top: 10px;
+	direction: rtl;
+	background: none repeat scroll 0 0 #fff;
+	border: medium none;
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	-ms-border-radius: 4px 4px 0 0;
+	-o-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	color: #777777;
+	float: left;
+	font-size: 14px;
+	height: 100px;
+	letter-spacing: 0.3px;
+	padding: 20px;
+	width: 100%;
+	resize:vertical;
+	outline:none;
+	border: 1px solid #cccccc;
+}
+.status-question ul {
+	float: left;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0 0 0 15px;
+	width: auto;
+}
+.status-question ul > li {
+	float: left;
+}
+.status-question ul > li > a {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	color: #777777;
+	float: left;
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px 0 10px 10px;
+	text-align: center;
+	-webkit-transition: all 0.4s ease 0s;
+	-moz-transition: all 0.4s ease 0s;
+	-ms-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	width: 30px;
+	cursor: pointer;
+}
+.status-question ul > li > a:hover {
+	background: none repeat scroll 0 0 #606060;
+	color: #fff;
+}
+.status-question button {
+	border: medium none;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 14px;
+	letter-spacing: 0.3px;
+	margin-right: 9px;
+	margin-top: 9px;
+}
+.status-question button > i {
+	margin-right: 7px;
+}
+
+.thumbnail {
+	padding:0px;
+}
+.panel {
+	direction: rtl;
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;
+	right:-16px;
+	left:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-left-color:#f7f7f7;
+	margin-top:1px;
+	margin-right:2px;
+}
+.panel>.panel-heading:before{
+	border-left-color:#ddd;
+	border-width:8px;
+}
+#ask-question{
+	background: whitesmoke;
+	padding: 15px;
+	direction: rtl;
+}
+
+#questions-answers .panel.panel-default{
+	border-radius: 15px;
+	background: #f1f0f0;
+}
+#questions-answers .panel.panel-default.answer{
+	border-radius: 15px;
+	background: #4080ff;
+	color:#ffffff;
+}
+#questions-answers{
+	max-height: 250px;
+	overflow-x: hidden
+}
+#questions-answers .col-sm-2{
+	padding: 0px;
+}
+#questions-answers{
+	padding: 10px;
+}
+#questions-answers .date,#questions-answers .section{
+	position: absolute;
+	bottom: 5px;
+	color:gray;
+}
+#questions-answers .date{
+	left:15px
+}
+#questions-answers .section{
+	right:15px
+}
+#questions-answers .answer .date{
+	color:#ffffff;
 }
