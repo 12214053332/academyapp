@@ -50,7 +50,7 @@ courses ={
             el.getSingle(courseID,function(msg){
                 course=msg.result;
                 if(msg.success){
-                   $("#courseIframe").attr('src','https:'+course.intro_vedio);
+                   $("#courseIframe").attr('src','https:'+course.intro_vedio+'?playsInline=true');
                    $("#courseTitle").html(course.name);
                    $("#instructorImage").attr('src',APIURL+course.instractor_pic);
                     $("#instructorNname").html(course.instractor_name);
@@ -167,7 +167,7 @@ courses ={
                 course=msg.result;
                 currentVideo=course.currentVideo;
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-                    $("#courseIframe").attr('src','https:'+currentVideo.link)
+                    $("#courseIframe").attr('src','https:'+currentVideo.link+'?playsInline=true')
                     el.trackUser(course,msg,'link-watch');
                 }else{
                     window.location.href="login.html";
@@ -498,7 +498,7 @@ courses ={
                 currentVideo=course.currentVideo;
                 console.log(currentVideo);
                 if((currentVideo&&currentVideo.isfree=='yes')||msg.userSuccess){
-                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link+'?showControls=false')
+                    $("#courseIframe").attr('src','https:'+currentVideo.audio_link+'?playsInline=true')
                     el.trackUser(course,msg,'link-listen');
                 }else{
                     window.location.href="login.html";
