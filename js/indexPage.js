@@ -156,6 +156,7 @@ indexPage={
             if(msg.result.testimonials){
                 html=el.makeTestimonialsSection(msg.result.testimonials);
                 $("#testimonial").html(html);
+                $("#testimonialDiv").removeClass('hidden')
                 $("#testimonial").owlCarousel({
                     slideSpeed : 300,
                     paginationSpeed : 400,
