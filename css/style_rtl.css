@@ -2310,6 +2310,7 @@ button:hover:not(.skipControl):not(.playControl),a.button:hover{
 	box-shadow: none;
 	margin-bottom: 0;
 	padding: 20px;
+	margin-top: 5px;
 }
 
 #custom-search-input button{
