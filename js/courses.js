@@ -22,7 +22,7 @@ courses ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="https://www.e3melbusiness.com/subscriptions" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasCourse)?'<a href="register.html" class="button btn-block text-center subscriptions-button">اشترك الان</a>':'')+'</div></div>';
         return html;
     },
     coursesPage:function(){
@@ -30,6 +30,20 @@ courses ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
+               db.transaction(function(tx){
+                   query='CREATE TABLE IF NOT EXISTS academy_courses (id unique, name,url,hasCourse,isFavorite,description,shortdescription,egy_price,egy_sale_price,ksa_price,ksa_sale_price,view,completed,videos,image,rating,level,createdtime,duetime,rating_count,instractor_name,instractor_pic)';
+                   tx.executeSql(query);
+                   msg.result.forEach(function(item){
+                       query='SELECT * FROM academy_courses WHERE id=?';
+                       tx.executeSql(query,[item.id],function(tx, res){
+                           console.log(res.rows.length)
+                           if(res.rows.length==0){
+                               tx.executeSql('INSERT INTO academy_courses (id, name,url,hasCourse,isFavorite,description,shortdescription,egy_price,egy_sale_price,ksa_price,ksa_sale_price,view,completed,videos,image,rating,level,createdtime,duetime,rating_count,instractor_name,instractor_pic) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[item.id,item.name,item.url,item.hasCourse,item.isFavorite,item.description,item.shortdescription,item.egy_price,item.egy_sale_price,item.ksa_price,item.ksa_sale_price,item.view,item.completed,item.videos,item.image,item.rating,item.level,item.createdtime,item.duetime,item.rating_count,item.instractor_name,item.instractor_pic]);
+                           }
+                       });
+                   });
+
+               });
                 msg.result.forEach(function(item){
                     html+=el.coursesSingleDiv(item);
                 });
