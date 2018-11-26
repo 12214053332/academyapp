@@ -630,7 +630,7 @@ function onDeviceReady() {
         window.location.href="listen-video.html";
     });
     /*click on category*/
-    $(document).on('click','.single-category a',function(e){
+    $(document).on('click','.single-category a[href!=\'register.html\']',function(e){
         e.preventDefault();
         categoryID=$(this).data('id');
         console.log(categoryID);
@@ -638,7 +638,7 @@ function onDeviceReady() {
         window.location.href="category-single.html";
     });
     /*click on diploma*/
-    $(document).on('click','.single-diploma a',function(e){
+    $(document).on('click','.single-diploma a[href!=\'register.html\']',function(e){
         e.preventDefault();
         diplomaID=$(this).data('id');
         console.log(diplomaID);
