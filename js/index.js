@@ -280,6 +280,18 @@ function onDeviceReady() {
     console.log("inAppPurchase");
     console.log(window.inAppPurchase);
     if ("inAppPurchase" in window) {
+        window.inAppPurchase
+            .getProducts([
+                'product.id'
+            ])
+            .then(function (products) {
+               console.log("products");
+               console.log(products);
+            })
+            .catch(function (err) {
+                console.log("err");
+                console.log(err);
+            });
         console.log(productId);
         window.inAppPurchase
             .buy(productId)
