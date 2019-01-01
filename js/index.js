@@ -47,6 +47,7 @@ var productId = 'com.e3melbusiness';
 var validationData = {};
 console.log(window);
 console.log('ttttttt');
+console.log(window.inAppPurchase);
 if ("inAppPurchase" in window) {
     console.log(productId);
     window.inAppPurchase
