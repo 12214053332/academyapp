@@ -43,6 +43,21 @@ app.initialize();*/
 var userData = window.sessionStorage.getItem("userData")
 var APIURL="https://www.e3melbusiness.com/";
 var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
+var productId = 'com.e3melbusiness';
+var validationData = {};
+inAppPurchase
+    .buy(productId)
+    .then(function(res) {
+    validationData = res;
+    // give the user credits for their purchase
+    return inAppPurchase.consume(productId); // <- consumable products must be consumed
+})
+.then(function() {
+
+})
+.catch(function(err){
+    console.log(err)
+});
 url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 var errorMessages={
@@ -481,7 +496,7 @@ function onDeviceReady() {
                                 if (data.indexOf('شكر')!=-1){
                                     $('input').val('')
                                     $('select option[value=""]').attr('selected','selected');
-                                    window.location.assign('?page=thanks');
+                                    $("#signup-response").html('<div class="alert alert-success">تم اضافة بيناتك بنجاح</div>')
                                     // window.location.assign("?page=profile")
                                 }else{
                                     // $('.registerresult').html(data);
