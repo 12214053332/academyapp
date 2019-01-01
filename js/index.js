@@ -48,25 +48,30 @@ var validationData = {};
 console.log(window);
 console.log('ttttttt');
 console.log(window.inAppPurchase);
-if ("inAppPurchase" in window) {
-    console.log(productId);
-    window.inAppPurchase
-        .buy(productId)
-        .then(function (res) {
-            validationData = res;
-            console.log('res');
-            console.log(res);
-            // give the user credits for their purchase
-            return window.inAppPurchase.consume(productId); // <- consumable products must be consumed
-        })
-        .then(function () {
-            console.log('then');
-        })
-        .catch(function (err) {
-            console.log('err')
-            console.log(err)
-        });
-}
+$(document).ready(function(){
+    console.log("window.inAppPurchase");
+    console.log(window.inAppPurchase);
+    if ("inAppPurchase" in window) {
+        console.log(productId);
+        window.inAppPurchase
+            .buy(productId)
+            .then(function (res) {
+                validationData = res;
+                console.log('res');
+                console.log(res);
+                // give the user credits for their purchase
+                return window.inAppPurchase.consume(productId); // <- consumable products must be consumed
+            })
+            .then(function () {
+                console.log('then');
+            })
+            .catch(function (err) {
+                console.log('err')
+                console.log(err)
+            });
+    }
+});
+
 url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 var errorMessages={
