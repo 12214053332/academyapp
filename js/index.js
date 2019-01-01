@@ -46,6 +46,7 @@ var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
 var productId = 'com.e3melbusiness';
 var validationData = {};
 console.log(window);
+console.log('ttttttt');
 if ("inAppPurchase" in window) {
     console.log(productId);
     window.inAppPurchase
