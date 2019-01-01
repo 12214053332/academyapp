@@ -47,17 +47,21 @@ var productId = 'com.e3melbusiness';
 var validationData = {};
 console.log(window);
 if ("inAppPurchase" in window) {
+    console.log(productId);
     window.inAppPurchase
         .buy(productId)
         .then(function (res) {
             validationData = res;
+            console.log('res');
+            console.log(res);
             // give the user credits for their purchase
             return window.inAppPurchase.consume(productId); // <- consumable products must be consumed
         })
         .then(function () {
-
+            console.log('then');
         })
         .catch(function (err) {
+            console.log('err')
             console.log(err)
         });
 }
