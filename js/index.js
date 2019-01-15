@@ -281,6 +281,15 @@ function onDeviceReady() {
     console.log(window.inAppPurchase);
     if ("inAppPurchase" in window) {
         window.inAppPurchase
+            .getProducts([productId])
+    .then(function (products) {
+            console.log(products);
+        })
+            .catch(function (err) {
+                console.log("err products");
+                console.log(err);
+            });
+        /*window.inAppPurchase
             .getProducts([
                 'product.id'
             ])
@@ -289,9 +298,9 @@ function onDeviceReady() {
                console.log(products);
             })
             .catch(function (err) {
-                console.log("err");
+                console.log("err products");
                 console.log(err);
-            });
+            });*/
         console.log(productId);
         window.inAppPurchase
             .buy(productId)
