@@ -280,8 +280,7 @@ function onDeviceReady() {
     console.log("inAppPurchase");
     console.log(window.inAppPurchase);
     if ("inAppPurchase" in window) {
-        window.inAppPurchase
-            .getProducts([productId])
+        window.inAppPurchase.getProducts()
     .then(function (products) {
             console.log(products);
         })
