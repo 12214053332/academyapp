@@ -11,7 +11,8 @@ diplomas ={
         });
     },
     coursesSingleDiv:function(singleCourse){
-        html='<div class="col s6 single-diploma"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
+        html='';
+        html+='<div class="col s6 single-diploma"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCourse.rating;x++){
             html+='<span class="active"><i class="fa fa-star"></i></span>';
         }
@@ -26,6 +27,7 @@ diplomas ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
+               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="#" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                 msg.result.forEach(function(item){
                     html+=el.coursesSingleDiv(item);
                 });
