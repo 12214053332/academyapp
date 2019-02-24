@@ -30,7 +30,7 @@ courses ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
-               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="#" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="#" id="subscriptionCourses" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                db.transaction(function(tx){
                    query='CREATE TABLE IF NOT EXISTS academy_courses (id unique, name,url,hasCourse,isFavorite,description,shortdescription,egy_price,egy_sale_price,ksa_price,ksa_sale_price,view,completed,videos,image,rating,level,createdtime,duetime,rating_count,instractor_name,instractor_pic)';
                    tx.executeSql(query);

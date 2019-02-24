@@ -27,7 +27,7 @@ diplomas ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
-               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="#" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="#" id="subscriptionDiplomas" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                 msg.result.forEach(function(item){
                     html+=el.coursesSingleDiv(item);
                 });

@@ -280,14 +280,26 @@ function onDeviceReady() {
     console.log("inAppPurchase");
     console.log(window.inAppPurchase);
     if ("inAppPurchase" in window) {
-        window.inAppPurchase.getProducts()
+        window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas','com.e3melbusiness.app.subscription'])
     .then(function (products) {
+            console.log('get products')
             console.log(products);
         })
             .catch(function (err) {
-                console.log("err products");
+                console.log("get products error");
                 console.log(err);
             });
+
+        // window.inAppPurchase
+        //     .buy('com.e3melbusiness.app.diplom')
+        //     .then(function (data) {
+        //         console.log('buy products')
+        //         console.log(data);
+        //     })
+        //     .catch(function (err) {
+        //         console.log('buy products error')
+        //         console.log(err);
+        //     });
         /*window.inAppPurchase
             .getProducts([
                 'product.id'
@@ -300,23 +312,23 @@ function onDeviceReady() {
                 console.log("err products");
                 console.log(err);
             });*/
-        console.log(productId);
-        window.inAppPurchase
-            .buy(productId)
-            .then(function (res) {
-                validationData = res;
-                console.log('res');
-                console.log(res);
-                // give the user credits for their purchase
-                return window.inAppPurchase.consume(productId); // <- consumable products must be consumed
-            })
-            .then(function () {
-                console.log('then');
-            })
-            .catch(function (err) {
-                console.log('err')
-                console.log(err)
-            });
+        //console.log(productId);
+        // window.inAppPurchase
+        //     .buy(productId)
+        //     .then(function (res) {
+        //         validationData = res;
+        //         console.log('res');
+        //         console.log(res);
+        //         // give the user credits for their purchase
+        //         return window.inAppPurchase.consume(productId); // <- consumable products must be consumed
+        //     })
+        //     .then(function () {
+        //         console.log('then');
+        //     })
+        //     .catch(function (err) {
+        //         console.log('err')
+        //         console.log(err)
+        //     });
     }
     if(userData){
         $("#login-menu,#register-menu,.loginLink").addClass('hidden');
@@ -779,4 +791,33 @@ function onDeviceReady() {
     $(document).on('click','#goBack',function(){
         window.history.back();
     });
+
+    $(document).on('click','#subscriptionCourses',function(){
+        window.inAppPurchase
+            .buy('com.e3melbusiness.app.subscription')
+            .then(function (data) {
+                console.log('buy products')
+                console.log(data);
+                console.log(JSON.stringify(data));
+                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+            })
+            .catch(function (err) {
+                console.log('buy products error')
+                console.log(err);
+            });
+    })
+    $(document).on('click','#subscriptionDiplomas',function(){
+        window.inAppPurchase
+            .buy('com.e3melbusiness.app.diplomas')
+            .then(function (data) {
+                console.log('buy products')
+                console.log(data);
+                console.log(JSON.stringify(data));
+                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+            })
+            .catch(function (err) {
+                console.log('buy products error')
+                console.log(err);
+            });
+    })
 }
