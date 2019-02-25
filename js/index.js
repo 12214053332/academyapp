@@ -552,6 +552,22 @@ function onDeviceReady() {
             });
         }
     }
+    if(filename=='subscription_diplomas.html'){
+        window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas'])
+            .then(function (products) {
+                if(products.length){
+                    $("#diplomas_subscription_title").html(products[0].title);
+                    html='<p>'+products[0].description+'</p><span class="pull-right">'+products[0].price+' '+products[0].currency+'</span>';
+                    $("#diplomas_subscription_description").html(html);
+                }
+
+
+            })
+            .catch(function (err) {
+                console.log("get products error");
+                console.log(err);
+            });
+    }
     // sidenav control left
     $(".sidenav-control").sideNav({
         edge: 'right',//change rtl[left,right]
