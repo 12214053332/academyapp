@@ -280,15 +280,15 @@ function onDeviceReady() {
     console.log("inAppPurchase");
     console.log(window.inAppPurchase);
     if ("inAppPurchase" in window) {
-        window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas','com.e3melbusiness.app.subscription'])
-    .then(function (products) {
-            console.log('get products')
-            console.log(products);
-        })
-            .catch(function (err) {
-                console.log("get products error");
-                console.log(err);
-            });
+    //     window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas','com.e3melbusiness.app.subscription'])
+    // .then(function (products) {
+    //         console.log('get products')
+    //         console.log(products);
+    //     })
+    //         .catch(function (err) {
+    //             console.log("get products error");
+    //             console.log(err);
+    //         });
 
         // window.inAppPurchase
         //     .buy('com.e3melbusiness.app.diplom')
