@@ -557,7 +557,23 @@ function onDeviceReady() {
             .then(function (products) {
                 if(products.length){
                     $("#diplomas_subscription_title").html(products[0].title);
-                    html='<p>'+products[0].description+'</p><span class="pull-right">'+products[0].price+' '+products[0].currency+'</span>';
+                    html='<p class="text-center">'+products[0].description+'</p><a id="buyProduct" data-id="'+products[0].productId+'" class="btn btn-primary btn-block">'+products[0].price+'</a>';
+                    $("#diplomas_subscription_description").html(html);
+                }
+
+
+            })
+            .catch(function (err) {
+                console.log("get products error");
+                console.log(err);
+            });
+    }
+    if(filename=='subscription_courses.html'){
+        window.inAppPurchase.getProducts(['com.e3melbusiness.app.subscription'])
+            .then(function (products) {
+                if(products.length){
+                    $("#diplomas_subscription_title").html(products[0].title);
+                    html='<p class="text-center">'+products[0].description+'</p><a id="buyProduct" data-id="'+products[0].productId+'" class="btn btn-primary btn-block">'+products[0].price+'</a>';
                     $("#diplomas_subscription_description").html(html);
                 }
 
@@ -811,6 +827,21 @@ function onDeviceReady() {
     $(document).on('click','#subscriptionCourses',function(){
         window.inAppPurchase
             .buy('com.e3melbusiness.app.subscription')
+            .then(function (data) {
+                console.log('buy products')
+                console.log(data);
+                console.log(JSON.stringify(data));
+                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+            })
+            .catch(function (err) {
+                console.log('buy products error')
+                console.log(err);
+            });
+    })
+    $(document).on('click','#buyProduct',function(){
+        productID=$(this).attr('data-id');
+        window.inAppPurchase
+            .buy(productID)
             .then(function (data) {
                 console.log('buy products')
                 console.log(data);
