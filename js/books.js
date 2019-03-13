@@ -51,7 +51,7 @@ books ={
     },
     singleBookPage:function(){
         el=this;
-        bookID=window.sessionStorage.getItem("bookID")
+        bookID=window.localStorage.getItem("bookID")
         if(bookID){
             el.getSingle(bookID,function(msg){
                 book=msg.result;

@@ -51,7 +51,7 @@ categories ={
     },
 	 innercategoryPage:function(){
         el=this;
-         categoryID=window.sessionStorage.getItem("categoryID")
+         categoryID=window.localStorage.getItem("categoryID")
         el.getSingle(categoryID,function(msg){
            if(msg.success){
                html_course='';
@@ -65,7 +65,7 @@ categories ={
                html_books='';
                html_books+='<div style="padding: 12px"> <h5> كتب </h5></div>';
                $("#category-name").html(msg.result.name);
-               window.sessionStorage.setItem("categoryID", msg.result.id);
+               window.localStorage.setItem("categoryID", msg.result.id);
                msg.result.courses.forEach(function(item){
                     html_course+=el.singleCategoryCourse(item);
                });
@@ -122,7 +122,7 @@ categories ={
              e.preventDefault();
              webinarID=$(this).data('id');
              console.log(webinarID);
-             window.sessionStorage.setItem("webinarID", webinarID);
+             window.localStorage.setItem("webinarID", webinarID);
             // el.redirectToSingleCourse();
              window.location.href="webinar-single.html";
          });
@@ -130,7 +130,7 @@ categories ={
              e.preventDefault();
              successtoriesID=$(this).data('id');
              console.log(successtoriesID);
-             window.sessionStorage.setItem("successtoriesrID", successtoriesID);
+             window.localStorage.setItem("successtoriesrID", successtoriesID);
             // el.redirectToSingleCourse();
              window.location.href="sucessStory-single.html";
          });
@@ -138,7 +138,7 @@ categories ={
              e.preventDefault();
              booksID=$(this).data('id');
              console.log(bookssID);
-             window.sessionStorage.setItem("booksID", booksID);
+             window.localStorage.setItem("booksID", booksID);
             // el.redirectToSingleCourse();
              window.location.href="book-single.html";
          });
@@ -146,7 +146,7 @@ categories ={
              e.preventDefault();
              workShopsID=$(this).data('id');
              console.log(workShopsID);
-             window.sessionStorage.setItem("workShopsID", workShopsID);
+             window.localStorage.setItem("workShopsID", workShopsID);
              //el.redirectToSingleCourse();
              window.location.href="workshop-single.html";
          });*/
@@ -246,8 +246,8 @@ categories ={
     },
     singleCoursePage:function(){
         el=this;
-       var  type=window.sessionStorage.getItem("type");
-       var  categoryID=window.sessionStorage.getItem("categoryID");
+       var  type=window.localStorage.getItem("type");
+       var  categoryID=window.localStorage.getItem("categoryID");
 
         if(categoryID && type){
             el.getMore(type,categoryID,function(msg){

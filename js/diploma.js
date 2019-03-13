@@ -27,7 +27,10 @@ diplomas ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
-               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_diplomas.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               var devicePlatform = device.platform;
+               if(devicePlatform!='Android'){
+                   html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_diplomas.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               }
                 msg.result.forEach(function(item){
                     html+=el.coursesSingleDiv(item);
                 });
@@ -61,7 +64,7 @@ diplomas ={
 	
     singlediplomasPage:function(){
         el=this;
-        diplomaID=window.sessionStorage.getItem("diplomaID")
+        diplomaID=window.localStorage.getItem("diplomaID")
         if(diplomaID){
 		         el.getSingle(diplomaID,function(msg){
                 course=msg.result;

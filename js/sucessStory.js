@@ -45,7 +45,7 @@ successtories ={
     },
     singleStoryPage:function(){
         el=this;
-        storyID=window.sessionStorage.getItem("storyID")
+        storyID=window.localStorage.getItem("storyID")
         if(storyID){
             el.getSingle(storyID,function(msg){
                 story=msg.result;

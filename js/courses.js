@@ -30,7 +30,10 @@ courses ={
         el.getAll(function(msg){
            if(msg.success){
                html='';
-               html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_courses.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               var devicePlatform = device.platform;
+               if(devicePlatform!='Android'){
+                   html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_courses.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+               }
                db.transaction(function(tx){
                    query='CREATE TABLE IF NOT EXISTS academy_courses (id unique, name,url,hasCourse,isFavorite,description,shortdescription,egy_price,egy_sale_price,ksa_price,ksa_sale_price,view,completed,videos,image,rating,level,createdtime,duetime,rating_count,instractor_name,instractor_pic)';
                    tx.executeSql(query);
@@ -60,7 +63,7 @@ courses ={
     },
     singleCoursePage:function(){
         el=this;
-        courseID=window.sessionStorage.getItem("courseID")
+        courseID=window.localStorage.getItem("courseID")
         if(courseID){
             el.getSingle(courseID,function(msg){
                 course=msg.result;
@@ -117,7 +120,7 @@ courses ={
                     html+=' </div> </div>';
                     $("#addQuestion").html(html);
                     if(msg.userSuccess){
-                        var userData = window.sessionStorage.getItem("userData")
+                        var userData = window.localStorage.getItem("userData")
                         if(userData){
                             userDataJson=JSON.parse(userData);
                             $(document).on('click', '#addNewQuetion', function () {
@@ -175,8 +178,8 @@ courses ={
     },
     watchVideoPage:function(){
         el=this;
-        courseID=window.sessionStorage.getItem("courseID")
-        curriculumID=window.sessionStorage.getItem("watchVideoID");
+        courseID=window.localStorage.getItem("courseID")
+        curriculumID=window.localStorage.getItem("watchVideoID");
         if(courseID&&curriculumID){
             el.getSingleCurriculum(courseID,curriculumID,function(msg){
                 course=msg.result;
@@ -313,7 +316,7 @@ courses ={
             currentVideolink='https:'+currentVideo.audio_link;
             splitLinks=currentVideolink.split('/');
             videoID=splitLinks[splitLinks.length-2];
-            var userData=window.sessionStorage.getItem('userData');
+            var userData=window.localStorage.getItem('userData');
             email="";
             if(userData){
                 userData=JSON.parse(userData)
@@ -468,7 +471,7 @@ courses ={
                 console.log($("div.container.selected-video").next().data('id'));
                 listenVideoID=$("div.container.selected-video").next().data('id');
                 if(listenVideoID){
-                    window.sessionStorage.setItem('listenVideoID',listenVideoID);
+                    window.localStorage.setItem('listenVideoID',listenVideoID);
                     window.location.href="listen-video.html";
                 }
 
@@ -485,7 +488,7 @@ courses ={
                 console.log($("div.container.selected-video").prev().data('id'));
                 listenVideoID=$("div.container.selected-video").prev().data('id');
                 if(listenVideoID){
-                    window.sessionStorage.setItem('listenVideoID',listenVideoID);
+                    window.localStorage.setItem('listenVideoID',listenVideoID);
                     window.location.href="listen-video.html";
                 }
             });
@@ -505,8 +508,8 @@ courses ={
         },
     listenVideoPage:function(){
         el=this;
-        courseID=window.sessionStorage.getItem("courseID")
-        curriculumID=window.sessionStorage.getItem("listenVideoID");
+        courseID=window.localStorage.getItem("courseID")
+        curriculumID=window.localStorage.getItem("listenVideoID");
         if(courseID&&curriculumID){
             el.getSingleCurriculum(courseID,curriculumID,function(msg){
                 course=msg.result;

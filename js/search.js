@@ -21,7 +21,7 @@ search ={
                 if(msg.result.courses || msg.result.webinar || msg.result.successtories) {
 
                     $("#category-name").html(msg.result.name);
-                    window.sessionStorage.setItem("q", msg.result.id);
+                    window.localStorage.setItem("q", msg.result.id);
                     if(msg.result.courses ) {
                         msg.result.courses.forEach(function (item) {
                             html_course += el.singleCategoryCourse(item);

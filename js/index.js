@@ -40,12 +40,11 @@ var app = {
     }
 };
 app.initialize();*/
-var userData = window.sessionStorage.getItem("userData")
+var userData = window.localStorage.getItem("userData")
 var APIURL="https://www.e3melbusiness.com/";
 var tokenNumber="ay5t9Xh4hmAXSUEBby9j9dSAxjNCtnrFKp6x9YqG43JaXbpHESvHsP9G4vCg";
 var productId = 'com.e3melbusiness';
 var validationData = {};
-
 url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 var errorMessages={
@@ -67,20 +66,25 @@ var errorMessages={
     "duration_required.":"Duration is required",
     "cost_required.":"Cost is required",
 };
-
 var db = window.openDatabase("academy_app.db", "1.0", "academy App", 200000);
+console.log('start db')
 db.transaction(function(tx){
     query='CREATE TABLE IF NOT EXISTS academy_app_user (id unique, email,password)';
+    console.log(query);
     tx.executeSql(query);
     query='SELECT * FROM academy_app_user WHERE id=?';
+    console.log(query);
     tx.executeSql(query,[1],function(tx, res){
+        console.log("res.rows.length");
         console.log(res.rows.length);
-
         if(res.rows.length){
             userDataDB=res.rows[0]
             console.log(userDataDB);
             console.log(userData);
             if(!userData){
+                console.log('in_ajax')
+                console.log('userDataDB.email')
+                console.log(userDataDB.email)
                 $.ajax({
                     type: "POST",
                     url: makeURL('login'),
@@ -88,30 +92,60 @@ db.transaction(function(tx){
                     success: function (msg) {
                         $(".loader").hide();
                         if(msg.success){
-                            window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                            userData=JSON.stringify(msg.result);
+                            console.log(JSON.stringify(msg.result));
+                            msg.result.password=userDataDB.password;
+                            window.localStorage.setItem("userData", JSON.stringify(msg.result));
+                            userIsLogin(JSON.stringify(msg.result))
+                            //window.location.reload();
                             // window.location.href="index.html";
                         }
                     }
-
                 });
             }
-
-
         }
-
     });
     //console.log(query);
 },errorDB,successDB);
 function errorDB(tx, err) {
     console.log("Error processing SQL: "+err);
 }
-
 // Transaction success callback
 //
 function successDB() {
     console.log("success!");
 }
-
+function userIsLogin(userData) {
+    $("#login-menu,#register-menu,.loginLink").addClass('hidden');
+    $("#logout-menu,.logoutLink").removeClass('hidden');
+    userDataJson=JSON.parse(userData);
+    if(userDataJson.image){
+        $("#userDataImage").attr('src',APIURL+'assets/images/'+userDataJson.image).removeClass('goHome').addClass('goProfile')
+    }else{
+        $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png').removeClass('goHome').addClass('goProfile')
+    }
+    $("#userDataFullName").html(userDataJson.fullName).removeClass('goHome').addClass('goProfile');
+    if(filename=='profile.html'){
+        console.log(userDataJson);
+        $("#editProfileForm #email").val(userDataJson.email);
+        $("#editProfileForm #name").val(userDataJson.fullName);
+        $("#editProfileForm #google").val(userDataJson.google);
+        $("#editProfileForm #twitter").val(userDataJson.twitter);
+        $("#editProfileForm #facebook").val(userDataJson.facebook);
+        $("#editProfileForm #linkedin").val(userDataJson.linkedin);
+        $("#editProfileForm").submit(function(){
+            el=$(this);
+            $.ajax({
+                type: 'post',
+                url: APIURL+'?page=_usersaction&action=editProfile',
+                data:el.serialize(),
+                success: function (data) {
+                    $("#"+el.data('message')).html(data);
+                }
+            });
+        })
+    }
+}
 function formatDate(date) {
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var day = date.getDate();
@@ -145,6 +179,7 @@ function makeURL(action,parameters){
            parametersText+='&'+k+'='+parameters[k];
         }
     }
+    var userData = window.localStorage.getItem("userData");
     if(userData){
         userDataJson=JSON.parse(userData);
         parametersText+='&email='+userDataJson.email;
@@ -176,8 +211,15 @@ function ajaxRequest(url,method,data,func){
         ajaxData.data={};
     }
     ajaxData.success=function (msg) {
+        console.log(url);
+        console.log("msg");
+        console.log(msg);
+        console.log("typeof msg.userSuccess!='undefined'");
+        console.log(typeof msg.userSuccess!='undefined');
+        console.log("typeof msg.userSuccess!='undefined'&&!msg.userSuccess");
+        console.log(typeof msg.userSuccess!='undefined'&&!msg.userSuccess);
         if(typeof msg.userSuccess!='undefined'&&!msg.userSuccess){
-            window.sessionStorage.removeItem("userData");
+            window.localStorage.removeItem("userData");
         }
         func(msg);
     };
@@ -204,7 +246,6 @@ function getMessages(response,element){
     $(element).html(html);
 }
 $(document).ready(function(){
-
     document.addEventListener("deviceready",onDeviceReady,false);
     $(".select2").select2()
 });
@@ -261,12 +302,10 @@ $(document).on('click',"#logout-menu a,a.logoutLink",function(e){
     db.transaction(function(tx){
         query='DELETE FROM academy_app_user WHERE id=?';
         tx.executeSql(query,[1]);
-        window.sessionStorage.removeItem("userData");
+        window.localStorage.removeItem("userData");
         // window.location.href="index.html";
         window.location.reload();
-
     });
-
 });
 $(document).on('click','.goHome',function(e){
     e.preventDefault();
@@ -277,9 +316,11 @@ $(document).on('click','.goProfile',function(e){
     window.location.href="profile.html";
 });
 function onDeviceReady() {
-    console.log("inAppPurchase");
-    console.log(window.inAppPurchase);
-    if ("inAppPurchase" in window) {
+    var devicePlatform = device.platform;
+    console.log(devicePlatform)
+    //console.log("inAppPurchase");
+    //console.log(window.inAppPurchase);
+    if ("inAppPurchase" in window&&devicePlatform!='Android') {
     //     window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas','com.e3melbusiness.app.subscription'])
     // .then(function (products) {
     //         console.log('get products')
@@ -289,7 +330,6 @@ function onDeviceReady() {
     //             console.log("get products error");
     //             console.log(err);
     //         });
-
         // window.inAppPurchase
         //     .buy('com.e3melbusiness.app.diplom')
         //     .then(function (data) {
@@ -331,35 +371,7 @@ function onDeviceReady() {
         //     });
     }
     if(userData){
-        $("#login-menu,#register-menu,.loginLink").addClass('hidden');
-        $("#logout-menu,.logoutLink").removeClass('hidden');
-        userDataJson=JSON.parse(userData);
-        if(userDataJson.image){
-            $("#userDataImage").attr('src',APIURL+'assets/images/'+userDataJson.image).removeClass('goHome').addClass('goProfile')
-        }else{
-            $("#userDataImage").attr('src',APIURL+'assets/images/user/75x75/anonymous.png').removeClass('goHome').addClass('goProfile')
-        }
-        $("#userDataFullName").html(userDataJson.fullName).removeClass('goHome').addClass('goProfile');
-        if(filename=='profile.html'){
-            console.log(userDataJson);
-            $("#editProfileForm #email").val(userDataJson.email);
-            $("#editProfileForm #name").val(userDataJson.fullName);
-            $("#editProfileForm #google").val(userDataJson.google);
-            $("#editProfileForm #twitter").val(userDataJson.twitter);
-            $("#editProfileForm #facebook").val(userDataJson.facebook);
-            $("#editProfileForm #linkedin").val(userDataJson.linkedin);
-            $("#editProfileForm").submit(function(){
-                el=$(this);
-                $.ajax({
-                    type: 'post',
-                    url: APIURL+'?page=_usersaction&action=editProfile',
-                    data:el.serialize(),
-                    success: function (data) {
-                        $("#"+el.data('message')).html(data);
-                    }
-                });
-            })
-        }
+        userIsLogin(userData);
     }
     if(filename=='contact.html'){
         var validator = $("#contactus-form").validate({
@@ -552,7 +564,7 @@ function onDeviceReady() {
             });
         }
     }
-    if(filename=='subscription_diplomas.html'){
+    if(filename=='subscription_diplomas.html'&&devicePlatform!='Android'){
         window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas'])
             .then(function (products) {
                 if(products.length){
@@ -560,15 +572,13 @@ function onDeviceReady() {
                     html='<p class="text-center">'+products[0].description+'</p><a id="buyProduct" data-id="'+products[0].productId+'" class="btn btn-primary btn-block">'+products[0].price+'</a>';
                     $("#diplomas_subscription_description").html(html);
                 }
-
-
             })
             .catch(function (err) {
                 console.log("get products error");
                 console.log(err);
             });
     }
-    if(filename=='subscription_courses.html'){
+    if(filename=='subscription_courses.html'&&devicePlatform!='Android'){
         window.inAppPurchase.getProducts(['com.e3melbusiness.app.subscription'])
             .then(function (products) {
                 if(products.length){
@@ -576,8 +586,6 @@ function onDeviceReady() {
                     html='<p class="text-center">'+products[0].description+'</p><a id="buyProduct" data-id="'+products[0].productId+'" class="btn btn-primary btn-block">'+products[0].price+'</a>';
                     $("#diplomas_subscription_description").html(html);
                 }
-
-
             })
             .catch(function (err) {
                 console.log("get products error");
@@ -633,7 +641,6 @@ function onDeviceReady() {
         return returnArray;
     }
     if(filename=='login.html'){
-
         var loginValidator = $("#login-form").validate({
             errorPlacement: function(error, element) {
                 // Append error within linked label
@@ -668,21 +675,19 @@ function onDeviceReady() {
                 ajaxRequest(makeURL('login'),'POST',$("#login-form").serialize(),function (msg) {
                     password=$("#login-form #password").val();
                     email=$("#login-form #email").val();
-
                     getMessages(msg,"#response")
                     $(".loader").hide();
                     if(msg.success){
                         msg.result.password=$("#login-form #password").val();
-
                         db.transaction(function(tx){
                             console.log('msg.success');
                             console.log(msg);
                             tx.executeSql('INSERT INTO academy_app_user (id, email,password) VALUES (1, ?,?)',[email,password]);
-                            window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                            window.localStorage.setItem("userData", JSON.stringify(msg.result));
                             window.location.href="index.html";
                         }, errorDB, successDB);
                         // console.log(msg);
-                        // window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                        // window.localStorage.setItem("userData", JSON.stringify(msg.result));
                         // window.location.href="index.html";
                     }
                 });
@@ -696,7 +701,7 @@ function onDeviceReady() {
                         if(msg.success){
                             console.log(msg);
                             msg.result.password=$("#login-form #password").val();
-                            window.sessionStorage.setItem("userData", JSON.stringify(msg.result));
+                            window.localStorage.setItem("userData", JSON.stringify(msg.result));
                             window.location.href="index.html";
                         }
                     }
@@ -709,12 +714,12 @@ function onDeviceReady() {
     }
     $(document).on('click','.link-watch',function(e){
         e.preventDefault();
-        window.sessionStorage.setItem('watchVideoID',$(this).data('id'));
+        window.localStorage.setItem('watchVideoID',$(this).data('id'));
         window.location.href="watch-video.html";
     });
     $(document).on('click','.link-listen',function(e){
         e.preventDefault();
-        window.sessionStorage.setItem('listenVideoID',$(this).data('id'));
+        window.localStorage.setItem('listenVideoID',$(this).data('id'));
         window.location.href="listen-video.html";
     });
     /*click on category*/
@@ -722,7 +727,7 @@ function onDeviceReady() {
         e.preventDefault();
         categoryID=$(this).data('id');
         console.log(categoryID);
-        window.sessionStorage.setItem("categoryID", categoryID);
+        window.localStorage.setItem("categoryID", categoryID);
         window.location.href="category-single.html";
     });
     /*click on diploma*/
@@ -730,7 +735,7 @@ function onDeviceReady() {
         e.preventDefault();
         diplomaID=$(this).data('id');
         console.log(diplomaID);
-        window.sessionStorage.setItem("diplomaID", diplomaID);
+        window.localStorage.setItem("diplomaID", diplomaID);
         window.location.href="diploma-single.html";
     });
     /*click on course*/
@@ -738,7 +743,7 @@ function onDeviceReady() {
         e.preventDefault();
         courseID=$(this).data('id');
         console.log(courseID);
-        window.sessionStorage.setItem("courseID", courseID);
+        window.localStorage.setItem("courseID", courseID);
         window.location.href="courses-single.html";
     });
     /*click on book*/
@@ -746,7 +751,7 @@ function onDeviceReady() {
         e.preventDefault();
         bookID=$(this).data('id');
         console.log(bookID);
-        window.sessionStorage.setItem("bookID", bookID);
+        window.localStorage.setItem("bookID", bookID);
         window.location.href="book-single.html";
     });
     /*click on webinar*/
@@ -754,7 +759,7 @@ function onDeviceReady() {
         e.preventDefault();
         webinarID=$(this).data('id');
         console.log(webinarID);
-        window.sessionStorage.setItem("webinarID", webinarID);
+        window.localStorage.setItem("webinarID", webinarID);
         window.location.href="webinar-single.html";
     });
     /*click on work shop*/
@@ -762,7 +767,7 @@ function onDeviceReady() {
         e.preventDefault();
         workShopID=$(this).data('id');
         console.log(workShopID);
-        window.sessionStorage.setItem("workShopID", workShopID);
+        window.localStorage.setItem("workShopID", workShopID);
         window.location.href="workshop-single.html";
     });
     /*click on story*/
@@ -770,101 +775,93 @@ function onDeviceReady() {
         e.preventDefault();
         storyID=$(this).data('id');
         console.log(storyID);
-        window.sessionStorage.setItem("storyID", storyID);
+        window.localStorage.setItem("storyID", storyID);
         window.location.href="sucessStory-single.html";
     });
-
     $(document).on('click','#more_courses',function(e){
         e.preventDefault();
         var type="courses";
         //console.log("courseID",courseID);
-        // window.sessionStorage.setItem("courseID", courseID);
-        window.sessionStorage.setItem("type", type);
+        // window.localStorage.setItem("courseID", courseID);
+        window.localStorage.setItem("type", type);
         //  el.redirectToSingleCourse();
         window.location.href="coursesByCategory.html";
     });
-
-
     $(document).on('click','#more_webinars',function(e){
         e.preventDefault();
         var  type="webinar";
-        window.sessionStorage.setItem("type", type);
+        window.localStorage.setItem("type", type);
         //  el.redirectToSingleCourse();
         window.location.href="coursesByCategory.html";
     });
-
     $(document).on('click','#more_successtories',function(e){
         e.preventDefault();
         var  type="successtories";
-        window.sessionStorage.setItem("type", type);
+        window.localStorage.setItem("type", type);
         window.location.href="coursesByCategory.html";
     });
-
     $(document).on('click','#more_books',function(e){
         e.preventDefault();
         var  type="books";
-        window.sessionStorage.setItem("type", type);
+        window.localStorage.setItem("type", type);
         window.location.href="coursesByCategory.html";
     });
-
-
     $(document).on('click','#more_workShops',function(e){
         e.preventDefault();
         var type="workShop";
-        window.sessionStorage.setItem("type", type);
+        window.localStorage.setItem("type", type);
         window.location.href="coursesByCategory.html";
     });
     $(document).on('click','.fake-youtube,.loginRedirect',function(e){
         e.preventDefault();
         window.location.href="login.html";
-    })
-
-
+    });
     $(document).on('click','#goBack',function(){
         window.history.back();
     });
-
-    $(document).on('click','#subscriptionCourses',function(){
-        window.inAppPurchase
-            .buy('com.e3melbusiness.app.subscription')
-            .then(function (data) {
-                console.log('buy products')
-                console.log(data);
-                console.log(JSON.stringify(data));
-                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
-            })
-            .catch(function (err) {
-                console.log('buy products error')
-                console.log(err);
-            });
-    })
-    $(document).on('click','#buyProduct',function(){
-        productID=$(this).attr('data-id');
-        window.inAppPurchase
-            .buy(productID)
-            .then(function (data) {
-                console.log('buy products')
-                console.log(data);
-                console.log(JSON.stringify(data));
-                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
-            })
-            .catch(function (err) {
-                console.log('buy products error')
-                console.log(err);
-            });
-    })
-    $(document).on('click','#subscriptionDiplomas',function(){
-        window.inAppPurchase
-            .buy('com.e3melbusiness.app.diplomas')
-            .then(function (data) {
-                console.log('buy products')
-                console.log(data);
-                console.log(JSON.stringify(data));
-                return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
-            })
-            .catch(function (err) {
-                console.log('buy products error')
-                console.log(err);
-            });
-    })
+    if(devicePlatform!='Android'){
+        $(document).on('click','#subscriptionCourses',function(){
+            window.inAppPurchase
+                .buy('com.e3melbusiness.app.subscription')
+                .then(function (data) {
+                    console.log('buy products')
+                    console.log(data);
+                    console.log(JSON.stringify(data));
+                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .catch(function (err) {
+                    console.log('buy products error')
+                    console.log(err);
+                });
+        });
+        $(document).on('click','#buyProduct',function(){
+            productID=$(this).attr('data-id');
+            window.inAppPurchase
+                .buy(productID)
+                .then(function (data) {
+                    console.log('buy products')
+                    console.log(data);
+                    console.log(JSON.stringify(data));
+                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .catch(function (err) {
+                    console.log('buy products error')
+                    console.log(err);
+                });
+        });
+        $(document).on('click','#subscriptionDiplomas',function(){
+            window.inAppPurchase
+                .buy('com.e3melbusiness.app.diplomas')
+                .then(function (data) {
+                    console.log('buy products')
+                    console.log(data);
+                    console.log(JSON.stringify(data));
+                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .catch(function (err) {
+                    console.log('buy products error')
+                    console.log(err);
+                });
+        });
+    }
 }

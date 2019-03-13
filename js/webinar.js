@@ -43,7 +43,7 @@ webinar ={
     },
     singleWebinarPage:function(){
         el=this;
-        webinarID=window.sessionStorage.getItem("webinarID")
+        webinarID=window.localStorage.getItem("webinarID")
         if(webinarID){
             el.getSingle(webinarID,function(msg){
                 course=msg.result;

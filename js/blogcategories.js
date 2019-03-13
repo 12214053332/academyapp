@@ -41,7 +41,7 @@ blogCategories ={
             e.preventDefault();
             blogCategoriesID=$(this).data('id');
             console.log(blogCategoriesID);
-            window.sessionStorage.setItem("blogCategoriesID", blogCategoriesID);
+            window.localStorage.setItem("blogCategoriesID", blogCategoriesID);
             el.redirectToSingleCourse();
         });
     },
@@ -65,7 +65,7 @@ blogCategories ={
     },
     singleBlogCategoryPage:function() {
         el = this;
-        blogCategoriesID = window.sessionStorage.getItem("blogCategoriesID")
+        blogCategoriesID = window.localStorage.getItem("blogCategoriesID")
         if (blogCategoriesID) {
             el = this;
             el.getSingle(blogCategoriesID, function (msg) {
@@ -88,7 +88,7 @@ blogCategories ={
                 e.preventDefault();
                 articalID = $(this).data('id');
                 console.log(articalID);
-                window.sessionStorage.setItem("articalID", articalID);
+                window.localStorage.setItem("articalID", articalID);
                 el.redirectToSingleArtical();
             });
         } else {
@@ -105,8 +105,8 @@ blogCategories ={
     },
     singleArticalPage:function(){
         el=this;
-        blogCategoriesID=window.sessionStorage.getItem("blogCategoriesID")
-        articalID=window.sessionStorage.getItem("articalID")
+        blogCategoriesID=window.localStorage.getItem("blogCategoriesID")
+        articalID=window.localStorage.getItem("articalID")
         if(articalID){
             el.getSingleArticle(blogCategoriesID,articalID,function(msg){
                 artical=msg.result;

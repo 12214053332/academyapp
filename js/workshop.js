@@ -42,7 +42,7 @@ workShop ={
     },
     singleworkShopPage:function(){
         el=this;
-        workShopID=window.sessionStorage.getItem("workShopID")
+        workShopID=window.localStorage.getItem("workShopID")
         if(workShopID){
 		
 			

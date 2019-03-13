@@ -36,7 +36,7 @@ blogs ={
             e.preventDefault();
             blogID=$(this).data('id');
             console.log(blogID);
-            window.sessionStorage.setItem("blogID", blogID);
+            window.localStorage.setItem("blogID", blogID);
             el.redirectToSingleCourse();
         });
     },
@@ -48,7 +48,7 @@ blogs ={
     },
     singleBlogPage:function(){
         el=this;
-        courseID=window.sessionStorage.getItem("courseID")
+        courseID=window.localStorage.getItem("courseID")
         if(courseID){
             el.getSingle(courseID,function(msg){
                 course=msg.result;
