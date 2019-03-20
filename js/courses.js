@@ -32,6 +32,13 @@ courses ={
                html='';
                var devicePlatform = device.platform;
                if(devicePlatform!='Android'){
+                   window.inAppPurchase.getReceipt().then(function(receipt) {
+                       // Handle receipt
+                        console.log(receipt)
+                   }).catch(function (error) {
+                       // Handle error
+                       console.log(error)
+                   });
                    html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_courses.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                }
                db.transaction(function(tx){
