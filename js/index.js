@@ -564,6 +564,15 @@ function onDeviceReady() {
             });
         }
     }
+    // window.inAppPurchase.getProducts(['diplomas_subscribe'])
+    //     .then(function (products) {
+    //         console.log("get products success");
+    //         console.log(products);
+    //     })
+    //     .catch(function (err) {
+    //         console.log("get products error");
+    //         console.log(err);
+    //     });
     if(filename=='subscription_diplomas.html'&&devicePlatform!='Android'){
         window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas'])
             .then(function (products) {
@@ -863,5 +872,33 @@ function onDeviceReady() {
                     console.log(err);
                 });
         });
+        $(document).on('click','.inAppPurchase',function(e){
+            e.preventDefault();
+            apple_product_id=$(this).attr('apple-id');
+            diploma_id=$(this).attr('data-id');
+            console.log(apple_product_id);
+            console.log(userData);
+            window.inAppPurchase.getProducts([apple_product_id])
+                .then(function (products) {
+                    console.log("get products success");
+                    console.log(products);
+                })
+                .catch(function (err) {
+                    console.log("get products error");
+                    console.log(err);
+                });
+            window.inAppPurchase
+                .buy(apple_product_id)
+                .then(function (data) {
+                    console.log('buy products')
+                    console.log(data);
+                    console.log(JSON.stringify(data));
+                    return window.inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .catch(function (err) {
+                    console.log('buy products error')
+                    console.log(err);
+                });
+        })
     }
 }

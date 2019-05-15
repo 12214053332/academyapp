@@ -11,6 +11,7 @@ diplomas ={
         });
     },
     coursesSingleDiv:function(singleCourse){
+        userData=window.localStorage.getItem("userData");
         html='';
         html+='<div class="col s6 single-diploma"><div class="entry"><a data-id="'+singleCourse.id+'" href="#"><img src="'+APIURL+singleCourse.image+'" alt=""></a><h6><a data-id="'+singleCourse.id+'" href="#">'+singleCourse.name+'</a></h6><div class="rating">';
         for(x=1;x<=singleCourse.rating;x++){
@@ -19,7 +20,7 @@ diplomas ={
         for(y=x;y<=5;y++){
             html+='<span class=""><i class="fa fa-star"></i></span>';
         }
-        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasDiploma)?'<a href="register.html" class="button btn-block text-center subscriptions-button">سجل الآن</a>':'')+'</div></div>';
+        html+='</div><div class="views-count"><i class="fa fa-eye"></i>'+singleCourse.view+'</div>'+((!singleCourse.hasDiploma)?'<a href="'+((userData)?'register.html':'login.html')+'" apple-id="'+singleCourse.apple_product_id+'" data-id="'+singleCourse.id+'" class="'+((userData)?'inAppPurchase':'')+' button btn-block text-center subscriptions-button">سجل الآن</a>':'')+'</div></div>';
         return html;
     },
     diplomasPage:function(){
@@ -29,7 +30,8 @@ diplomas ={
                html='';
                var devicePlatform = device.platform;
                if(devicePlatform!='Android'){
-                   html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_diplomas.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+                   userData=window.localStorage.getItem("userData");
+                   //html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="'+((userData)?'subscription_diplomas.html':'login.html')+'" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                }
                 msg.result.forEach(function(item){
                     html+=el.coursesSingleDiv(item);

@@ -32,18 +32,18 @@ courses ={
                html='';
                var devicePlatform = device.platform;
                if(devicePlatform!='Android'){
-                   window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas'])
-                       .then(function (products) {
-                           window.inAppPurchase.restorePurchases(function(receipt) {
-                               // Handle receipt
-                               console.log(receipt)
-                           }).catch(function (error) {
-                               // Handle error
-                               console.log(error)
-                           });
-                       })
+                   // window.inAppPurchase.getProducts(['com.e3melbusiness.app.diplomas'])
+                   //     .then(function (products) {
+                   //         window.inAppPurchase.restorePurchases(function(receipt) {
+                   //             // Handle receipt
+                   //             console.log(receipt)
+                   //         }).catch(function (error) {
+                   //             // Handle error
+                   //             console.log(error)
+                   //         });
+                   //     })
 
-                   html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_courses.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
+                   //html+='<div style="padding: 20px;margin: 20px;" class="text-center"><a href="subscription_courses.html" class="button btn-block text-center subscriptions-button">اشترك الأن</a></div>'
                }
                db.transaction(function(tx){
                    query='CREATE TABLE IF NOT EXISTS academy_courses (id unique, name,url,hasCourse,isFavorite,description,shortdescription,egy_price,egy_sale_price,ksa_price,ksa_sale_price,view,completed,videos,image,rating,level,createdtime,duetime,rating_count,instractor_name,instractor_pic)';
